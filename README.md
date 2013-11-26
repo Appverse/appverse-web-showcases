@@ -1,24 +1,24 @@
-Appverse Web
-============
+Appverse Web Showcases
+======================
 
-This is the main repository of the Appverse Web architecture for JSON Services, GWT and JSF2 server-side web applications. Appverse Web is a multi-frontend technology capable web application framework incorporating the best-of-breed open source stack to meet the challenges of secure and robust server-side service development, integration and delivery.
+This project covers all our template and demonstration applications for healthy development. 
 
 ## More Information
 
 * **About this project**: <http://appverse.github.com/appverse-web>
-* **About licenses & groups**: <http://appverse.github.com>
+* **About licenses **: <http://www.mozilla.org/MPL/>
 * **About The Appverse Project**: <http://appverse.org>
 
 ## License
 
     Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 
-     This Source  Code Form  is subject to the  terms of  the Appverse Public License 
-     Version 2.0  ("APL v2.0").  If a copy of  the APL  was not  distributed with this 
-     file, You can obtain one at <http://appverse.org/legal/appverse-license/>.
+     This Source Code Form is subject to the terms of the Mozilla Public
+     License, v. 2.0. If a copy of the MPL was not distributed with this
+     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
      Redistribution and use in  source and binary forms, with or without modification, 
-     are permitted provided that the  conditions  of the  AppVerse Public License v2.0 
+     are permitted provided that the  conditions  of the  Mozilla Public License v2.0 
      are met.
 
      THIS SOFTWARE IS PROVIDED BY THE  COPYRIGHT HOLDERS  AND CONTRIBUTORS "AS IS" AND
