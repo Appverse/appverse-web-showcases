@@ -483,4 +483,16 @@
 			</properties>
 		</profile>
 	</profiles>
+        <distributionManagement>
+            <repository>
+                <id>appverse-releases</id>
+                <name>Internal Releases</name>
+                <url>http://appverse.gftlabs.com/artifacts/content/repositories/releases</url>
+            </repository>
+            <snapshotRepository>
+                <id>appverse-snapshots</id>
+                <name>Internal Snapshots</name>
+                <url>http://appverse.gftlabs.com/artifacts/content/repositories/snapshots/</url>
+            </snapshotRepository>
+        </distributionManagement>
 </project>
