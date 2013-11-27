@@ -390,7 +390,7 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<reporting>
+	<!--reporting>
 		<outputDirectory>${basedir}/target/site</outputDirectory>
 		<plugins>
 			<plugin>
@@ -448,7 +448,7 @@
 				<version>2.3</version>
 			</plugin>
 		</plugins>
-	</reporting>
+	</reporting-->
 
 	<profiles>
 		<profile>
