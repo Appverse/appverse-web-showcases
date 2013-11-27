@@ -451,7 +451,7 @@
 
 	<profiles>
 		<profile>
-			<id>development_gwt</id>
+			<id>development</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -476,7 +476,7 @@
 		</profile>
 
 		<profile>
-			<id>integration_gwt</id>
+			<id>integration</id>
 			<properties>
 				<env>integration</env>
 				<maven.skip.tests>false</maven.skip.tests>
