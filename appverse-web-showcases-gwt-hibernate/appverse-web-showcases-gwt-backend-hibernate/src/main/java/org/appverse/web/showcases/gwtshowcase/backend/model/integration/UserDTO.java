@@ -25,14 +25,7 @@ package org.appverse.web.showcases.gwtshowcase.backend.model.integration;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 import org.appverse.web.framework.backend.persistence.model.integration.AbstractIntegrationAuditedJPABean;
 
@@ -43,7 +36,7 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
 
 	private static final long serialVersionUID = 1L;
 
-	private String name;
+    private String name;
 	private String lastName;
 	private String email;
 	private String password;
@@ -81,6 +74,7 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
 		return password;
 	}
 
+    // This does not work: http://stackoverflow.com/questions/15092204/how-to-override-parameter-in-sublass-of-mappedsuperclass
 	@Override
 	@Version
 	public long getVersion() {
