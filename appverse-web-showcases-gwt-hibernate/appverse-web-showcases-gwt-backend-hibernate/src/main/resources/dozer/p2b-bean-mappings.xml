@@ -29,6 +29,15 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	<mapping map-id="user-p2b">
 		<class-a>org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO</class-a>
 		<class-b>org.appverse.web.showcases.gwtshowcase.backend.model.business.User</class-b>
+        <field remove-orphans="true">
+            <a>roles</a>
+            <b>roles</b>
+        </field>
 	</mapping>
-    
+
+    <mapping map-id="role-p2b">
+        <class-a>org.appverse.web.showcases.gwtshowcase.backend.model.presentation.RoleVO</class-a>
+        <class-b>org.appverse.web.showcases.gwtshowcase.backend.model.business.Role</class-b>
+    </mapping>
+
 </mappings>

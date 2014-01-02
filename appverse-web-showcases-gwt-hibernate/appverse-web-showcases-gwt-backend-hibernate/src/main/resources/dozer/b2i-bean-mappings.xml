@@ -31,11 +31,32 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	<mapping map-id="user-b2i-complete" relationship-type="non-cumulative">
 		<class-a>org.appverse.web.showcases.gwtshowcase.backend.model.business.User</class-a>
 		<class-b>org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO</class-b>
+        <field remove-orphans="true">
+            <a>roles</a>
+            <b>roles</b>
+        </field>
 	</mapping>
 
 	<mapping map-id="user-b2i-without-dependencies">
 		<class-a>org.appverse.web.showcases.gwtshowcase.backend.model.business.User</class-a>
 		<class-b>org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO</class-b>
+        <field-exclude>
+            <a>roles</a>
+            <b>roles</b>
+        </field-exclude>
 	</mapping>
+
+
+    <!-- Role converter mappings -->
+    <mapping map-id="role-b2i-complete" relationship-type="non-cumulative">
+        <class-a>org.appverse.web.showcases.gwtshowcase.backend.model.business.Role</class-a>
+        <class-b>org.appverse.web.showcases.gwtshowcase.backend.model.integration.RoleDTO</class-b>
+    </mapping>
+
+    <mapping map-id="role-b2i-without-dependencies">
+        <class-a>org.appverse.web.showcases.gwtshowcase.backend.model.business.Role</class-a>
+        <class-b>org.appverse.web.showcases.gwtshowcase.backend.model.integration.RoleDTO</class-b>
+    </mapping>
+
     
 </mappings>

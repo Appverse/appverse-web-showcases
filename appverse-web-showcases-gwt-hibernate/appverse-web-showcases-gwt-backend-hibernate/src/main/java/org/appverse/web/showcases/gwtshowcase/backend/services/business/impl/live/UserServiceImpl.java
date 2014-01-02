@@ -31,9 +31,11 @@ import org.appverse.web.framework.backend.api.model.business.BusinessPaginatedDa
 import org.appverse.web.framework.backend.api.model.integration.IntegrationPaginatedDataFilter;
 import org.appverse.web.framework.backend.api.services.business.AbstractBusinessService;
 import org.appverse.web.showcases.gwtshowcase.backend.converters.b2i.UserB2IBeanConverter;
+import org.appverse.web.showcases.gwtshowcase.backend.model.business.Role;
 import org.appverse.web.showcases.gwtshowcase.backend.model.business.User;
 import org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.business.UserService;
+import org.appverse.web.showcases.gwtshowcase.backend.services.integration.RoleRepository;
 import org.appverse.web.showcases.gwtshowcase.backend.services.integration.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,9 @@ public class UserServiceImpl extends AbstractBusinessService implements
 
 	@Autowired
 	private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+
 
 	@Autowired
 	private UserB2IBeanConverter userB2IBeanConverter;
@@ -114,6 +119,22 @@ public class UserServiceImpl extends AbstractBusinessService implements
 			// We are creating a new DTO (not managed by the entity manager yet)
 			userDTO = userB2IBeanConverter.convert(user);
 		}
+
+        // Make sure that DTO object dependencies that should previously stored
+        // in database are complete.
+        // We need to ensure that pre-existing objects that we are asigning to
+        // user
+        // are complet as we don't send full objects to the front-end and in
+        // some case
+        // we send just even the id's. The business objects might not be
+        // completed.
+        if (userDTO.getRoles() != null) {
+            userDTO.getRoles().clear();
+            for (Role role : user.getRoles()) {
+                userDTO.getRoles().add(roleRepository.retrieve(role.getId()));
+            }
+        }
+
 		return userRepository.persist(userDTO);
 	}
 }

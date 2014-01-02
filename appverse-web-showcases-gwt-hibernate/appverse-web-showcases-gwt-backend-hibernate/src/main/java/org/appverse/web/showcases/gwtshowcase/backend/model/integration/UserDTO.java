@@ -24,6 +24,8 @@
 package org.appverse.web.showcases.gwtshowcase.backend.model.integration;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -40,6 +42,8 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
 	private String lastName;
 	private String email;
 	private String password;
+
+    private List<RoleDTO> roles = new ArrayList<RoleDTO>();
 
 	private boolean active = true;
 
@@ -74,6 +78,14 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
 		return password;
 	}
 
+    // unidirectional one-to-many association to ROLE
+    @OneToMany(cascade = CascadeType.REFRESH)
+    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+// ECLIPSELINK    @BatchFetch(BatchFetchType.IN) // EclipseLink optimization
+    public List<RoleDTO> getRoles() {
+        return roles;
+    }
+
     // This does not work: http://stackoverflow.com/questions/15092204/how-to-override-parameter-in-sublass-of-mappedsuperclass
 	@Override
 	@Version
@@ -105,4 +117,9 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
 	public void setPassword(final String password) {
 		this.password = password;
 	}
+
+    public void setRoles(final List<RoleDTO> roles) {
+        this.roles = roles;
+    }
+
 }

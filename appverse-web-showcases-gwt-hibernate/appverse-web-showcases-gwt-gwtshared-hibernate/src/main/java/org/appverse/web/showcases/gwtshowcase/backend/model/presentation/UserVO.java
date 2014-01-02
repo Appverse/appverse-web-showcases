@@ -28,6 +28,9 @@ import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
 
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTAbstractPresentationAuditedBean;
+import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTItemVO;
+
+import java.util.ArrayList;
 
 public class UserVO extends GWTAbstractPresentationAuditedBean {
 
@@ -54,6 +57,10 @@ public class UserVO extends GWTAbstractPresentationAuditedBean {
 
 	@NotNull
 	private boolean active = true;
+
+    @Size(min = 1, message = "{UserVO.roles.Size.message}", groups = { Default.class })
+    private ArrayList<GWTItemVO> roles = new ArrayList<GWTItemVO>();
+
 
 	public UserVO() {
 		super();
@@ -82,6 +89,10 @@ public class UserVO extends GWTAbstractPresentationAuditedBean {
 	public String getSignup() {
 		return signup;
 	}
+
+    public ArrayList<GWTItemVO> getRoles() {
+        return roles;
+    }
 
 	public boolean isActive() {
 		return active;
@@ -114,4 +125,9 @@ public class UserVO extends GWTAbstractPresentationAuditedBean {
 	public void setSignup(final String signup) {
 		this.signup = signup;
 	}
+
+    public void setRoles(ArrayList<GWTItemVO> roles) {
+        this.roles = roles;
+    }
+
 }

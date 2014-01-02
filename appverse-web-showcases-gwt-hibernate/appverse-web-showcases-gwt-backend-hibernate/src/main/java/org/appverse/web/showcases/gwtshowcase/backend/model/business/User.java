@@ -25,6 +25,9 @@ package org.appverse.web.showcases.gwtshowcase.backend.model.business;
 
 import org.appverse.web.framework.backend.api.model.business.AbstractBusinessAuditedBean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User extends AbstractBusinessAuditedBean {
 
 	private static final long serialVersionUID = 92981844901681239L;
@@ -34,6 +37,9 @@ public class User extends AbstractBusinessAuditedBean {
 	private String lastName;
 	private String email;
 	private String password;
+
+
+    private List<Role> roles = new ArrayList<Role>();
 
 	private boolean active = true;
 
@@ -56,6 +62,10 @@ public class User extends AbstractBusinessAuditedBean {
 	public String getPassword() {
 		return password;
 	}
+
+    public List<Role> getRoles() {
+        return roles;
+    }
 
 	public boolean isActive() {
 		return active;
@@ -84,4 +94,8 @@ public class User extends AbstractBusinessAuditedBean {
 	public void setPassword(final String password) {
 		this.password = password;
 	}
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }
