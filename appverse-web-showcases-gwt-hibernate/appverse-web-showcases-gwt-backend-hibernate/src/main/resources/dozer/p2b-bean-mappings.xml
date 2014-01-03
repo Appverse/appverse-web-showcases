@@ -40,4 +40,9 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
         <class-b>org.appverse.web.showcases.gwtshowcase.backend.model.business.Role</class-b>
     </mapping>
 
+    <mapping map-id="gwtItemRole-p2b">
+        <class-a>org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTItemVO</class-a>
+        <class-b>org.appverse.web.showcases.gwtshowcase.backend.model.business.Role</class-b>
+    </mapping>
+
 </mappings>

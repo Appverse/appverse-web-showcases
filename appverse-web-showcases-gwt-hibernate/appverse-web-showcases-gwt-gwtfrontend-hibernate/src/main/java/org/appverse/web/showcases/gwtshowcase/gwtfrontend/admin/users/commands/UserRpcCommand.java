@@ -43,4 +43,6 @@ public interface UserRpcCommand {
 			AppverseCallback<GWTPresentationPaginatedResult<UserVO>> callback);
 
 	void saveUser(UserVO user, ApplicationAsyncCallback<Long> asyncCallback);
+
+    void loadUser(final long userId, final ApplicationAsyncCallback<UserVO> callback);
 }

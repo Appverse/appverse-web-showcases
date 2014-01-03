@@ -2,18 +2,13 @@ package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.presenter
 
 import com.mvp4g.client.annotation.Presenter;
 import com.mvp4g.client.presenter.LazyPresenter;
-import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTItemVO;
-import org.appverse.web.framework.frontend.gwt.helpers.security.PrincipalInformation;
 import org.appverse.web.framework.frontend.gwt.rpc.ApplicationAsyncCallback;
-import org.appverse.web.showcases.gwtshowcase.backend.constants.AuthoritiesConstants;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.RoleVO;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminEventBus;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.injection.AdminInjector;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.commands.RolesRpcCommand;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.presenters.interfaces.IRoleEditView;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.views.impl.gxt.RoleEditView;
-
-import java.util.List;
 
 @Presenter(view = RoleEditView.class)
 public class RoleEditPresenter extends
@@ -30,7 +25,7 @@ public class RoleEditPresenter extends
 	// Button cancel pressed
 	@Override
 	public void cancel() {
-		// TODO: eventBus.rolesSearch();
+		eventBus.rolesSearch();
 	}
 
 	@Override
@@ -62,7 +57,6 @@ public class RoleEditPresenter extends
 
         view.setEditMode(true, true);
 
-
         // Load initial data
 		loadMappings();
 		eventBus.adminLayoutChangeBody(view.asWidget());
@@ -77,8 +71,6 @@ public class RoleEditPresenter extends
 					new ApplicationAsyncCallback<Long>() {
 						@Override
 						public void onSuccess(final Long ret) {
-							// TODO: Show here an alert confirming that the
-							// object was successfully saved
 							eventBus.rolesSearch();
 						}
 					});
