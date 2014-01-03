@@ -38,6 +38,8 @@ public interface AdminMessages extends ApplicationMessages {
 	String menuUsersListManagement();
 
 	String menuUsersManagement();
+
+    String menuRoles();
 	
 	// Header
 	String headerHome();
@@ -84,4 +86,45 @@ public interface AdminMessages extends ApplicationMessages {
 	
 	// Global Admin module messages
 	String confirmDeletion();
+
+
+    // Roles
+    String rolesAddActive();
+
+    String rolesAddDescription();
+
+    String rolesAddDetails();
+
+    String rolesAddEnvironments();
+
+    String rolesAddName();
+
+    String rolesAddPermissions();
+
+    String rolesAddRole();
+
+    // Roles Add
+    String rolesAddTitle();
+
+    String rolesButtonSearch();
+
+    String rolesRoleList();
+
+    String rolesRoleName();
+
+    String rolesSearchRoles();
+
+    String rolesTableActive();
+
+    String rolesTableEnvironment();
+
+    String rolesTableName();
+
+    String rolesTablePerms();
+
+    // Roles List
+    String rolesTitle();
+
+
+
 }

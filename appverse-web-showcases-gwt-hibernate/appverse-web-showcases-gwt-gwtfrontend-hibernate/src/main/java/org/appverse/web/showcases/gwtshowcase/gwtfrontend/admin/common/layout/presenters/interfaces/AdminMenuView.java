@@ -37,6 +37,8 @@ public interface AdminMenuView extends
 		
 		void homeClicked();
 
+        void rolesClicked();
+
 		void logoutClicked();
 
 	}

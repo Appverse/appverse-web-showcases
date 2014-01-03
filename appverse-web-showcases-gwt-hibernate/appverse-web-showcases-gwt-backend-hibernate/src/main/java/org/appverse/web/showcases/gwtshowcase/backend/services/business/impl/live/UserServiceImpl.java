@@ -88,7 +88,7 @@ public class UserServiceImpl extends AbstractBusinessService implements
 		// Note that ConversitonType.WithoutDependencies will not convert
 		// collections using the corresponding mapping
 		List<UserDTO> userList = userRepository.retrieveList();
-		return userB2IBeanConverter.convertIntegrationList(userList);
+		return userB2IBeanConverter.convertIntegrationList(userList, ConversionType.WithoutDependencies);
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class UserServiceImpl extends AbstractBusinessService implements
 		final List<UserDTO> userList = userRepository
 				.retrieveList(integrationDataFilter);
 
-		return userB2IBeanConverter.convertIntegrationList(userList);
+		return userB2IBeanConverter.convertIntegrationList(userList, ConversionType.WithoutDependencies);
 	}
 
 	@Override

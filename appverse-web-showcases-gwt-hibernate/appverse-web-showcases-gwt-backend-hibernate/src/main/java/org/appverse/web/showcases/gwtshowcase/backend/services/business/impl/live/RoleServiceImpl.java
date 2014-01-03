@@ -21,6 +21,7 @@ public class RoleServiceImpl extends AbstractBusinessService implements
 
 	@Autowired
 	private RoleRepository roleRepository;
+    @Autowired
 	private RoleB2IBeanConverter roleB2IBeanConverter;
 	@Autowired
 	private PaginatedDataFilterB2IBeanConverter paginatedDataFilterB2IBeanConverter;

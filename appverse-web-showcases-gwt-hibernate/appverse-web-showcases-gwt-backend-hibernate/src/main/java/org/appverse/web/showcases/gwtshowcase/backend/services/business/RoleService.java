@@ -8,21 +8,21 @@ import java.util.List;
 
 public interface RoleService {
 
-	@PreAuthorize("hasRole('ROLE_APP_ADMIN_CONSOLE_ACCESS') OR hasRole('ROLE_APP_ACCESS')")
+    @PreAuthorize("hasRole('ROLE_ROLE')")
 	int countRoles(BusinessPaginatedDataFilter filter) throws Exception;
 
-	@PreAuthorize("hasRole('ROLE_APP_ADMIN_CONSOLE_ACCESS') AND hasRole('ROLE_ROLE_DISABLE')")
+    @PreAuthorize("hasRole('ROLE_ROLE')")
 	void deleteRole(long roleId) throws Exception;
 
-	@PreAuthorize("hasRole('ROLE_APP_ADMIN_CONSOLE_ACCESS') OR hasRole('ROLE_APP_ACCESS')")
+    @PreAuthorize("hasRole('ROLE_ROLE')")
     Role loadRole(long pk) throws Exception;
 
-	@PreAuthorize("hasRole('ROLE_APP_ADMIN_CONSOLE_ACCESS') OR hasRole('ROLE_APP_ACCESS')")
+    @PreAuthorize("hasRole('ROLE_ROLE')")
 	List<Role> loadRoles() throws Exception;
 
-	@PreAuthorize("hasRole('ROLE_APP_ADMIN_CONSOLE_ACCESS') OR hasRole('ROLE_APP_ACCESS')")
+    @PreAuthorize("hasRole('ROLE_ROLE')")
 	List<Role> loadRoles(BusinessPaginatedDataFilter config) throws Exception;
 
-	@PreAuthorize("hasRole('ROLE_APP_ADMIN_CONSOLE_ACCESS') AND ( (#role.id == 0 AND hasRole('ROLE_ROLE_CREATE')) OR (#role.id != 0 AND hasRole('ROLE_ROLE_EDIT')) )")
+    @PreAuthorize("hasRole('ROLE_ROLE')")
 	long saveRole(Role role) throws Exception;
 }

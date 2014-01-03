@@ -1,0 +1,39 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder' xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container"
+	xmlns:form="urn:import:com.sencha.gxt.widget.core.client.form">
+
+	<ui:with type="org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminMessages" field="res" />
+
+    <ui:with type="org.appverse.web.showcases.gwtshowcase.gwtfrontend.common.layout.GWTShowcaseBodyLayout"
+             field="gwtshowcaseLayout" />
+	
+
+	<container:VerticalLayoutContainer ui:field="fieldSetContainer"
+		title="{res.rolesAddDetails}{res.separator}" layoutData="{gwtshowcaseLayout.fieldSetLayout}">
+
+		<!-- Add form container -->
+		<container:child layoutData="{gwtshowcaseLayout.textLayout}">
+			<form:FieldLabel text="{res.rolesAddName}" labelWidth="{gwtshowcaseLayout.labelSize}">
+				<form:widget>
+					<form:TextField ui:field="addName" tabIndex="1" />
+				</form:widget>
+			</form:FieldLabel>
+		</container:child>
+		<container:child layoutData="{gwtshowcaseLayout.fullWidthTextLayout}">
+			<form:FieldLabel text="{res.rolesAddDescription}" labelWidth="{gwtshowcaseLayout.labelSize}">
+				<form:widget>
+					<form:TextField ui:field="addDescription" tabIndex="2" />
+				</form:widget>
+			</form:FieldLabel>
+		</container:child>		
+		<container:child layoutData="{gwtshowcaseLayout.checkboxLayout}">
+			<form:FieldLabel text="{res.rolesAddActive}" labelWidth="{gwtshowcaseLayout.labelSize}">
+				<form:widget>
+					<form:CheckBox ui:field="active" tabIndex="5" />
+				</form:widget>
+			</form:FieldLabel>
+		</container:child>
+	</container:VerticalLayoutContainer>
+
+
+</ui:UiBinder>
