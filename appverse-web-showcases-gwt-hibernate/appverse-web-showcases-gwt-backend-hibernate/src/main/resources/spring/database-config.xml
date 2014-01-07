@@ -40,7 +40,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
       <bean id="jpaVendorAdapter"
 	        class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
 		    p:databasePlatform="org.hibernate.dialect.HSQLDialect"
-		    p:showSql="true"/>
+		    p:showSql="false"/>
 		   
 
       <!-- ============================================================================================= --> 
@@ -56,7 +56,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
    	
    	   <jdbc:embedded-database id="dataSource">
 	      <jdbc:script location="classpath:/sql/HSQLPlatform-schema-create.sql"/>
-	      <jdbc:script location="classpath:/sql/HSQLPlatform-dml-create.sql"/>	     
+	      <jdbc:script location="classpath:/sql/HSQLPlatform-dml-create.sql"/>
        </jdbc:embedded-database>   
 
 </beans>

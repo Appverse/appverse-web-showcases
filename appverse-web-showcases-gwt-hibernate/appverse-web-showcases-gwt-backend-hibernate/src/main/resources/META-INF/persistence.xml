@@ -29,11 +29,25 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 		<shared-cache-mode>NONE</shared-cache-mode>
 	    <validation-mode>NONE</validation-mode>
 		<properties>
-<!-- TODO: HIBERNATE. EclipseLink properties commented. Review weaving with Hibernate
-			<property name="eclipselink.weaving" value="static"/>
-			<property name="eclipselink.weaving.changetracking" value="false"/>
-		    <property name="eclipselink.logging.logger" value="org.appverse.web.framework.backend.persistence.helpers.log.EclipselinkLogger"/>
+            <!-- Hibernate properties -->
+<!--
+            <property name="hibernate.id.new_generator_mappings" value="true"/>
 -->
+            <!-- Use this property just for development purposes -->
+            <!-- http://stackoverflow.com/questions/438146/hibernate-hbm2ddl-auto-possible-values-and-what-they-do -->
+            <!-- http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/cfg/AvailableSettings.html#HBM2DDL_AUTO -->
+            <property name="hibernate.hbm2ddl.auto">validate</property>
+            <property name="show_sql">true</property>
+            <property name="format_sql">true</property>
+            <property name="use_sql_comments">true</property>
+
+
+
+            <!-- TODO: HIBERNATE. EclipseLink properties commented. Review weaving with Hibernate
+                        <property name="eclipselink.weaving" value="static"/>
+                        <property name="eclipselink.weaving.changetracking" value="false"/>
+                        <property name="eclipselink.logging.logger" value="org.appverse.web.framework.backend.persistence.helpers.log.EclipselinkLogger"/>
+            -->
 
             <!-- 	        <property name="eclipselink.session.customizer" value="com.gft.riaframework.backend.services.integration.ELCacheSessionCustomizer"/>   -->
 

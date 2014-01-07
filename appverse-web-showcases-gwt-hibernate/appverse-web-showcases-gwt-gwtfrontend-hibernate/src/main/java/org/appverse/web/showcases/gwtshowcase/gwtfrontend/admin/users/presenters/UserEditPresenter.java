@@ -123,11 +123,18 @@ public class UserEditPresenter extends
                 @Override
                 public void onSuccess(final UserVO userVO) {
                     view.setUser(userVO);
+                    // Load initial data.
+                    // In this case the mappings depend on the role information of the user, that is why
+                    // in case the user previously existed, the mappings are loaded just after the user
+                    // is passed to the view
+                    loadMappings();
                 }
             });
         }
         else{
             view.setUser(user);
+            // Load initial data
+            loadMappings();
         }
 
 		if (user.getId() == 0) {
@@ -140,8 +147,6 @@ public class UserEditPresenter extends
 					PrincipalInformation
 							.hasPrincialAuthority(AuthoritiesConstants.ROLE_USER_DISABLE));
 		}
-		// Load initial data
-		loadMappings();
 		eventBus.adminLayoutChangeBody(view.asWidget());
 	}
 
