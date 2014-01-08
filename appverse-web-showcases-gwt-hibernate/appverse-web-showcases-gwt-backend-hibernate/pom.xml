@@ -202,25 +202,6 @@
         <dependency>
             <groupId>org.appverse.web.framework.modules.backend.core.persistence.hibernate</groupId>
             <artifactId>appverse-web-modules-backend-core-persistence-hibernate</artifactId>
-            <!-- EclipseLink excluded -->
-            <exclusions>
-                <exclusion>
-                    <artifactId>eclipselink</artifactId>
-                    <groupId>org.eclipse.persistence</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Added Hibernate dependencies -->
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <version>1.0.1.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.2.7.Final</version>
         </dependency>
 
         <!--<dependency>
