@@ -33,7 +33,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
       <!-- ============================================================================================= --> 
 
 <!--      <bean id="jpaVendorAdapter" -->
-<!-- 		    class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" -->
+<!-- 		    class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" -->
 <!-- 		    p:databasePlatform="org.eclipse.persistence.platform.database.MySQLPlatform"		   -->
 <!-- 		    p:showSql="true" /> -->
  
@@ -41,7 +41,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	        class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
 		    p:databasePlatform="org.hibernate.dialect.HSQLDialect"
 		    p:showSql="false"/>
-		   
+
 
       <!-- ============================================================================================= --> 
 	  <!-- Data Source    							                               						 -->

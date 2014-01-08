@@ -4,11 +4,6 @@ import org.appverse.web.framework.backend.persistence.model.integration.Abstract
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-// ECLIPSELINK import org.eclipse.persistence.annotations.BatchFetch;
-// ECLIPSELINK import org.eclipse.persistence.annotations.BatchFetchType;
-
 
 /**
  * The persistent class for the USER database table.

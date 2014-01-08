@@ -351,6 +351,10 @@
 					</executions>
 				</plugin>
 
+                <!-- JPA DDL Generator uses Eclipselink to generate the creation scripts in the selected platform,
+                     specially for testing purposes.
+                     Even though the plugin uses EclipseLink, it is only for the scripts generation.
+                     No EclipseLink dependency will be added in your project because of this plugin -->
 				<plugin>
 					<groupId>org.appverse.web.tools.jpaddlgenerator</groupId>
 					<artifactId>appverse-web-tools-jpa-ddl-generator</artifactId>
@@ -368,8 +372,8 @@
 					</executions>
 					<dependencies>
 						<dependency>
-							<groupId>org.appverse.web.framework.modules.backend.core.persistence</groupId>
-							<artifactId>appverse-web-modules-backend-core-persistence</artifactId>
+							<groupId>org.appverse.web.framework.modules.backend.core.persistence.eclipselink</groupId>
+							<artifactId>appverse-web-modules-backend-core-persistence-eclipselink</artifactId>
 							<version>${appverse.framework.version}</version>
 						</dependency>
 					</dependencies>

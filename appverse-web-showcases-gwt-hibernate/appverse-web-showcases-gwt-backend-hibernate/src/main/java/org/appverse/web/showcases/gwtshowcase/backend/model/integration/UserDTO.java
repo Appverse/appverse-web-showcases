@@ -81,7 +81,6 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
     // unidirectional one-to-many association to ROLE
     @OneToMany(cascade = CascadeType.REFRESH)
     @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-// ECLIPSELINK    @BatchFetch(BatchFetchType.IN) // EclipseLink optimization
     public List<RoleDTO> getRoles() {
         return roles;
     }
