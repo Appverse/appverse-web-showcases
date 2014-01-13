@@ -1,27 +1,25 @@
 /*
- * GFT
- *
- * GWT project implemented using MVP4g showing the next features corresponding 
- * to the GWT front end architecture:
- * 
- * - Reverse MVP pattern (MVP4g implementation) 
- * - Dependency Injection (GIN implementation) 
- * - UiBinder (Plain GWT) 
- * - Lazy presenters and views (MVP4g implementation): presenters and views are not instantiated until they need to attend the first event 
- * - Command pattern: to show how to structure the application better, encapsulate reusable services, avoid large presenters, have a place 
- *   to implement caching, etc.. 
- * - History support (MVP4g implementation): back and forward browser buttons management, ability to "bookmark" a particular status of the 
- *   application, etc. 
- * - Cancellable Navigation (MVP4g implementation): ability to mark some transitions to ask for user confirmation (for instance in order 
- *   to prevent user to loss data because he is moving from one place ("screen") to another. 
- * - Editor framework (Plain GWT): Provides binding from POJO to GUI and the other way around 
- * - Code splitting (MVP4g implementation - using the concept of module, not splitters): This allows us not to load in the client browser 
- *   all the resources from the beginning. Instead, we specify the application to fetch them to the front end when they are requiered. 
- * - Layout templating (Plain GWT): simple example showing three areas: top area, bottom area and main (data area). Typically, the main area 
- *   is the one that is changing all the time to show the different "screens" 
- * - Other built-in patterns provided by MVP4G like singleton for presenters and views, etc. 
- * 
- * @author Miguel Fernandez Garrido
+ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
+
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the conditions of the Mozilla Public License v2.0
+ are met.
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. EXCEPT IN CASE OF WILLFUL MISCONDUCT OR GROSS NEGLIGENCE, IN NO EVENT
+ SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.editors.impl.gxt;
 
