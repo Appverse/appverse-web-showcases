@@ -30,6 +30,8 @@ import org.appverse.web.framework.backend.persistence.services.integration.helpe
 import org.appverse.web.framework.backend.persistence.services.integration.impl.live.JPAPersistenceService;
 import org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.integration.UserRepository;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
 
@@ -53,5 +55,14 @@ public class UserRepositoryImpl extends JPAPersistenceService<UserDTO>
 			return list.get(0);
 		} else
 			return null;
-	}	
+	}
+
+    @Override
+    public List<UserDTO> retrieveUserListUsingNativeOrmApiExample() throws Exception {
+        Session session = unwrap(org.hibernate.Session.class);
+
+        Criteria criteria = session.createCriteria(UserDTO.class);
+        return criteria.list();
+    }
+
 }

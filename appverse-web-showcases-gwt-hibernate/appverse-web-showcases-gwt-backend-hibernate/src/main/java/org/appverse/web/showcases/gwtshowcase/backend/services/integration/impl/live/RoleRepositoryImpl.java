@@ -4,8 +4,12 @@ import org.appverse.web.framework.backend.api.helpers.log.AutowiredLogger;
 import org.appverse.web.framework.backend.persistence.services.integration.impl.live.JPAPersistenceService;
 import org.appverse.web.showcases.gwtshowcase.backend.model.integration.RoleDTO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.integration.RoleRepository;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository("roleRepository")
 public class RoleRepositoryImpl extends JPAPersistenceService<RoleDTO>
@@ -14,4 +18,11 @@ public class RoleRepositoryImpl extends JPAPersistenceService<RoleDTO>
 	@AutowiredLogger
 	private static Logger logger;
 
+    @Override
+    public List<RoleDTO> retrieveRoleListUsingNativeOrmApiExample() throws Exception{
+        Session session = unwrap(org.hibernate.Session.class);
+
+        Criteria criteria = session.createCriteria(RoleDTO.class);
+        return criteria.list();
+    }
 }

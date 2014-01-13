@@ -26,8 +26,12 @@ package org.appverse.web.showcases.gwtshowcase.backend.services.integration;
 import org.appverse.web.framework.backend.persistence.services.integration.IJPAPersistenceService;
 import org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO;
 
+import java.util.List;
+
 public interface UserRepository extends IJPAPersistenceService<UserDTO> {
 
 	UserDTO loadUserByUsername(final String username) throws Exception;
+
+    List<UserDTO> retrieveUserListUsingNativeOrmApiExample() throws Exception;
 
 }

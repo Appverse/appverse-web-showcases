@@ -30,14 +30,23 @@ import org.appverse.web.framework.backend.persistence.services.integration.helpe
 import org.appverse.web.framework.backend.persistence.services.integration.impl.live.JPAPersistenceService;
 import org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.integration.UserRepository;
+import org.eclipse.persistence.jpa.JpaEntityManager;
+import org.eclipse.persistence.queries.ReadAllQuery;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
+import org.eclipse.persistence.sessions.Session;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Repository("userRepository")
 public class UserRepositoryImpl extends JPAPersistenceService<UserDTO>
 		implements UserRepository {
 
-	@AutowiredLogger
+    @PersistenceContext
+    private EntityManager em;
+
+    @AutowiredLogger
 	private static Logger logger;
 
 	@Override
@@ -53,5 +62,20 @@ public class UserRepositoryImpl extends JPAPersistenceService<UserDTO>
 			return list.get(0);
 		} else
 			return null;
-	}	
+	}
+
+    @Override
+    public List<UserDTO> retrieveUserListUsingNativeOrmApiExample() throws Exception {
+
+        // Take into account that with EclipseLink you need to unwrap the class JPAEntityManager which provides access to the EclipseLink
+        // extensions. You can then get the active Session corresponding to the UnitOfWork.
+        // If you try to unwrap the Session directly you will not get the active session.
+        JpaEntityManager eclipsLinkJpaEntityManager = unwrap(JpaEntityManager.class);
+        Session session = eclipsLinkJpaEntityManager.getActiveSession();
+
+        ReadAllQuery query = new ReadAllQuery(UserDTO.class);
+        query.setJPQLString("SELECT OBJECT(user) FROM UserDTO user");
+        return (List<UserDTO>)session.executeQuery(query);
+    }
+
 }

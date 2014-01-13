@@ -46,10 +46,6 @@ public class RoleServiceImpl extends AbstractBusinessService implements
 
 	@Override
 	public void deleteRole(final long roleId) throws Exception {
-		/*
-		 * final RoleDTO roleDTO = roleB2IBeanConverter.convert(role,
-		 * ConversionType.WithoutDependencies);
-		 */
 		final RoleDTO roleDTO = roleRepository.retrieve(roleId);
 		roleRepository.delete(roleDTO);
 	}
@@ -76,6 +72,13 @@ public class RoleServiceImpl extends AbstractBusinessService implements
 
 	@Override
 	public long saveRole(final Role role) throws Exception {
+
+        // This call is just to demostrate the use of the native Hibernate API. Does not add any functionality it is here just as a example
+        // showing a transaction that mixes JPA queries and native queries.
+        // We recommend to use JPA as much as possible, avoiding your JPA provider (ORM) native API. Following the JPA specification will
+        // make your application much more portable in case you want to change your JPA provider.
+        final List<RoleDTO> roleList =  roleRepository.retrieveRoleListUsingNativeOrmApiExample();
+
 		RoleDTO roleDTO;
 		if (role.getId() != 0L) {
 			// As it is an existing user we retrieve the entity manager managed
@@ -87,28 +90,6 @@ public class RoleServiceImpl extends AbstractBusinessService implements
 			// We are creating a new DTO (not managed by the entity manager yet)
 			roleDTO = roleB2IBeanConverter.convert(role);
 		}
-		// We need to ensure the DTO object is complete before saving it as
-		// presentation
-		// object (and so business object) might be lacking of relationships or
-		// just keep the ids
-
-		// Retrieve and assign permission full objects
-/*
-		roleDTO.getPermissions().clear();
-		for (final Permission permission : role.getPermissions()) {
-			roleDTO.getPermissions().add(
-					permissionRepository.retrieve(permission.getId()));
-		}
-*/
-
-		// Retrieve and assign environments full objects
-/*
-		roleDTO.getEnvironments().clear();
-		for (final Environment environment : role.getEnvironments()) {
-			roleDTO.getEnvironments().add(
-					environmentRepository.retrieve(environment.getId()));
-		}
-*/
 		return roleRepository.persist(roleDTO);
 	}
 }

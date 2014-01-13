@@ -102,6 +102,13 @@ public class UserServiceImpl extends AbstractBusinessService implements
 	public long saveUser(
 			final User user)
 			throws Exception {
+
+        // This call is just to demostrate the use of the native EclipseLink API. Does not add any functionality it is here just as a example
+        // showing a transaction that mixes JPA queries and native queries.
+        // We recommend to use JPA as much as possible, avoiding your JPA provider (ORM) native API. Following the JPA specification will
+        // make your application much more portable in case you want to change your JPA provider.
+        final List<UserDTO> UserList =  userRepository.retrieveUserListUsingNativeOrmApiExample();
+
 		UserDTO userDTO;
 
 		if (user.getId() != 0L) {

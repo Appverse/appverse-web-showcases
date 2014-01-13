@@ -58,18 +58,6 @@ public class RoleServiceFacadeImpl extends AbstractPresentationService
 
 		final List<RoleVO> rolesVO = roleP2BBeanConverter
 				.convertBusinessList(roles);
-
-		// Map environment list and permissions list to string fields
-/*
-		for (final RoleVO role : rolesVO) {
-			final String envsString = ConcatListToStringConverter
-					.concatFieldFromList(role.getEnvironments(), "name");
-			final String permsString = ConcatListToStringConverter
-					.concatFieldFromList(role.getPermissions(), "name");
-			role.setListEnvironments(envsString);
-			role.setListPermissions(permsString);
-		}
-*/
 		return rolesVO;
 	}
 
@@ -88,18 +76,6 @@ public class RoleServiceFacadeImpl extends AbstractPresentationService
 
 		final List<RoleVO> rolesVO = roleP2BBeanConverter
 				.convertBusinessList(roles);
-
-		// Map environment list and permissions list to string fields
-/*
-		for (final RoleVO role : rolesVO) {
-			final String envsString = ConcatListToStringConverter
-					.concatFieldFromList(role.getEnvironments(), "name");
-			final String permsString = ConcatListToStringConverter
-					.concatFieldFromList(role.getPermissions(), "name");
-			role.setListEnvironments(envsString);
-			role.setListPermissions(permsString);
-		}
-*/
 
 		return new GWTPresentationPaginatedResult<RoleVO>(rolesVO, total,
 				config.getOffset());
