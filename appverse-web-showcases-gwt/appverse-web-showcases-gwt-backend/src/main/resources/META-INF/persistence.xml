@@ -32,10 +32,6 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 			<property name="eclipselink.weaving" value="static"/>
 			<property name="eclipselink.weaving.changetracking" value="false"/>
 		    <property name="eclipselink.logging.logger" value="org.appverse.web.framework.backend.persistence.helpers.log.EclipselinkLogger"/>
-            <property name="eclipselink.logging.level" value="ALL"/>
-            <property name="eclipselink.logging.level.sql" value="ALL"/>
-            <property name="eclipselink.logging.parameters" value="true"/>
-
 <!-- 	        <property name="eclipselink.session.customizer" value="com.gft.riaframework.backend.services.integration.ELCacheSessionCustomizer"/>   -->
         	<property name="eclipselink.jdbc.batch-writing.size" value="1000" />
         	<property name="eclipselink.jdbc.fetch-size" value="5000"/>

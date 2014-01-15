@@ -29,16 +29,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 		<shared-cache-mode>NONE</shared-cache-mode>
 	    <validation-mode>NONE</validation-mode>
 		<properties>
-            <!-- You could set JPA or Hibernate properties here -->
-            <!-- Use this property just for development purposes -->
-            <!-- http://stackoverflow.com/questions/438146/hibernate-hbm2ddl-auto-possible-values-and-what-they-do -->
-            <!-- http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/cfg/AvailableSettings.html#HBM2DDL_AUTO -->
-            <property name="hibernate.hbm2ddl.auto">validate</property>
-            <!-- Equivalent to setting log category org.hibernate.SQL to debug
-                <property name="hibernate.show_sql">true</property>
-            -->
-            <property name="hibernate.format_sql">false</property>
-            <property name="hibernate.use_sql_comments">false</property>
+            <!-- Add Hibernate properties here -->
 	    </properties>
 	</persistence-unit>
 </persistence>
