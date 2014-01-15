@@ -92,6 +92,7 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
    */
     // This did not work: http://stackoverflow.com/questions/15092204/how-to-override-parameter-in-sublass-of-mappedsuperclass
     @Override
+    @Column(nullable = false)
     @Version
     public long getVersion() {
         return version;
