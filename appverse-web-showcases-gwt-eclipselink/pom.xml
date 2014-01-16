@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.appverse.web.showcases.gwt</groupId>
-	<artifactId>appverse-web-showcases-gwt</artifactId>
+	<artifactId>appverse-web-showcases-gwt-eclipselink</artifactId>
 	<version>1.4-MILESTONE_1</version>
 	<packaging>pom</packaging>
 
-	<name>GWT Showcase</name>
-	<description>GWT Showcase</description>
+	<name>GWT Showcase EclipseLink</name>
+	<description>GWT Showcase Eclipselink</description>
 	<url>http://appverse.org/projects/appverse-web/</url>
 	<inceptionYear>2013</inceptionYear>
 
@@ -173,14 +173,14 @@
 	</scm>
 
 	<modules>
-		<module>appverse-web-showcases-gwt-backend</module>
-		<module>appverse-web-showcases-gwt-gwtfrontend</module>
-		<module>appverse-web-showcases-gwt-gwtshared</module>
+		<module>appverse-web-showcases-gwt-backend-eclipselink</module>
+		<module>appverse-web-showcases-gwt-gwtfrontend-eclipselink</module>
+		<module>appverse-web-showcases-gwt-gwtshared-eclipselink</module>
 	</modules>
 
 	<properties>
 		<main.group>org.appverse.web.showcases.gwt</main.group>
-		<main.name>appverse-web-showcases-gwt</main.name>
+		<main.name>appverse-web-showcases-gwt-eclipselink</main.name>
 		<app.context.root>showcase</app.context.root>
 		<appverse.framework.version>1.4-MILESTONE_1</appverse.framework.version>
 		<appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
@@ -344,7 +344,7 @@
 							<configuration>
 								<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
 								<includeGroupIds>${main.group}.gwtfrontend</includeGroupIds>
-								<includeArtifacIds>${main.name}-gwtfrontend</includeArtifacIds>
+								<includeArtifacIds>${main.name}-gwtfrontend-eclipselink</includeArtifacIds>
 							</configuration>
 						</execution>
 					</executions>

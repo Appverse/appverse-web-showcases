@@ -4,15 +4,15 @@
 
 	<parent>
 		<groupId>org.appverse.web.showcases.gwt</groupId>
-		<artifactId>appverse-web-showcases-gwt</artifactId>
+		<artifactId>appverse-web-showcases-gwt-eclipselink</artifactId>
 		<version>1.4-MILESTONE_1</version>
 	</parent>
 
-	<groupId>org.appverse.web.showcases.gwt.gwtfrontend</groupId>
-	<artifactId>appverse-web-showcases-gwt-gwtfrontend</artifactId>
+	<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
+	<artifactId>appverse-web-showcases-gwt-gwtshared-eclipselink</artifactId>
 
-	<name>GWT Showcase GWT Frontend Module</name>
-	<description>GWT Showcase GWT Frontend Module</description>
+	<name>GWT Showcase GWT Shared Module Eclipselink</name>
+	<description>GWT Showcase GWT Shared Module Eclipselink</description>
 	<url>http://appverse.org/projects/appverse-web/</url>
 	<inceptionYear>2013</inceptionYear>
 
@@ -68,7 +68,7 @@
 		</developer>
 		<developer>
 			<id>miguelfgar</id>
-			<name>Miguel Fernández</name>
+			<name>Miguel Fern�ndez</name>
 			<email>miguelfgar@gmail.com</email>
 			<organization>Appverse</organization>
 			<organizationUrl>http://appverse.org</organizationUrl>
@@ -93,7 +93,7 @@
 		</developer>
 		<developer>
 			<id>slanau</id>
-			<name>Sergi Lanau Rodríguez</name>
+			<name>Sergi Lanau Rodr�guez</name>
 			<email>sergi@lanau.net</email>
 			<url>http://www.lanau.net</url>
 			<organization>Appverse</organization>
@@ -184,16 +184,19 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>compile</goal>
+							<goal>generateAsync</goal>
 							<goal>resources</goal>
 						</goals>
+						<configuration>
+							<encoding>UTF-8</encoding>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
 			</plugin>
 
 			<plugin>
@@ -207,50 +210,12 @@
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
 			<artifactId>appverse-web-modules-frontend-gwt-api</artifactId>
-		</dependency>
-
-		<!-- This dependency is optional. Use it if you use or extend Appverse Theme -->
-		<dependency>
-			<groupId>org.appverse.web.framework.modules.frontend.gwt.theme</groupId>
-			<artifactId>appverse-web-modules-frontend-gwt-theme</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
-			<artifactId>appverse-web-showcases-gwt-gwtshared</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency>
+            <!--<exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>-->
+        </dependency>
 	</dependencies>
-
-	<profiles>
-		<profile>
-			<id>development</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>gwt-maven-plugin</artifactId>
-						<configuration>
-							<runTarget>admin.html</runTarget>
-							<hostedWebapp>../appverse-web-showcases-gwt-backend/target/appverse-web-showcases-gwt-backend-${project.version}/</hostedWebapp>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>compile</goal>
-									<goal>resources</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

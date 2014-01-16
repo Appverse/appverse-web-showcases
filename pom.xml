@@ -179,7 +179,7 @@
 	</scm>
 
 	<modules>
-		<module>appverse-web-showcases-gwt</module>
+		<module>appverse-web-showcases-gwt-eclipselink</module>
         <module>appverse-web-showcases-gwt-rest</module>
         <module>appverse-web-showcases-gwt-hibernate</module>
 		<module>appverse-web-showcases-jsf2</module>
