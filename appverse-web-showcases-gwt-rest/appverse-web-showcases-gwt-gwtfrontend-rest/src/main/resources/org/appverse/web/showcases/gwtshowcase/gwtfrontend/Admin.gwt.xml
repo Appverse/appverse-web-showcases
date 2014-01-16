@@ -28,14 +28,11 @@
     "http://google-web-toolkit.googlecode.com/svn/tags/2.1.1/distro-source/core/src/gwt-module.dtd">
 <module rename-to='admin'>
 
-	<!-- Inherits Modules -->
-	<inherits name="org.appverse.web.framework.frontend.GwtshowcaseAPI" />
-	<inherits name="org.appverse.web.showcases.gwtshowcase.Shared" />
-	<!-- <inherits name="org.appverse.web.framework.frontend.theme.gwtshowcase.Gwtshowcase" 
-		/> -->
-	<!-- <inherits name="org.appverse.web.framework.frontend.gwt.theme.AppverseTheme"/> -->
-	<inherits
-		name="org.appverse.web.framework.frontend.gwt.theme.AppverseFramework" />
+
+    <!-- Inherits Modules -->
+    <inherits name="org.appverse.web.framework.frontend.GwtshowcaseAPI" />
+    <inherits name="org.appverse.web.showcases.gwtshowcase.Shared"/>
+    <inherits name="org.appverse.web.framework.frontend.theme.gwtshowcase.Gwtshowcase" />
 
 	<inherits name="org.fusesource.restygwt.RestyGWT" />
 
