@@ -29,8 +29,12 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	<ui:with type="org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminMessages" field="res" />
 	<ui:with type="org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminImages" field="images" />
 	<ui:with type="org.appverse.web.showcases.gwtshowcase.gwtfrontend.common.layout.GWTShowcaseBodyLayout"
-		field="gwtshowcaseLayout" />		
-	
+		field="gwtshowcaseLayout" />
+
+    <!-- Stores -->
+    <ui:with type="com.sencha.gxt.data.shared.ListStore" field="rolesStore"></ui:with>
+    <ui:with type="com.sencha.gxt.data.shared.ListStore" field="toRolesStore"></ui:with>
+
 	<!--  Styles  -->
 		<container:VerticalLayoutContainer ui:field="fieldSetContainer"
 					layoutData="{gwtshowcaseLayout.fieldSetLayout}">
@@ -64,7 +68,15 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 							</form:widget>
 						</form:FieldLabel>
 					</container:child>
-					<container:child layoutData="{gwtshowcaseLayout.checkboxLayout}">
+            <container:child layoutData="{gwtshowcaseLayout.dualListLayout}">
+                <form:FieldLabel text="{res.rolesAddPermissions}" labelWidth="{gwtshowcaseLayout.labelSize}">
+                    <form:widget>
+                        <form:DualListField ui:field="rolesList" enableDnd="true" tabIndex="5" />
+                    </form:widget>
+                </form:FieldLabel>
+            </container:child>
+
+            <container:child layoutData="{gwtshowcaseLayout.checkboxLayout}">
 						<form:FieldLabel text="{res.usermanagerTableActive}" labelWidth="{gwtshowcaseLayout.labelSize}">
 							<form:widget>
 								<form:CheckBox ui:field="active" value="true" tabIndex="6"/>

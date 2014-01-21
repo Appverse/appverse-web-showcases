@@ -25,63 +25,77 @@ package org.appverse.web.showcases.gwtshowcase.backend.model.business;
 
 import org.appverse.web.framework.backend.api.model.business.AbstractBusinessAuditedBean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User extends AbstractBusinessAuditedBean {
 
-	private static final long serialVersionUID = 92981844901681239L;
-	
-	private long id;
-	private String name;
-	private String lastName;
-	private String email;
-	private String password;
+    private static final long serialVersionUID = 92981844901681239L;
 
-	private boolean active = true;
+    private long id;
+    private String name;
+    private String lastName;
+    private String email;
+    private String password;
 
-	public String getEmail() {
-		return email;
-	}
 
-	public long getId() {
-		return id;
-	}
+    private List<Role> roles = new ArrayList<Role>();
 
-	public String getLastName() {
-		return lastName;
-	}
+    private boolean active = true;
 
-	public String getName() {
-		return name;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public boolean isActive() {
-		return active;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setActive(final boolean active) {
-		this.active = active;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setEmail(final String email) {
-		this.email = email;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setId(final long id) {
-		this.id = id;
-	}
+    public List<Role> getRoles() {
+        return roles;
+    }
 
-	public void setLastName(final String lastName) {
-		this.lastName = lastName;
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+    public void setActive(final boolean active) {
+        this.active = active;
+    }
 
-	public void setPassword(final String password) {
-		this.password = password;
-	}
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
+    public void setId(final long id) {
+        this.id = id;
+    }
+
+    public void setLastName(final String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }

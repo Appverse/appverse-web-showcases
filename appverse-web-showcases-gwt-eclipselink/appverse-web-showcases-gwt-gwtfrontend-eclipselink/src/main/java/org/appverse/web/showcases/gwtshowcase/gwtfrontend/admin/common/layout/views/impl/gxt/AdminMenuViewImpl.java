@@ -49,6 +49,8 @@ public class AdminMenuViewImpl extends
 	Label usersLink;
 	@UiField
 	Label homeLink;
+    @UiField
+    Label rolesLink;
 
 	@Override
 	public void createView() {
@@ -64,5 +66,10 @@ public class AdminMenuViewImpl extends
 	@UiHandler("homeLink")
 	public void onHomeLinkClick(final ClickEvent event) {
 		presenter.homeClicked();
-	}	
+	}
+
+    @UiHandler("rolesLink")
+    public void onRolesLinkClick(final ClickEvent event) {
+        presenter.rolesClicked();
+    }
 }

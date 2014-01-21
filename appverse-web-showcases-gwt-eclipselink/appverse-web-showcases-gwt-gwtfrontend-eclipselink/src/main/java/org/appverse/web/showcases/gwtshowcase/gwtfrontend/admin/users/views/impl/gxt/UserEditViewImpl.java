@@ -24,9 +24,11 @@
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.views.impl.gxt;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.ConstraintViolation;
 
+import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTItemVO;
 import org.appverse.web.framework.frontend.gwt.views.AbstractEditorValidationView;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.editors.impl.gxt.UserVOEditor;
@@ -75,6 +77,11 @@ public class UserEditViewImpl
 		userToolbar.addToolbarEventHandler(this);
 	}
 
+    @Override
+    public void loadRoles(final List<GWTItemVO> roles) {
+        userEditor.loadRoles(roles);
+    }
+
 	/*
 	 * Handler for delete event launched by ToolbarWidget
 	 * 
@@ -113,6 +120,7 @@ public class UserEditViewImpl
 	@Override
 	public void onSave(final SaveEvent event) {
 		final UserVO user = driver.flush();
+        user.setRoles(new ArrayList<GWTItemVO>(userEditor.getSelectedRoles()));
 		presenter.save(user);
 	}
 
@@ -130,5 +138,8 @@ public class UserEditViewImpl
 	public void setUser(final UserVO user) {
 		driver.edit(user);
 		driver.setConstraintViolations(new ArrayList<ConstraintViolation<?>>());
+        if( user.getId() != 0) {
+            userEditor.setSelectedRoles(user.getRoles());
+        }
 	}
 }

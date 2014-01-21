@@ -24,15 +24,10 @@
 package org.appverse.web.showcases.gwtshowcase.backend.model.integration;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 import org.appverse.web.framework.backend.persistence.model.integration.AbstractIntegrationAuditedJPABean;
 
@@ -47,6 +42,8 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
 	private String lastName;
 	private String email;
 	private String password;
+
+    private List<RoleDTO> roles = new ArrayList<RoleDTO>();
 
 	private boolean active = true;
 
@@ -81,6 +78,14 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
 		return password;
 	}
 
+    // unidirectional one-to-many association to ROLE
+    @OneToMany(cascade = CascadeType.REFRESH)
+    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    public List<RoleDTO> getRoles() {
+        return roles;
+    }
+
+
 	@Override
 	@Version
 	public long getVersion() {
@@ -111,4 +116,9 @@ public class UserDTO extends AbstractIntegrationAuditedJPABean implements
 	public void setPassword(final String password) {
 		this.password = password;
 	}
+
+    public void setRoles(final List<RoleDTO> roles) {
+        this.roles = roles;
+    }
+
 }

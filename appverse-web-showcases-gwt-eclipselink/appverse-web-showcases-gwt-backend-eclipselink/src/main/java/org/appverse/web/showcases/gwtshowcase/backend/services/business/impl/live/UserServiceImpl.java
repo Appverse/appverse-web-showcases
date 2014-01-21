@@ -31,9 +31,11 @@ import org.appverse.web.framework.backend.api.model.business.BusinessPaginatedDa
 import org.appverse.web.framework.backend.api.model.integration.IntegrationPaginatedDataFilter;
 import org.appverse.web.framework.backend.api.services.business.AbstractBusinessService;
 import org.appverse.web.showcases.gwtshowcase.backend.converters.b2i.UserB2IBeanConverter;
+import org.appverse.web.showcases.gwtshowcase.backend.model.business.Role;
 import org.appverse.web.showcases.gwtshowcase.backend.model.business.User;
 import org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.business.UserService;
+import org.appverse.web.showcases.gwtshowcase.backend.services.integration.RoleRepository;
 import org.appverse.web.showcases.gwtshowcase.backend.services.integration.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,9 @@ public class UserServiceImpl extends AbstractBusinessService implements
 
 	@Autowired
 	private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+
 
 	@Autowired
 	private UserB2IBeanConverter userB2IBeanConverter;
@@ -103,24 +108,39 @@ public class UserServiceImpl extends AbstractBusinessService implements
 			final User user)
 			throws Exception {
 
-        // This call is just to demostrate the use of the native EclipseLink API. Does not add any functionality it is here just as a example
-        // showing a transaction that mixes JPA queries and native queries.
+        // This call is just to demostrate the use of the native Hibernate API. Does not add any functionality it is here just as a example
+        // showing a transaction that mixes JPA queries and native queries. It does not add any functional value to the save method.
         // We recommend to use JPA as much as possible, avoiding your JPA provider (ORM) native API. Following the JPA specification will
         // make your application much more portable in case you want to change your JPA provider.
         final List<UserDTO> UserList =  userRepository.retrieveUserListUsingNativeOrmApiExample();
 
-		UserDTO userDTO;
+        UserDTO userDTO;
+        if (user.getId() != 0L) {
+            // As it is an existing user we retrieve the entity manager managed
+            // object
+            userDTO = userRepository.retrieve(user.getId());
+            userB2IBeanConverter.convert(user, userDTO,
+                    ConversionType.WithoutDependencies);
+        } else {
+            // We are creating a new DTO (not managed by the entity manager yet)
+            userDTO = userB2IBeanConverter.convert(user);
+        }
 
-		if (user.getId() != 0L) {
-			// As it is an existing user we retrieve the entity manager managed
-			// object
-			userDTO = userRepository.retrieve(user.getId());
-			userB2IBeanConverter.convert(user, userDTO,
-					ConversionType.WithoutDependencies);
-		} else {
-			// We are creating a new DTO (not managed by the entity manager yet)
-			userDTO = userB2IBeanConverter.convert(user);
-		}
-		return userRepository.persist(userDTO);
+        // Make sure that DTO object dependencies that should previously stored
+        // in database are complete.
+        // We need to ensure that pre-existing objects that we are asigning to
+        // user
+        // are complet as we don't send full objects to the front-end and in
+        // some case
+        // we send just even the id's. The business objects might not be
+        // completed.
+        if (userDTO.getRoles() != null) {
+            userDTO.getRoles().clear();
+            for (Role role : user.getRoles()) {
+                userDTO.getRoles().add(roleRepository.retrieve(role.getId()));
+            }
+        }
+
+        return userRepository.persist(userDTO);
 	}
 }

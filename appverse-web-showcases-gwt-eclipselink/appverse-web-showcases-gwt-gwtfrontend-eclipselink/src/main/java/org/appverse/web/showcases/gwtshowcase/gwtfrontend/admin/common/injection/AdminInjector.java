@@ -27,6 +27,7 @@ import org.appverse.web.framework.frontend.gwt.commands.AuthenticationRpcCommand
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminConstants;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminImages;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminMessages;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.commands.RolesRpcCommand;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.UserRpcCommand;
 
 import com.google.gwt.core.client.GWT;
@@ -47,5 +48,7 @@ public interface AdminInjector extends Ginjector {
 	AuthenticationRpcCommand getAuthenticationRpcCommand();
 	
 	UserRpcCommand getUserRpcCommand();
+
+    RolesRpcCommand getRolesRpcCommand();
 
 }

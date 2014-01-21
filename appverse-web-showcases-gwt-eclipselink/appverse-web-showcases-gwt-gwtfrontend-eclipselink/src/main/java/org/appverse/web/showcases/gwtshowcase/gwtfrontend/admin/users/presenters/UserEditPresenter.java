@@ -23,12 +23,14 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters;
 
+import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTItemVO;
 import org.appverse.web.framework.frontend.gwt.helpers.security.PrincipalInformation;
 import org.appverse.web.framework.frontend.gwt.rpc.ApplicationAsyncCallback;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminEventBus;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminMessages;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.injection.AdminInjector;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.commands.RolesRpcCommand;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.UserRpcCommand;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters.interfaces.UserEditView;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.views.impl.gxt.UserEditViewImpl;
@@ -43,6 +45,8 @@ import com.sencha.gxt.widget.core.client.box.ConfirmMessageBox;
 import com.sencha.gxt.widget.core.client.event.HideEvent;
 import com.sencha.gxt.widget.core.client.event.HideEvent.HideHandler;
 
+import java.util.List;
+
 @Presenter(view = UserEditViewImpl.class)
 public class UserEditPresenter extends
 		LazyPresenter<UserEditView, AdminEventBus> implements
@@ -51,6 +55,7 @@ public class UserEditPresenter extends
 	private AdminInjector injector;
 	private AdminMessages adminMessages;
 	private UserRpcCommand userRpcCommand;
+    private RolesRpcCommand rolesRpcCommand;
 
 	@Override
 	public void bindView() {
@@ -67,6 +72,7 @@ public class UserEditPresenter extends
 		injector = AdminInjector.INSTANCE;
 		adminMessages = injector.getAdminMessages();
 		userRpcCommand = injector.getUserRpcCommand();
+        rolesRpcCommand = injector.getRolesRpcCommand();
 	}
 
 	// Button delete pressed
@@ -100,11 +106,37 @@ public class UserEditPresenter extends
 
 	private void loadMappings() {
 		// If you had reference data you can load it here
+        rolesRpcCommand
+                .loadRolesMap(new ApplicationAsyncCallback<List<GWTItemVO>>() {
+                    @Override
+                    public void onSuccess(final List<GWTItemVO> rolesList) {
+                        view.loadRoles(rolesList);
+                    }
+                });
 	}
 
 	@Override
-	public void onUserEdit(final UserVO user) {
-		view.setUser(user);
+	public void onUserEdit(UserVO user) {
+        if (user.getId() != 0){
+            // We retrieve the user object with all its information
+            userRpcCommand.loadUser(user.getId(), new ApplicationAsyncCallback<UserVO>() {
+                @Override
+                public void onSuccess(final UserVO userVO) {
+                    view.setUser(userVO);
+                    // Load initial data.
+                    // In this case the mappings depend on the role information of the user, that is why
+                    // in case the user previously existed, the mappings are loaded just after the user
+                    // is passed to the view
+                    loadMappings();
+                }
+            });
+        }
+        else{
+            view.setUser(user);
+            // Load initial data
+            loadMappings();
+        }
+
 		if (user.getId() == 0) {
 			view.setCreationMode(PrincipalInformation
 					.hasPrincialAuthority(AuthoritiesConstants.ROLE_USER_CREATE));
@@ -115,8 +147,6 @@ public class UserEditPresenter extends
 					PrincipalInformation
 							.hasPrincialAuthority(AuthoritiesConstants.ROLE_USER_DISABLE));
 		}
-		// Load initial data
-		loadMappings();
 		eventBus.adminLayoutChangeBody(view.asWidget());
 	}
 

@@ -63,11 +63,13 @@ public class UserRpcCommandImpl extends AbstractRpcCommand<AdminEventBus>
 	@Override
 	public void loadUsers(final GWTPresentationPaginatedDataFilter config,
 			final AppverseCallback<GWTPresentationPaginatedResult<UserVO>> callback) {
-        //TODO check why this cast throws a ClassCastException!
-        System.out.println(callback.getClass().getName());
 		getService().loadUsers(config, callback);
-
 	}
+
+    @Override
+    public void loadUser(final long userId, final ApplicationAsyncCallback<UserVO> callback) {
+        getService().loadUser(userId,callback);
+    }
 
 	@Override
 	public void saveUser(final UserVO user,

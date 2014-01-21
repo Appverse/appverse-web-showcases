@@ -56,7 +56,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 
 	<!-- <set-property name="gxt.user.agent" value="gecko1_9,ie6" /> -->
 	<!-- <set-property name="gxt.user.agent" value="ie6,safari5,gecko1_9"/> -->
-	<set-property name="gxt.user.agent" value="safari5"/>
+	<set-property name="gxt.user.agent" value="chrome"/>
 
 	<!-- 	<set-property name="gxt.user.agent" value="chrome" /> -->
 	<set-configuration-property name="CssResource.style" value="pretty" />

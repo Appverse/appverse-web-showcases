@@ -27,5 +27,6 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 			  version="2.0">
 	<persistence-unit name="persistence-unit">
 		<class>org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO</class>
+        <class>org.appverse.web.showcases.gwtshowcase.backend.model.integration.RoleDTO</class>
 	</persistence-unit>
 </persistence>

@@ -28,90 +28,106 @@ import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
 
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTAbstractPresentationAuditedBean;
+import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTItemVO;
+
+import java.util.ArrayList;
 
 public class UserVO extends GWTAbstractPresentationAuditedBean {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private long id;
+    private long id;
 
-	@Size(min = 1, max = 40, groups = { Default.class })
-	@NotNull
-	private String name;
+    @Size(min = 1, max = 40, groups = { Default.class })
+    @NotNull
+    private String name;
 
-	@Size(min = 1, max = 40, groups = { Default.class })
-	@NotNull
-	private String lastName;
+    @Size(min = 1, max = 40, groups = { Default.class })
+    @NotNull
+    private String lastName;
 
-	@Size(min = 1, max = 40, groups = { Default.class })
-	@NotNull
-	private String email;
+    @Size(min = 1, max = 40, groups = { Default.class })
+    @NotNull
+    private String email;
 
-	@Size(min = 1, max = 40, groups = { Default.class })
-	@NotNull
-	private String password;
-	private String signup;
+    @Size(min = 1, max = 40, groups = { Default.class })
+    @NotNull
+    private String password;
+    private String signup;
 
-	@NotNull
-	private boolean active = true;
+    @NotNull
+    private boolean active = true;
 
-	public UserVO() {
-		super();
-	}
+    @Size(min = 1, message = "{UserVO.roles.Size.message}", groups = { Default.class })
+    private ArrayList<GWTItemVO> roles = new ArrayList<GWTItemVO>();
 
-	public String getEmail() {
-		return email;
-	}
 
-	public long getId() {
-		return id;
-	}
+    public UserVO() {
+        super();
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getSignup() {
-		return signup;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public boolean isActive() {
-		return active;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setActive(final boolean active) {
-		this.active = active;
-	}
+    public String getSignup() {
+        return signup;
+    }
 
-	public void setEmail(final String email) {
-		this.email = email;
-	}
+    public ArrayList<GWTItemVO> getRoles() {
+        return roles;
+    }
 
-	public void setId(final long id) {
-		this.id = id;
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public void setLastName(final String lastName) {
-		this.lastName = lastName;
-	}
+    public void setActive(final boolean active) {
+        this.active = active;
+    }
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+    public void setEmail(final String email) {
+        this.email = email;
+    }
 
-	public void setPassword(final String password) {
-		this.password = password;
-	}
+    public void setId(final long id) {
+        this.id = id;
+    }
 
-	public void setSignup(final String signup) {
-		this.signup = signup;
-	}
+    public void setLastName(final String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
+    }
+
+    public void setSignup(final String signup) {
+        this.signup = signup;
+    }
+
+    public void setRoles(ArrayList<GWTItemVO> roles) {
+        this.roles = roles;
+    }
+
 }

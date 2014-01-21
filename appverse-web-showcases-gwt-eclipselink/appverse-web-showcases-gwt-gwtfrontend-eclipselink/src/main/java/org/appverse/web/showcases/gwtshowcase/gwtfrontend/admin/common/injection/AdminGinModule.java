@@ -28,6 +28,8 @@ import org.appverse.web.framework.frontend.gwt.commands.impl.live.Authentication
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminConstants;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminImages;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminMessages;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.commands.RolesRpcCommand;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.commands.impl.live.RolesRpcCommandImpl;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.UserRpcCommand;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.impl.live.UserRpcCommandImpl;
 
@@ -44,5 +46,6 @@ public class AdminGinModule extends AbstractGinModule {
 		bind(AuthenticationCommand.class).to(
 				AuthenticationRpcCommandImpl.class);
 		bind(UserRpcCommand.class).to(UserRpcCommandImpl.class);
+        bind(RolesRpcCommand.class).to(RolesRpcCommandImpl.class);
 	}
 }

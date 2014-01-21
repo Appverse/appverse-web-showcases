@@ -61,4 +61,10 @@ public class AdminMenuPresenter extends
 	public void logoutClicked() {
 		eventBus.logout();
 	}
+
+    @Override
+    public void rolesClicked() {
+        eventBus.rolesSearch();
+
+    }
 }

@@ -96,9 +96,17 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 		<container:child layoutData="{centerLayoutData}">
 			<gxt:FramedPanel headingText="{res.menuUsersManagement}" pixelSize="200, 100"
 				collapsible="true" expanded="true" styleName="{style.leftMenuItem}">
-				<g:Label text="{res.menuUsersListManagement}" ui:field="usersLink" styleName="{style.linkLabel}" />
+                <container:VBoxLayoutContainer>
+                    <container:child>
+				        <g:Label text="{res.menuUsersListManagement}" ui:field="usersLink" styleName="{style.linkLabel}" />
+                    </container:child>
+                    <container:child>
+                        <g:Label text="{res.menuRoles}" ui:field="rolesLink" styleName="{style.linkLabel}" />
+                    </container:child>
+                </container:VBoxLayoutContainer>
 			</gxt:FramedPanel>
-		</container:child>
+
+        </container:child>
 
 	</container:VerticalLayoutContainer>
 

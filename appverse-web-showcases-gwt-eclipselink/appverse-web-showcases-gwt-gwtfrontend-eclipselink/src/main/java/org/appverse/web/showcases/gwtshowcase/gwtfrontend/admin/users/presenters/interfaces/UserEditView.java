@@ -1,6 +1,7 @@
 
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters.interfaces;
 
+import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTItemVO;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.common.views.ValidatorView;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.common.views.toolbar.ToolbarView;
@@ -8,6 +9,8 @@ import org.appverse.web.showcases.gwtshowcase.gwtfrontend.common.views.toolbar.T
 import com.google.gwt.user.client.ui.IsWidget;
 import com.mvp4g.client.view.LazyView;
 import com.mvp4g.client.view.ReverseViewInterface;
+
+import java.util.List;
 
 public interface UserEditView extends
 		ReverseViewInterface<UserEditView.IUserEditPresenter>, LazyView,
@@ -23,6 +26,8 @@ public interface UserEditView extends
 
 		public void save(UserVO user);
 	}
+
+    void loadRoles(List<GWTItemVO> roles);
 
 	@Override
 	public void setEditMode(boolean editMode, boolean canDelete);

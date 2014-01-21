@@ -52,7 +52,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
   <authentication-manager alias="authenticationManager">
     <authentication-provider>
       <user-service>
-        <user name="admin" password="admin" authorities="ROLE_USER, ROLE_USER_CREATE, ROLE_USER_EDIT, ROLE_USER_DISABLE" />
+          <user name="admin" password="admin" authorities="ROLE_USER, ROLE_USER_CREATE, ROLE_USER_EDIT, ROLE_USER_DISABLE, ROLE_ROLE, ROLE_ROLE_CREATE, ROLE_ROLE_EDIT, ROLE_ROLE_DISABLE" />
       </user-service>
     </authentication-provider>
   </authentication-manager>

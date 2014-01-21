@@ -23,8 +23,11 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin;
 
+import com.mvp4g.client.history.ClearHistory;
 import org.appverse.web.framework.frontend.gwt.commands.impl.live.LogoutManagementRpcCommandImpl;
 import org.appverse.web.framework.frontend.gwt.common.FrameworkEventBus;
+import org.appverse.web.framework.frontend.gwt.history.SimpleHistoryConverter;
+import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.RoleVO;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.commands.impl.live.InitializerRpcCommandImpl;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.layout.presenters.AdminHeaderPresenter;
@@ -33,6 +36,8 @@ import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.layout.pr
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.layout.presenters.AdminModuleLayoutManagerPresenter;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.history.AdminHistoryConverter;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.home.presenters.HomePresenter;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.presenters.RoleEditPresenter;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.roles.presenters.RoleSearchPresenter;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters.UserEditPresenter;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters.UserSearchPresenter;
 
@@ -73,5 +78,11 @@ public interface AdminEventBus extends FrameworkEventBus {
 	public void usersSearch(boolean refresh);
 	
 	@Event(handlers = { UserSearchPresenter.class }, historyConverter = AdminHistoryConverter.class, name = "placeUserSearch", navigationEvent = true)
-	public void placeUserSearch();		
+	public void placeUserSearch();
+
+    @Event(handlers = { RoleEditPresenter.class }, historyConverter=ClearHistory.class)
+    public void rolesEdit(RoleVO role);
+
+    @Event(handlers = { RoleSearchPresenter.class }, historyConverter = SimpleHistoryConverter.class, name = "rolesSearch", navigationEvent = true)
+    public void rolesSearch();
 }

@@ -24,6 +24,10 @@
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.editors.impl.gxt;
 
 
+import com.google.gwt.cell.client.TextCell;
+import com.sencha.gxt.data.shared.ListStore;
+import com.sencha.gxt.widget.core.client.form.DualListField;
+import com.sencha.gxt.widget.core.client.form.validator.EmptyValidator;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTItemVO;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 
@@ -39,6 +43,8 @@ import com.sencha.gxt.data.shared.ModelKeyProvider;
 import com.sencha.gxt.data.shared.PropertyAccess;
 import com.sencha.gxt.widget.core.client.form.CheckBox;
 import com.sencha.gxt.widget.core.client.form.TextField;
+
+import java.util.List;
 
 public class UserVOEditor extends Composite implements Editor<UserVO> {
 
@@ -66,23 +72,67 @@ public class UserVOEditor extends Composite implements Editor<UserVO> {
 	@UiField
 	CheckBox active;
 
+    // DualList fields
+    @UiField(provided = true)
+    @Path("roles")
+    DualListField<GWTItemVO, String> rolesList;
+    // List Stores
+    @UiField(provided = true)
+    ListStore<GWTItemVO> rolesStore;
+
+    @UiField(provided = true)
+    @Path("")
+    ListStore<GWTItemVO> toRolesStore;
+
 	private static _UiBinder uiBinder = GWT.create(_UiBinder.class);
 
 	public UserVOEditor() {
 		initWidget();
 	}
 
-	/**
+    public List<GWTItemVO> getSelectedRoles() {
+        return toRolesStore.getAll();
+    }
+
+
+    /**
 	 * This method will only create the widgets that are marked as provided. It
 	 * does not add the widget to the panel: this is still done by the UI
 	 * binder.
 	 */
 	private void initProvidedWidgets() {
 		final ItemProperties props = GWT.create(ItemProperties.class);
+        rolesStore = new ListStore<GWTItemVO>(props.id());
+        toRolesStore = new ListStore<GWTItemVO>(props.id());
+
+        rolesList = new DualListField<GWTItemVO, String>(rolesStore,
+                toRolesStore, props.nameProp(), new TextCell());
+        rolesList.addValidator(new EmptyValidator<List<GWTItemVO>>());
 	}
 
 	private void initWidget() {
 		initProvidedWidgets();
 		initWidget(uiBinder.createAndBindUi(this));
 	}
+
+    /**
+     * Load permission Map in dual list. Insert only not selected values .
+     *
+     * @param rolesData
+     */
+    public void loadRoles(final List<GWTItemVO> rolesData) {
+        rolesStore.clear();
+        for (final GWTItemVO item : rolesData) {
+            final List<GWTItemVO> selectedData = toRolesStore.getAll();
+            if (!selectedData.contains(item)) {
+                rolesStore.add(item);
+            }
+        }
+    }
+
+    public void setSelectedRoles(final List<GWTItemVO> roles) {
+        toRolesStore.clear();
+        toRolesStore.addAll(roles);
+    }
+
 }
