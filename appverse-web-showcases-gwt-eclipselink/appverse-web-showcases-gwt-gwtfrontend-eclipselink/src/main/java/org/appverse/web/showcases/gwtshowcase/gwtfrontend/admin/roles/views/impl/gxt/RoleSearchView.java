@@ -62,6 +62,7 @@ import org.appverse.web.framework.frontend.gwt.theme.client.search.SuggestTempla
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.events.LoadSuggestEvent;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.events.SelectSuggestEvent;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.handlers.LoadSuggestEventHandler;
+import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.handlers.SearchSuggestEventHandler;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.handlers.SelectSuggestEventHandler;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.impl.gxt.SuggestWidgetImpl;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.model.SuggestModel;
@@ -140,7 +141,7 @@ public class RoleSearchView extends
 	PagingToolBar toolBar;
 
 	@UiField
-	TextButton addRoleButton, searchRolesButton;
+	TextButton addRoleButton;
 
 	@UiField
 	SuggestWidgetImpl<RoleVO> suggestSearch;
@@ -170,13 +171,20 @@ public class RoleSearchView extends
 		});
 		suggestSearch
 				.addSuggestEventHandler(new LoadSuggestEventHandler<RoleVO>() {
-					// Load list
-					@Override
-					public void onLoad(final LoadSuggestEvent<RoleVO> event) {
-						presenter.loadRoles(event.getConfig(),
-								event.getCallback());
-					}
-				});
+                    // Load list
+                    @Override
+                    public void onLoad(final LoadSuggestEvent<RoleVO> event) {
+                        presenter.loadRoles(event.getConfig(),
+                                event.getCallback());
+                    }
+                });
+        suggestSearch.addSuggestEventHandler(new SearchSuggestEventHandler() {
+            @Override
+            public void onSearch() {
+                presenter.searchRoles();
+            }
+        });
+
 	}
 
 	@Override
@@ -309,11 +317,6 @@ public class RoleSearchView extends
 			final RoleVO role = store.get(row);
 			presenter.editRole(role);
 		}
-	}
-
-	@UiHandler("searchRolesButton")
-	public void onSearchRolesButtonClick(final SelectEvent event) {
-		presenter.searchRoles();
 	}
 
 	public void setDataFilter(

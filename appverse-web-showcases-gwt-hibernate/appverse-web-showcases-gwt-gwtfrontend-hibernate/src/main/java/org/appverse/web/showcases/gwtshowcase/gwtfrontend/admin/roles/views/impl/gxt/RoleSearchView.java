@@ -62,6 +62,7 @@ import org.appverse.web.framework.frontend.gwt.theme.client.search.SuggestTempla
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.events.LoadSuggestEvent;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.events.SelectSuggestEvent;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.handlers.LoadSuggestEventHandler;
+import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.handlers.SearchSuggestEventHandler;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.handlers.SelectSuggestEventHandler;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.impl.gxt.SuggestWidgetImpl;
 import org.appverse.web.framework.frontend.gwt.widgets.search.suggest.model.SuggestModel;
@@ -75,249 +76,251 @@ import java.util.List;
 
 @Singleton
 public class RoleSearchView extends
-		ReverseComposite<IRoleSearchView.IRoleSearchPresenter> implements
-		IRoleSearchView {
+        ReverseComposite<IRoleSearchView.IRoleSearchPresenter> implements
+        IRoleSearchView {
 
-	// Template to display VO in suggest cell
-	interface MySuggestTemplate extends SuggestTemplate<RoleVO> {
-		@Override
-		@XTemplate("<div class='{style.searchItem}'><h3><span>{role.created:date(\"d/M/yyyy\")}<br /> {role.createdBy}</span>{role.name}</h3>{role.description:nullsafe}</div>")
-		SafeHtml render(RoleVO role, RiaSuggestStyle style);
-	}
+    // Template to display VO in suggest cell
+    interface MySuggestTemplate extends SuggestTemplate<RoleVO> {
+        @Override
+        @XTemplate("<div class='{style.searchItem}'><h3><span>{role.created:date(\"d/M/yyyy\")}<br /> {role.createdBy}</span>{role.name}</h3>{role.description:nullsafe}</div>")
+        SafeHtml render(RoleVO role, RiaSuggestStyle style);
+    }
 
-	interface RoleSearchViewUiBinder extends UiBinder<Widget, RoleSearchView> {
-	}
+    interface RoleSearchViewUiBinder extends UiBinder<Widget, RoleSearchView> {
+    }
 
-	// Marker properties for roles grid
-	public interface RoleVOProperties extends PropertyAccess<RoleVO> {
+    // Marker properties for roles grid
+    public interface RoleVOProperties extends PropertyAccess<RoleVO> {
 
-		ValueProvider<RoleVO, Boolean> active();
+        ValueProvider<RoleVO, Boolean> active();
 
-		ModelKeyProvider<RoleVO> id();
+        ModelKeyProvider<RoleVO> id();
 
-		ValueProvider<RoleVO, String> listEnvironments();
+        ValueProvider<RoleVO, String> listEnvironments();
 
-		ValueProvider<RoleVO, String> listPermissions();
+        ValueProvider<RoleVO, String> listPermissions();
 
-		ValueProvider<RoleVO, String> name();
-	}
+        ValueProvider<RoleVO, String> name();
+    }
 
-	// Marker properties for SuggestField
-	public interface RoleVOSugProperties extends SuggestModel<RoleVO> {
-		@Override
-		@Path("description")
-		ValueProvider<RoleVO, String> description();
+    // Marker properties for SuggestField
+    public interface RoleVOSugProperties extends SuggestModel<RoleVO> {
+        @Override
+        @Path("description")
+        ValueProvider<RoleVO, String> description();
 
-		@Override
-		@Path("id")
-		ModelKeyProvider<RoleVO> id();
+        @Override
+        @Path("id")
+        ModelKeyProvider<RoleVO> id();
 
-		@Override
-		@Path("name")
-		LabelProvider<RoleVO> label();
+        @Override
+        @Path("name")
+        LabelProvider<RoleVO> label();
 
-		@Override
-		@Path("name")
-		ValueProvider<RoleVO, String> name();
-	}
+        @Override
+        @Path("name")
+        ValueProvider<RoleVO, String> name();
+    }
 
-	private static RoleSearchViewUiBinder uiBinder = GWT
-			.create(RoleSearchViewUiBinder.class);
+    private static RoleSearchViewUiBinder uiBinder = GWT
+            .create(RoleSearchViewUiBinder.class);
 
-	@UiField(provided = true)
-	ListStore<RoleVO> store;
+    @UiField(provided = true)
+    ListStore<RoleVO> store;
 
-	@UiField(provided = true)
-	ColumnModel<RoleVO> cm;
+    @UiField(provided = true)
+    ColumnModel<RoleVO> cm;
 
-	@UiField
-	GridView<RoleVO> view;
+    @UiField
+    GridView<RoleVO> view;
 
-	@UiField
-	Grid<RoleVO> roleListTable;
+    @UiField
+    Grid<RoleVO> roleListTable;
 
-	@UiField
-	PagingToolBar toolBar;
+    @UiField
+    PagingToolBar toolBar;
 
-	@UiField
-	TextButton addRoleButton, searchRolesButton;
+    @UiField
+    TextButton addRoleButton;
 
-	@UiField
-	SuggestWidgetImpl<RoleVO> suggestSearch;
+    @UiField
+    SuggestWidgetImpl<RoleVO> suggestSearch;
 
-	ApplicationAsyncCallback<GWTPresentationPaginatedResult<RoleVO>> callbackListRoles;
-	GWTPresentationPaginatedDataFilter dataFilter;
+    ApplicationAsyncCallback<GWTPresentationPaginatedResult<RoleVO>> callbackListRoles;
+    GWTPresentationPaginatedDataFilter dataFilter;
 
-	boolean disableEditFeature = false;
+    boolean disableEditFeature = false;
 
-	@Override
-	public Widget asWidget() {
-		return this;
-	}
+    @Override
+    public Widget asWidget() {
+        return this;
+    }
 
-	@Override
-	public void createView() {
-		initProvidedWidgets();
-		initWidget(uiBinder.createAndBindUi(this));
+    @Override
+    public void createView() {
+        initProvidedWidgets();
+        initWidget(uiBinder.createAndBindUi(this));
 
-		initLoaders();
-		// Selection list option clicked
-		suggestSearch.addSuggestEventHandler(new SelectSuggestEventHandler() {
-			@Override
-			public void onSelect(final SelectSuggestEvent event) {
-				presenter.searchRoles();
-			}
-		});
-		suggestSearch
-				.addSuggestEventHandler(new LoadSuggestEventHandler<RoleVO>() {
-					// Load list
-					@Override
-					public void onLoad(final LoadSuggestEvent<RoleVO> event) {
-						presenter.loadRoles(event.getConfig(),
-								event.getCallback());
-					}
-				});
-	}
+        initLoaders();
+        // Selection list option clicked
+        suggestSearch.addSuggestEventHandler(new SelectSuggestEventHandler() {
+            @Override
+            public void onSelect(final SelectSuggestEvent event) {
+                presenter.searchRoles();
+            }
+        });
+        suggestSearch
+                .addSuggestEventHandler(new LoadSuggestEventHandler<RoleVO>() {
+                    // Load list
+                    @Override
+                    public void onLoad(final LoadSuggestEvent<RoleVO> event) {
+                        presenter.loadRoles(event.getConfig(),
+                                event.getCallback());
+                    }
+                });
+        suggestSearch.addSuggestEventHandler(new SearchSuggestEventHandler() {
+            @Override
+            public void onSearch() {
+                presenter.searchRoles();
+            }
+        });
 
-	@Override
-	public void disableAddFeature() {
-		addRoleButton.disable();
-	}
+    }
 
-	@Override
-	public void disableEditFeature() {
-		disableEditFeature = true;
-	}
+    @Override
+    public void disableAddFeature() {
+        addRoleButton.disable();
+    }
 
-	@Override
-	public ApplicationAsyncCallback<GWTPresentationPaginatedResult<RoleVO>> getCallbackListRoles() {
-		return callbackListRoles;
-	}
+    @Override
+    public void disableEditFeature() {
+        disableEditFeature = true;
+    }
 
-	@Override
-	public GWTPresentationPaginatedDataFilter getDataFilter() {
-		// TODO search automatic filter update system
-		// dataFilter.getColumns().clear();
-		// dataFilter.getValues().clear();
-		dataFilter.resetConditions();
+    @Override
+    public ApplicationAsyncCallback<GWTPresentationPaginatedResult<RoleVO>> getCallbackListRoles() {
+        return callbackListRoles;
+    }
 
-		if ((suggestSearch.getText().trim() != null)
-				&& (suggestSearch.getText().trim().length() > 0)) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(PresentationDataFilter.WILDCARD_ALL)
-					.append(suggestSearch.getText())
-					.append(PresentationDataFilter.WILDCARD_ALL);
-			// dataFilter.getValues().add(sb.toString());
-			// dataFilter.getColumns().add("name");
-			// dataFilter.getLikes().add(true);
-			dataFilter.addLikeCondition("name", sb.toString());
-		}
-		return dataFilter;
-	}
+    @Override
+    public GWTPresentationPaginatedDataFilter getDataFilter() {
+        // TODO search automatic filter update system
+        // dataFilter.getColumns().clear();
+        // dataFilter.getValues().clear();
+        dataFilter.resetConditions();
 
-	public void initLoaders() {
-		GWT.log("initLoaders");
-		final RpcProxy<PagingLoadConfig, PagingLoadResult<RoleVO>> proxy = new RpcProxy<PagingLoadConfig, PagingLoadResult<RoleVO>>() {
-			@Override
-			public void load(final PagingLoadConfig loadConfig,
-					final AsyncCallback<PagingLoadResult<RoleVO>> callback) {
-				GWT.log("Proxy load method called");
-				callbackListRoles = new ApplicationAsyncCallback<GWTPresentationPaginatedResult<RoleVO>>() {
-					@Override
-					@SuppressWarnings("unchecked")
-					public void onSuccess(
-							final GWTPresentationPaginatedResult<RoleVO> result) {
-						callback.onSuccess((PagingLoadResult<RoleVO>) GxtPaginationConverter
-								.convert(result));
+        if ((suggestSearch.getText().trim() != null)
+                && (suggestSearch.getText().trim().length() > 0)) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(PresentationDataFilter.WILDCARD_ALL)
+                    .append(suggestSearch.getText())
+                    .append(PresentationDataFilter.WILDCARD_ALL);
+            // dataFilter.getValues().add(sb.toString());
+            // dataFilter.getColumns().add("name");
+            // dataFilter.getLikes().add(true);
+            dataFilter.addLikeCondition("name", sb.toString());
+        }
+        return dataFilter;
+    }
 
-					}
-				};
+    public void initLoaders() {
+        GWT.log("initLoaders");
+        final RpcProxy<PagingLoadConfig, PagingLoadResult<RoleVO>> proxy = new RpcProxy<PagingLoadConfig, PagingLoadResult<RoleVO>>() {
+            @Override
+            public void load(final PagingLoadConfig loadConfig,
+                             final AsyncCallback<PagingLoadResult<RoleVO>> callback) {
+                GWT.log("Proxy load method called");
+                callbackListRoles = new ApplicationAsyncCallback<GWTPresentationPaginatedResult<RoleVO>>() {
+                    @Override
+                    @SuppressWarnings("unchecked")
+                    public void onSuccess(
+                            final GWTPresentationPaginatedResult<RoleVO> result) {
+                        callback.onSuccess((PagingLoadResult<RoleVO>) GxtPaginationConverter
+                                .convert(result));
 
-				dataFilter = GxtPaginationConverter.convert(loadConfig);
-				// CAUTION
-				// You must use "getDataFilter()" to avoid loosing any kind of
-				// filter when using toolbar
-				presenter.loadRoles(getDataFilter(), callbackListRoles);
-			}
-		};
+                    }
+                };
 
-		final PagingLoader<PagingLoadConfig, PagingLoadResult<RoleVO>> loader = new PagingLoader<PagingLoadConfig, PagingLoadResult<RoleVO>>(
-				proxy);
-		loader.setRemoteSort(true);
+                dataFilter = GxtPaginationConverter.convert(loadConfig);
+                // CAUTION
+                // You must use "getDataFilter()" to avoid loosing any kind of
+                // filter when using toolbar
+                presenter.loadRoles(getDataFilter(), callbackListRoles);
+            }
+        };
 
-		loader.addLoadHandler(new LoadResultListStoreBinding<PagingLoadConfig, RoleVO, PagingLoadResult<RoleVO>>(
-				store));
+        final PagingLoader<PagingLoadConfig, PagingLoadResult<RoleVO>> loader = new PagingLoader<PagingLoadConfig, PagingLoadResult<RoleVO>>(
+                proxy);
+        loader.setRemoteSort(true);
 
-		roleListTable.setLoader(loader);
-		toolBar.bind(loader);
-		loader.load();
+        loader.addLoadHandler(new LoadResultListStoreBinding<PagingLoadConfig, RoleVO, PagingLoadResult<RoleVO>>(
+                store));
 
-		MySuggestTemplate template = GWT.create(MySuggestTemplate.class);
-		// It's REQUIRED to set a template
-		suggestSearch.setTemplate(template);
-	}
+        roleListTable.setLoader(loader);
+        toolBar.bind(loader);
+        loader.load();
 
-	/**
-	 * This method will only create the widgets that are marked as provided. It
-	 * does not add the widget to the panel: this is still done by the UI
-	 * binder.
-	 */
-	private void initProvidedWidgets() {
-		GWT.log("initProvidedWidgets");
-		store = new ListStore<RoleVO>(new ModelKeyProvider<RoleVO>() {
-			@Override
-			public String getKey(final RoleVO item) {
-				return "" + item.getId();
-			}
-		});
+        MySuggestTemplate template = GWT.create(MySuggestTemplate.class);
+        // It's REQUIRED to set a template
+        suggestSearch.setTemplate(template);
+    }
 
-		final RoleVOProperties props = GWT.create(RoleVOProperties.class);
-		final AdminMessages am = AdminInjector.INSTANCE.getAdminMessages();
-		final ColumnConfig<RoleVO, String> nameColumn = new ColumnConfig<RoleVO, String>(
-				props.name(), 150, am.rolesTableName());
-		final ColumnConfig<RoleVO, String> permColumn = new ColumnConfig<RoleVO, String>(
-				props.listPermissions(), 150, am.rolesTablePerms());
+    /**
+     * This method will only create the widgets that are marked as provided. It
+     * does not add the widget to the panel: this is still done by the UI
+     * binder.
+     */
+    private void initProvidedWidgets() {
+        GWT.log("initProvidedWidgets");
+        store = new ListStore<RoleVO>(new ModelKeyProvider<RoleVO>() {
+            @Override
+            public String getKey(final RoleVO item) {
+                return "" + item.getId();
+            }
+        });
+
+        final RoleVOProperties props = GWT.create(RoleVOProperties.class);
+        final AdminMessages am = AdminInjector.INSTANCE.getAdminMessages();
+        final ColumnConfig<RoleVO, String> nameColumn = new ColumnConfig<RoleVO, String>(
+                props.name(), 150, am.rolesTableName());
+        final ColumnConfig<RoleVO, String> permColumn = new ColumnConfig<RoleVO, String>(
+                props.listPermissions(), 150, am.rolesTablePerms());
         permColumn.setSortable(false);
-		final ColumnConfig<RoleVO, String> environmentColumn = new ColumnConfig<RoleVO, String>(
-				props.listEnvironments(), 150, am.rolesTableEnvironment());
+        final ColumnConfig<RoleVO, String> environmentColumn = new ColumnConfig<RoleVO, String>(
+                props.listEnvironments(), 150, am.rolesTableEnvironment());
         environmentColumn.setSortable(false);
-		final ColumnConfig<RoleVO, Boolean> activeColumn = new ColumnConfig<RoleVO, Boolean>(
-				props.active(), 75, am.rolesTableActive());
-		final CheckBoxCell checkboxCell = new CheckBoxCell();
-		checkboxCell.setReadOnly(true);
-		activeColumn.setCell(checkboxCell);
+        final ColumnConfig<RoleVO, Boolean> activeColumn = new ColumnConfig<RoleVO, Boolean>(
+                props.active(), 75, am.rolesTableActive());
+        final CheckBoxCell checkboxCell = new CheckBoxCell();
+        checkboxCell.setReadOnly(true);
+        activeColumn.setCell(checkboxCell);
 
-		final List<ColumnConfig<RoleVO, ?>> l = new ArrayList<ColumnConfig<RoleVO, ?>>();
-		l.add(nameColumn);
-		l.add(permColumn);
-		l.add(environmentColumn);
-		l.add(activeColumn);
+        final List<ColumnConfig<RoleVO, ?>> l = new ArrayList<ColumnConfig<RoleVO, ?>>();
+        l.add(nameColumn);
+        l.add(permColumn);
+        l.add(environmentColumn);
+        l.add(activeColumn);
 
-		cm = new ColumnModel<RoleVO>(l);
+        cm = new ColumnModel<RoleVO>(l);
 
-	}
+    }
 
-	@UiHandler("addRoleButton")
-	public void onAddRoleButtonClick(final SelectEvent event) {
-		presenter.addRole();
-	}
+    @UiHandler("addRoleButton")
+    public void onAddRoleButtonClick(final SelectEvent event) {
+        presenter.addRole();
+    }
 
-	@UiHandler("roleListTable")
-	public void onGridDoubleClick(final RowDoubleClickEvent event) {
-		if (!disableEditFeature) {
-			final int row = event.getRowIndex();
-			final RoleVO role = store.get(row);
-			presenter.editRole(role);
-		}
-	}
+    @UiHandler("roleListTable")
+    public void onGridDoubleClick(final RowDoubleClickEvent event) {
+        if (!disableEditFeature) {
+            final int row = event.getRowIndex();
+            final RoleVO role = store.get(row);
+            presenter.editRole(role);
+        }
+    }
 
-	@UiHandler("searchRolesButton")
-	public void onSearchRolesButtonClick(final SelectEvent event) {
-		presenter.searchRoles();
-	}
-
-	public void setDataFilter(
-			final GWTPresentationPaginatedDataFilter dataFilter) {
-		this.dataFilter = dataFilter;
-	}
+    public void setDataFilter(
+            final GWTPresentationPaginatedDataFilter dataFilter) {
+        this.dataFilter = dataFilter;
+    }
 }

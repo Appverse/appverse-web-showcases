@@ -69,19 +69,9 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 					<container:child layoutData="{gwtshowcaseLayout.fullWidthTextLayout}">
 						<form:FieldLabel text="{res.rolesRoleName}" labelWidth="{gwtshowcaseLayout.labelSize}">
 							<form:widget>
-								<ria:SuggestWidgetImpl ui:field="suggestSearch" modelSearchField="name" props="{props}" modelInstance="{modelInstance}" />
+								<ria:SuggestWidgetImpl ui:field="suggestSearch" modelSearchField="name" props="{props}" modelInstance="{modelInstance}" addSearchIcon="true"/>
 							</form:widget>
 						</form:FieldLabel>
-					</container:child>
-					<!-- Search button -->
-					<container:child>
-						<container:HBoxLayoutContainer hBoxLayoutAlign="MIDDLE"
-							pack="CENTER">
-							<container:child layoutData="{boxLayoutData}">
-								<button:TextButton text="{res.rolesButtonSearch}" icon="{images.searchIcon}"
-									width="{gwtshowcaseLayout.buttonSize}" ui:field="searchRolesButton" />
-							</container:child>
-						</container:HBoxLayoutContainer>
 					</container:child>
 				</container:VerticalLayoutContainer>
 			</gxt:FramedPanel>
