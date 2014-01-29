@@ -187,7 +187,12 @@
 	</properties>
 
 	<build>
-		<defaultGoal>clean package tomcat7:deploy-only</defaultGoal>
+
+        <defaultGoal>clean install</defaultGoal>
+
+        <!-- If you want your default goal to deploy the application in a external
+            Tomcat 7 server, uncomment the previous line and comment this one -->
+        <!-- <defaultGoal>clean package tomcat7:deploy-only</defaultGoal> -->
 
 		<pluginManagement>
 			<plugins>
@@ -300,18 +305,6 @@
 				</plugin>
 
 				<plugin>
-					<groupId>org.apache.tomcat.maven</groupId>
-					<artifactId>tomcat7-maven-plugin</artifactId>
-					<version>2.1</version>
-					<configuration>
-						<server>tomcat</server>
-						<path>/${app.context.root}</path>
-						<url>${tomcat.manager.url}</url>
-						<update>true</update>
-					</configuration>
-				</plugin>
-
-				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
 					<version>2.4</version>
@@ -377,6 +370,54 @@
 						</dependency>
 					</dependencies>
 				</plugin>
+
+                <!-- Tomcat plugin setup. Requieres Tomcat7 installation and setup. You can use "tomcat7:deploy-only" to deploy
+                to Tomcat after main goal -->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.1</version>
+                    <configuration>
+                        <server>tomcat</server>
+                        <path>/${app.context.root}</path>
+                        <url>${tomcat.manager.url}</url>
+                        <update>true</update>
+                    </configuration>
+                </plugin>
+
+                <!-- Embedded Jetty Maven plugin setup. You can use "mvn jetty:run-war" to start the showcase after main goal -->
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <configuration>
+                        <jvmArgs>-Xms256m -Xmx768m -XX:MaxPermSize=256m</jvmArgs>
+                        <webAppConfig>
+                            <contextPath>/${app.context.root}</contextPath>
+                        </webAppConfig>
+
+                        <webAppSourceDirectory>${basedir}/appverse-web-showcases-gwt-backend-hibernate/src/main/webapp</webAppSourceDirectory>
+                        <webXml>${basedir}/appverse-web-showcases-gwt-backend-hibernate/src/main/webapp/WEB-INF/web.xml</webXml>
+                        <classesDirectory>${basedir}/appverse-web-showcases-gwt-backend-hibernate/target/appverse-web-showcases-gwt-backend-hibernate-${project.version}/WEB-INF/classes</classesDirectory>
+                        <war>${basedir}/appverse-web-showcases-gwt-backend-hibernate/target/appverse-web-showcases-gwt-backend-hibernate-${project.version}</war>
+                        <!--automatic reload disabled -->
+                        <reload>manual</reload>
+                        <scanIntervalSeconds>0</scanIntervalSeconds>
+                        <scanTargets>
+                            <scanTarget>src/main</scanTarget>
+                        </scanTargets>
+                        <scanTargetPatterns>
+                            <scanTargetPattern>
+                                <directory>${basedir}/appverse-web-showcases-gwt-backend-hibernate/src/main/resources</directory>
+
+                                <includes>
+                                    <include>**/*.xml</include>
+                                    <include>**/*.properties</include>
+                                </includes>
+                            </scanTargetPattern>
+                        </scanTargetPatterns>
+                    </configuration>
+                </plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
