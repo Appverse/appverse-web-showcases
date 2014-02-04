@@ -88,7 +88,7 @@ public class UserServiceTestImpl extends AbstractTransactionalTest {
     public void removeFromUserDependencies() throws Exception{
         // Element removal from collections check (converters remove-orphan test)
 
-        // Retrieve existing user
+        // Retrieve existing user (1)
         User userAux = userService.loadUser(1L);
         checkUser(userAux);
 
@@ -115,7 +115,7 @@ public class UserServiceTestImpl extends AbstractTransactionalTest {
     public void addToUserDependencies() throws Exception{
         // Element add to collections check (converters cummulative test)
 
-        // Retrieve existing user
+        // Retrieve existing user (1)
         User userAux = userService.loadUser(1L);
         checkUser(userAux);
 
