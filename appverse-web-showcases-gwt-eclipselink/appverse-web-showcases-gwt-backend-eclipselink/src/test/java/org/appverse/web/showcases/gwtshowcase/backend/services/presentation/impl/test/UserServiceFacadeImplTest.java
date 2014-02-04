@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
 import java.util.List;
 
-public class UserServiceFacadeTestImpl extends AbstractTransactionalTest {
+public class UserServiceFacadeImplTest extends AbstractTransactionalTest {
 
 	@Autowired
 	private UserService userService;

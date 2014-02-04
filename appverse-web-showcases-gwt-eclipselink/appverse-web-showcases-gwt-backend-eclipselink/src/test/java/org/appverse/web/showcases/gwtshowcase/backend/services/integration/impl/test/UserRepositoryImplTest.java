@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserRepositoryTestImpl extends AbstractTransactionalTest implements
+public class UserRepositoryImplTest extends AbstractTransactionalTest implements
 		JPATest {
 
 	@Autowired
