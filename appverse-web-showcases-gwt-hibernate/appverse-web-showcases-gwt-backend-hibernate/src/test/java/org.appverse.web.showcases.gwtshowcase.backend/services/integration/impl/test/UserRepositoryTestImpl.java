@@ -1,5 +1,7 @@
 package org.appverse.web.showcases.gwtshowcase.backend.services.integration.impl.test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import org.appverse.web.framework.backend.api.helpers.test.AbstractTransactional
 import org.appverse.web.framework.backend.api.helpers.test.JPATest;
 import org.appverse.web.framework.backend.api.model.integration.AbstractIntegrationAuditedBean;
 import org.appverse.web.framework.backend.api.model.integration.IntegrationDataFilter;
+import org.appverse.web.showcases.gwtshowcase.backend.model.integration.RoleDTO;
 import org.appverse.web.showcases.gwtshowcase.backend.model.integration.UserDTO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.integration.RoleRepository;
 import org.appverse.web.showcases.gwtshowcase.backend.services.integration.UserRepository;
@@ -84,7 +87,11 @@ public class UserRepositoryTestImpl extends AbstractTransactionalTest implements
 		userDTO.setPassword("");
 
 		// Init dependencies (already in test in memory database)
-		userDTO.setRoles(roleRepository.retrieveList());
+
+        // We add the 4 regular roles (as we have 5 we remove the extra that will be used later to test
+        // roles additions)
+        //List<RoleDTO> roleCollection = roleRepository.retrieveList();
+		userDTO.setRoles(roleRepository.retrieveList().subList(0, 4));
 	}
 
 	@Override

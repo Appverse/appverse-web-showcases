@@ -84,7 +84,11 @@ public class UserRepositoryTestImpl extends AbstractTransactionalTest implements
 		userDTO.setPassword("");
 
 		// Init dependencies (already in test in memory database)
-		userDTO.setRoles(roleRepository.retrieveList());
+
+        // We add the 4 regular roles (as we have 5 we remove the extra that will be used later to test
+        // roles additions)
+        //List<RoleDTO> roleCollection = roleRepository.retrieveList();
+        userDTO.setRoles(roleRepository.retrieveList().subList(0, 4));
 	}
 
 	@Override
