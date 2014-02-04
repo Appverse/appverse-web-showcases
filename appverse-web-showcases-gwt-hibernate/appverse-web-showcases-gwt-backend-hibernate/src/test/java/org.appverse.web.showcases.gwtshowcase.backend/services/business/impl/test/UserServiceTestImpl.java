@@ -1,6 +1,7 @@
 package org.appverse.web.showcases.gwtshowcase.backend.services.business.impl.test;
 
 import org.appverse.web.framework.backend.api.helpers.test.AbstractTransactionalTest;
+import org.appverse.web.showcases.gwtshowcase.backend.model.business.Role;
 import org.appverse.web.showcases.gwtshowcase.backend.model.business.User;
 import org.appverse.web.showcases.gwtshowcase.backend.services.business.RoleService;
 import org.appverse.web.showcases.gwtshowcase.backend.services.business.UserService;
@@ -8,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -34,7 +34,13 @@ public class UserServiceTestImpl extends AbstractTransactionalTest {
         user.setCreatedBy("test");
 
 		// Add collections
-		user.setRoles(roleService.loadRoles());
+
+        // We add the 4 regular roles (as we have 5 we remove the extra that will be used later to test
+        // roles additions)
+        List<Role> roleCollection = roleService.loadRoles();
+        roleCollection.remove(4);
+
+        user.setRoles(roleCollection);
 	}
 
     private void checkUser(User user) {
@@ -63,7 +69,7 @@ public class UserServiceTestImpl extends AbstractTransactionalTest {
 	public void persistAndModifyNewUser() throws Exception {
 		// Persist new
 		final long resultPk = userService.saveUser(user);
-		Assert.assertNotSame("The returned entity id can't be 0", 0L, resultPk);
+		Assert.assertNotEquals("The returned entity id can't be 0", 0L, resultPk);
 
 		// Retrieve
 		User userAux = userService.loadUser(resultPk);
@@ -73,8 +79,8 @@ public class UserServiceTestImpl extends AbstractTransactionalTest {
 		userAux.setName("new");
 		userService.saveUser(userAux);
 		userAux = userService.loadUser(resultPk);
-		Assert.assertSame("The value was not properly updated", "new",
-				userAux.getName());
+		Assert.assertEquals("The value was not properly updated", "new",
+                userAux.getName());
 		checkUser(userAux);
 	}
 
@@ -93,11 +99,13 @@ public class UserServiceTestImpl extends AbstractTransactionalTest {
         // Other dependencies removal....
 
 		long resultPk = userService.saveUser(userAux);
+
+        // We retrieve the user
 		userAux = userService.loadUser(resultPk);
 
-        // Role dependency check...
-		Assert.assertNotSame("The list of entities size is not correct", 2L,
-				userAux.getRoles().size());
+        // Role dependency check (we check a role has been removed)
+		Assert.assertEquals("The list of entities size is not correct", 3L,
+                userAux.getRoles().size());
 
         // Other dependency check
 
@@ -105,27 +113,23 @@ public class UserServiceTestImpl extends AbstractTransactionalTest {
 
     @Test
     public void addToUserDependencies() throws Exception{
-        removeFromUserDependencies();
-
         // Element add to collections check (converters cummulative test)
 
         // Retrieve existing user
         User userAux = userService.loadUser(1L);
+        checkUser(userAux);
 
-        // Simulate commit / flush - version would increase (otherwise optimistick locking exception is thrown)
-        userAux.setVersion(userAux.getVersion()+1);
-
-        // checkUser(userAux);
-
-        // Role dependency addition
-        userAux.getRoles().add(roleService.loadRole(1L));
-        userService.saveUser(userAux);
-        userAux = userService.loadUser(1L);
+        // Role dependency addition (we add the extra role (5) to he user
+        userAux.getRoles().add(roleService.loadRole(5L));
 
         // Other dependencies addition...
+        userService.saveUser(userAux);
 
-        // Role dependency check...
-        Assert.assertNotSame("The list of entities size is not correct", 4L,
+        // We retrieve the user
+        userAux = userService.loadUser(1L);
+
+        // Role dependency check (we check the extra role is added)
+        Assert.assertEquals("The list of entities size is not correct", 5L,
                 userAux.getRoles().size());
 
         // Other dependency check
