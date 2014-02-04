@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
 import java.util.List;
 
-public class UserServiceTestImpl extends AbstractTransactionalTest {
+public class UserServiceImplTest extends AbstractTransactionalTest {
 
 	@Autowired
 	private UserService userService;
