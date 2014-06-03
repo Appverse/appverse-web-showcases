@@ -14,18 +14,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Proxy class for the service client
+ * Proxy class for the service client - Mock implementation
  * @author MOCR
  *
  */
 public class AccountWSClient implements AccountService { 
-	
+	/**
+	 * Logger
+	 */
 	private static Logger logger = LoggerFactory.getLogger(AccountWSClient.class);
-	
+	/**
+	 * Accounts array
+	 */
 	private static Account [] accountsArray;
-	
+	/**
+	 * Accounts
+	 */
 	private static final Map<String, String>  accounts = new HashMap<String, String>();
-	
+	/**
+	 * Constructor
+	 */
 	public AccountWSClient () {
 		for (int i=1; i<=5; i++ ) {
 			accounts.put(String.valueOf(i), "account_" + i);		
@@ -45,7 +53,10 @@ public class AccountWSClient implements AccountService {
 			}
 		
 	}
- 
+	/**
+	 * Get Mock Account
+	 * @return Account object
+	 */
 	public Account getAccount() {
 		 Customer cust = new Customer ();
 		 cust.setAge(38);
@@ -58,15 +69,26 @@ public class AccountWSClient implements AccountService {
 		 acc.setCustomer(cust);
 		 return acc; 
 	}
-	
+	/**
+	 * Get Account By Client id
+	 * @param Account id
+	 * @return Account as String
+	 */
 	public String getAccountByClient(String arg0) {
 		return accounts.get(arg0);
 	}
+	/**
+	 * Get a list of Account Objects
+	 * @return List<Account>
+	 */
 	public List<Account> getAccountObjects() {
 		return Arrays.asList(accountsArray);
 
 	}
-
+	/**
+	  * Get a list of Account String
+	 * @return List<String>
+	 */
 	public List<String> getAccounts() {
 		return  Arrays.asList(accounts.values().toArray(new String[accounts.size()]));
 	}

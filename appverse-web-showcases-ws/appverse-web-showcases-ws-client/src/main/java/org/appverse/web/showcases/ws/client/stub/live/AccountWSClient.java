@@ -17,8 +17,13 @@ import org.slf4j.LoggerFactory;
  */
 public class AccountWSClient extends AbstractWSClient<AccountServiceImplService, AccountService>{ 
 	
+	/**
+	 * Logger
+	 */
 	private static Logger logger = LoggerFactory.getLogger(AccountWSClient.class);
-	
+	/**
+	 * Constructor
+	 */
 	public AccountWSClient () {
 		this.setBeanClasses(AccountServiceImplService.class, AccountService.class);
 		this.registerHandler(new ClientPerformanceMonitorLogicalHandler());
@@ -32,7 +37,9 @@ public class AccountWSClient extends AbstractWSClient<AccountServiceImplService,
 	public List<String> getAccounts() throws Exception {
 		return getService().getAccounts();
 	}
- 
+	/**
+	 * WSDL URL
+	 */
 	@Override
 	public String getRemoteWSDLURL() { 
 		return "http://localhost:8090/appverse-web-showcases-ws-service/AccountService?wsdl";
