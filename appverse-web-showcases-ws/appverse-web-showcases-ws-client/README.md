@@ -68,7 +68,27 @@ Register the framework or custom Handler implementations to use, with the regist
     this.registerHandler(new ClientPerformanceMonitorLogicalHandler());
     this.registerHandler(new EnvelopeLoggingSOAPHandler()); 
     }
-    
+
+##Generate the Subs code
+The jax-ws-client-stub-generator Appverse Maven plugin <https://github.com/Appverse/appverse-web-tools> can be used to generate the live and mock stubs. 
+
+###Configuration
+Add the jax-ws-client-stub-generator plugin to the pom.xml.
+
+		<plugin>
+				<groupId>org.appverse.web.tools.jaxws.client</groupId>
+				<artifactId>jax-ws-client-stub-generator</artifactId>
+				<configuration>	 
+					<remoteWsdl>http://localhost:8090/appverse-web-showcases-ws-service/AccountService?wsdl</remoteWsdl> 
+					<springService>true</springService>
+				</configuration> 
+		</plugin>
+		
+###Execution 
+     mvn jaxws:wsimport org.appverse.web.tools.jaxws.client:jax-ws-client-stub-generator:generate-jax-ws-client
+
+
+
 ## More Information
 * **SOAP**: <http://www.w3.org/TR/soap/>
 * **JAX-WS**: <http://searchsoa.techtarget.com/definition/JAX-WS> 

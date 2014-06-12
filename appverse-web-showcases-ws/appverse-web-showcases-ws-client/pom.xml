@@ -69,6 +69,14 @@
 					</wsdlUrls>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.appverse.web.tools.jaxws.client</groupId>
+				<artifactId>jax-ws-client-stub-generator</artifactId>
+				<configuration>	 
+					<remoteWsdl>http://localhost:8090/appverse-web-showcases-ws-service/AccountService?wsdl</remoteWsdl> 
+					<springService>true</springService>
+				</configuration> 
+			</plugin>
 		</plugins>
 	</build>
 
