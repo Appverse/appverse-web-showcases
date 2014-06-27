@@ -9,7 +9,7 @@
 	</parent>
 
 	<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
-	<artifactId>appverse-web-showcases-gwt-gwtshared-rest</artifactId>
+	<artifactId>gwtshared</artifactId>
 
 	<name>GWT Showcase GWT Shared Module Rest</name>
 	<description>GWT Showcase GWT Shared Module Rest</description>

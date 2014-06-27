@@ -116,16 +116,16 @@
 	</scm>
 
 	<modules>
-	    <module>appverse-web-showcases-gwt-backend-rest</module>
-	    <module>appverse-web-showcases-gwt-gwtfrontend-rest</module>
-	    <module>appverse-web-showcases-gwt-gwtshared-rest</module>
+	    <module>backend</module>
+	    <module>gwtfrontend</module>
+	    <module>gwtshared</module>
 	</modules>
 
  	<properties>
 		<main.group>org.appverse.web.showcases.gwt</main.group>
 		<main.name>appverse-web-showcases-gwt-rest</main.name>
 		<app.context.root>showcase</app.context.root>
-        <appverse.framework.version>1.4-SNAPSHOT</appverse.framework.version>
+        <appverse.framework.version>1.4-RELEASE</appverse.framework.version>
         <appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
     </properties>
 	
@@ -335,10 +335,10 @@
                             <contextPath>/${app.context.root}</contextPath>
                         </webAppConfig>
 
-                        <webAppSourceDirectory>${basedir}/appverse-web-showcases-gwt-backend-rest/src/main/webapp</webAppSourceDirectory>
-                        <webXml>${basedir}/appverse-web-showcases-gwt-backend-rest/src/main/webapp/WEB-INF/web.xml</webXml>
-                        <classesDirectory>${basedir}/appverse-web-showcases-gwt-backend-rest/target/appverse-web-showcases-gwt-backend-rest-${project.version}/WEB-INF/classes</classesDirectory>
-                        <war>${basedir}/appverse-web-showcases-gwt-backend-rest/target/appverse-web-showcases-gwt-backend-rest-${project.version}</war>
+                        <webAppSourceDirectory>${basedir}/backend/src/main/webapp</webAppSourceDirectory>
+                        <webXml>${basedir}/backend/src/main/webapp/WEB-INF/web.xml</webXml>
+                        <classesDirectory>${basedir}/backend/target/backend${project.version}/WEB-INF/classes</classesDirectory>
+                        <war>${basedir}/backend/target/backend-${project.version}</war>
                         <!--automatic reload disabled -->
                         <reload>manual</reload>
                         <scanIntervalSeconds>0</scanIntervalSeconds>
@@ -347,7 +347,7 @@
                         </scanTargets>
                         <scanTargetPatterns>
                             <scanTargetPattern>
-                                <directory>${basedir}/appverse-web-showcases-gwt-backend-rest/src/main/resources</directory>
+                                <directory>${basedir}/backend/src/main/resources</directory>
 
                                 <includes>
                                     <include>**/*.xml</include>
