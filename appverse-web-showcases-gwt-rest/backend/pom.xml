@@ -8,7 +8,7 @@
 		<version>1.4-MILESTONE_1</version>
 	</parent>
 
-	<groupId>org.appverse.web.showcases.gwt.backend</groupId>
+	<groupId>org.appverse.web.showcases.gwt</groupId>
 	<artifactId>backend</artifactId>
 	<packaging>war</packaging>
 	<name>GWT Showcase GWT Backend Module Rest</name>
@@ -86,13 +86,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
+			<groupId>org.appverse.web.showcases.gwt</groupId>
 			<artifactId>gwtshared</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.appverse.web.showcases.gwt.gwtfrontend</groupId>
+			<groupId>org.appverse.web.showcases.gwt</groupId>
 			<artifactId>gwtfrontend</artifactId>
 			<version>${project.version}</version>
 			<classifier>GWT-Frontend-Resources</classifier>
