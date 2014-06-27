@@ -8,7 +8,7 @@
 		<version>1.4-MILESTONE_1</version>
 	</parent>
 
-	<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
+	<groupId>org.appverse.web.showcases.gwt</groupId>
 	<artifactId>gwtshared</artifactId>
 
 	<name>GWT Showcase GWT Shared Module Rest</name>
