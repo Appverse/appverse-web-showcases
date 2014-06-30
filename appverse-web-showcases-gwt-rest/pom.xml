@@ -127,6 +127,7 @@
 		<app.context.root>showcase</app.context.root>
         <appverse.framework.version>1.4-RELEASE</appverse.framework.version>
         <appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
+        <gwt-version>2.5.1</gwt-version>
     </properties>
 	
  	<build>
@@ -212,7 +213,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>gwt-maven-plugin</artifactId>
-					<version>2.5.0</version>
+					<version>${gwt-version}</version>
 					<configuration>
 						<servicePattern>**/*ServiceFacade.java</servicePattern>
 					</configuration>
@@ -364,6 +365,10 @@
    
   	<dependencyManagement>
 		<dependencies>
+            <!-- import the Appverse's dependencyManagement section -->
+            <!-- I don't think it is a good idea to have this master pom defining all dependencies
+                 for all modules. Why should we have a declaration for a module that our project will
+                 not even use? -->
 			<dependency>
 				<groupId>org.appverse.web.framework.poms</groupId>
 				<artifactId>appverse-web-masterpom</artifactId>
@@ -371,6 +376,23 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+            <!-- Appverse uses version 1.3 but we want to use 1.4 -->
+            <dependency>
+                <groupId>org.fusesource.restygwt</groupId>
+                <artifactId>restygwt</artifactId>
+                <version>1.4</version>
+            </dependency>
+            <!-- Appverse uses GWT 2.5.0 but we want to use 2.5.1 -->
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-servlet</artifactId>
+                <version>${gwt-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-user</artifactId>
+                <version>${gwt-version}</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
   
