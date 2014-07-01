@@ -45,6 +45,8 @@
 	</licenses>
 
 	<build>
+        <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+
 		<filters>
 			<filter>src/main/filters/${env}.properties</filter>
 		</filters>
@@ -91,6 +93,9 @@
 			<version>${project.version}</version>
 		</dependency>
 
+        <!-- TODO: this dependency generates this warning:
+             [WARNING] The POM for org.appverse.web.showcases.gwt:gwtfrontend:zip:GWT-Frontend-Resources:1.4-MILESTONE_1 is invalid, transitive dependencies (if any) will not be available: 1 problem was encountered while building the effective model for org.appverse.web.showcases.gwt:gwtfrontend:1.4-MILESTONE_1
+        -->
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt</groupId>
 			<artifactId>gwtfrontend</artifactId>
@@ -106,4 +111,114 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+
+    <!-- TODO: move this to a separate module and make gwtfrontend just a jar -->
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>development</env>
+                <maven.skip.tests>true</maven.skip.tests>
+            </properties>
+            <dependencies>
+                <!-- These dependencies are declared in the gwtfrontend module, but they are not inherited because
+                     they have scope provided, so we need to include them again here to let devmode work.-->
+                <dependency>
+                    <groupId>org.appverse.web.showcases.gwt</groupId>
+                    <artifactId>gwtfrontend</artifactId>
+                    <version>${project.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.google.gwt.inject</groupId>
+                    <artifactId>gin</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.sencha.gxt</groupId>
+                    <artifactId>gxt</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.googlecode.mvp4g</groupId>
+                    <artifactId>mvp4g</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
+                    <artifactId>appverse-web-modules-frontend-gwt-api</artifactId>
+                    <scope>provided</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.slf4j</groupId>
+                            <artifactId>slf4j-simple</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+                <dependency>
+                    <groupId>org.appverse.web.framework.modules.frontend.gwt.theme</groupId>
+                    <artifactId>appverse-web-modules-frontend-gwt-theme</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>../gwtfrontend/src/main/resources</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                    </resource>
+                    <resource>
+                        <directory>../gwtshared/src/main/resources</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                    </resource>
+                </resources>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <!-- let GWT source files in other modules, so we don't need to rebuild them to execute in devmode -->
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>build-helper-maven-plugin</artifactId>
+                            <version>1.8</version>
+                            <executions>
+                                <execution>
+                                    <id>add-source</id>
+                                    <phase>generate-sources</phase>
+                                    <goals>
+                                        <goal>add-source</goal>
+                                    </goals>
+                                    <configuration>
+                                        <sources>
+                                            <source>../gwtfrontend/src/main/java</source>
+                                            <source>../gwtshared/src/main/java</source>
+                                        </sources>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>gwt-maven-plugin</artifactId>
+                            <configuration>
+                                <modules>
+                                    <module>org.appverse.web.framework.frontend.GwtshowcaseAPI</module>
+                                    <module>org.appverse.web.showcases.gwtshowcase.gwtfrontend.Admin</module>
+                                    <module>org.appverse.web.framework.frontend.theme.gwtshowcase.Gwtshowcase</module>
+                                </modules>
+                                <runTarget>index.html</runTarget>
+                                <copyWebapp>true</copyWebapp>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
