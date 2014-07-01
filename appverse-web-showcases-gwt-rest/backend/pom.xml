@@ -64,6 +64,8 @@
 				<artifactId>appverse-web-tools-jpa-ddl-generator</artifactId>
 			</plugin>
 
+            <!-- In the parent pom there is a declaration to unpack the gwtfrontend, so we need to declare it
+                 here to active it. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -93,9 +95,8 @@
 			<version>${project.version}</version>
 		</dependency>
 
-        <!-- TODO: this dependency generates this warning:
-             [WARNING] The POM for org.appverse.web.showcases.gwt:gwtfrontend:zip:GWT-Frontend-Resources:1.4-MILESTONE_1 is invalid, transitive dependencies (if any) will not be available: 1 problem was encountered while building the effective model for org.appverse.web.showcases.gwt:gwtfrontend:1.4-MILESTONE_1
-        -->
+        <!-- this dependency is used by the dependency plugin to unpack the contents of this zip file into the
+             war directory -->
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt</groupId>
 			<artifactId>gwtfrontend</artifactId>
@@ -112,7 +113,10 @@
 		</dependency>
 	</dependencies>
 
-    <!-- TODO: move this to a separate module and make gwtfrontend just a jar -->
+    <!-- TODO: make gwtfrontend just a jar, so this jar can be included as "provided" so all "compile" dependencies of
+         that jar will show up here as provided. Copy all files in webapp from that project to this one, this is
+         better than using unpack-dependencies because in order to unpack things the jar needs to be built and this
+         takes a long time when we are doing the GWT compilation there. -->
     <profiles>
         <profile>
             <id>development</id>
@@ -182,7 +186,8 @@
                 <pluginManagement>
                     <plugins>
                         <plugin>
-                            <!-- let GWT source files in other modules, so we don't need to rebuild them to execute in devmode -->
+                            <!-- let GWT see source files in other modules, so we don't need to rebuild them to execute
+                                 in devmode -->
                             <groupId>org.codehaus.mojo</groupId>
                             <artifactId>build-helper-maven-plugin</artifactId>
                             <version>1.8</version>
@@ -220,5 +225,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>

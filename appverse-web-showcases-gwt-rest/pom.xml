@@ -269,6 +269,7 @@
 					</executions>
 				</plugin>				
 
+                <!-- TODO: move this to the backend because it is only used there-->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
@@ -281,8 +282,9 @@
 							<phase>generate-resources</phase>
 							<configuration>
 								<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
-								<includeGroupIds>${main.group}.gwtfrontend</includeGroupIds>
-								<includeArtifacIds>${main.name}-gwtfrontend</includeArtifacIds>
+								<includeGroupIds>${main.group}</includeGroupIds>
+								<includeArtifactIds>gwtfrontend</includeArtifactIds>
+                                <includeClassifiers>GWT-Frontend-Resources</includeClassifiers>
 							</configuration> 
 						</execution>
 					</executions>				
