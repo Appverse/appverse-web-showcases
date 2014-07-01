@@ -14,6 +14,7 @@
 	<name>GWT Showcase GWT Frontend Module Rest</name>
 	<description>GWT Showcase GWT Frontend Module Rest</description>	
 	<url>http://appverse.org/projects/appverse-web/</url>
+    <packaging>jar</packaging>
 	<inceptionYear>2013</inceptionYear>
 
 	<licenses>
@@ -174,5 +175,15 @@
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.googlecode.mvp4g</groupId>
+            <artifactId>mvp4g</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt.inject</groupId>
+            <artifactId>gin</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 </project>
