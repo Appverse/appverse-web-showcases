@@ -30,35 +30,52 @@ import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * This UserServiceFacade, is the interface for our presentation service.
  * As it is not RPC, it does not have the RemoteServiceRelativePath annotation, RestyGWT works slightly different.
  * See the UserRestServiceFacade interface below.
+ * The @Path annotation has to be in the implementation class so JAX-RS can find it.
  */
 //@RemoteServiceRelativePath("services/userServiceFacade.rpc")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public interface UserServiceFacade extends IPresentationService {
 
-	//List<UserVO> loadUsers() throws Exception;
-	
-    UserVO loadUser(long userId) throws Exception;
+    @Path("loadUsers")
+    @POST
+    GWTPresentationPaginatedResult<UserVO> loadUsers(
+            GWTPresentationPaginatedDataFilter config) throws Exception;
 
-	long saveUser(UserVO userVO) throws Exception;
+    @Path("saveUser")
+    @POST
+    long saveUser(UserVO userVO) throws Exception;
 
+    @Path("deleteUser")
+    @POST
     void deleteUser(UserVO userVO) throws Exception;
 
-	GWTPresentationPaginatedResult<UserVO> loadUsers(
-			GWTPresentationPaginatedDataFilter config) throws Exception;
-
+    @Path("loadUser")
+    @POST
+    UserVO loadUser(long userId) throws Exception;
 
     /**
      * This is the RestyGWT interface for our Presentation Service.
-     * The fact that it must be with a MethodCallback parameter, make it a bit difficult to cleanly integrate.
+     * The fact that it must be with a MethodCallback parameter, makes it a bit difficult to cleanly integrate.
      * It must extend RestService.
      * The Client class is a candidate to become part of AbstractRestCommandImpl, so part of Appverse Framework.
+     *
+     * Notice: this interface can not have @Path annotations because it is supposed to be processed by the JSONController
+     * which is also deprecated and then only that component can have those annotations.
+     * See comments on UserRestRpcCommandImpl for more information.
      */
-    interface UserRestServiceFacade extends RestService {
+    @Deprecated
+    interface UserRestServiceFacadeOld extends RestService {
         @POST
         void loadUser(Long userId, MethodCallback<UserVO> callback );
 
@@ -72,7 +89,27 @@ public interface UserServiceFacade extends IPresentationService {
         void saveUser(UserVO userVo, MethodCallback<Long> callback);
     }
 
+    /**
+     * Notice: this interface has to be compatible with its enclosing interface
+     */
+    @Path("userRestServiceFacade-json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    interface UserRestServiceFacade extends RestService {
+        @POST
+        @Path("loadUser")
+        void loadUser(Long userId, MethodCallback<UserVO> callback );
 
+        @POST
+        @Path("deleteUser")
+        void deleteUser(UserVO userVo, MethodCallback<Void> callback );
 
+        @POST
+        @Path("loadUsers")
+        void loadUsers(GWTPresentationPaginatedDataFilter config, MethodCallback<GWTPresentationPaginatedResult<UserVO>> callback);
 
+        @POST
+        @Path("saveUser")
+        void saveUser(UserVO userVo, MethodCallback<Long> callback);
+    }
 }

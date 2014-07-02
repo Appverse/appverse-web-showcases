@@ -128,7 +128,7 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>compile</goal>
+							<goal>compile</goal> <!-- disable compilation during tests -->
 							<goal>resources</goal>
 						</goals>
 					</execution>

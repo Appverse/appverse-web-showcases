@@ -74,7 +74,13 @@
 	</build>
 
 	<dependencies>
-		<dependency>
+        <!-- Replacement for CustomMappingJacksonHttpMessageConverter.
+             The only things really missing is the XSRF checking, but I think we can do this by extending the Jersey servlet. -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+        </dependency>
+        <dependency>
 			<groupId>org.appverse.web.framework.modules.backend.core.persistence.eclipselink</groupId>
 			<artifactId>appverse-web-modules-backend-core-persistence-eclipselink</artifactId>
 		</dependency>
@@ -218,6 +224,7 @@
                                 </modules>
                                 <runTarget>index.html</runTarget>
                                 <copyWebapp>true</copyWebapp>
+                                <debugSuspend>false</debugSuspend>
                             </configuration>
                         </plugin>
                     </plugins>

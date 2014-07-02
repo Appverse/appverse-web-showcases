@@ -23,12 +23,15 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters;
 
+import com.google.gwt.core.shared.GWT;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedDataFilter;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedResult;
 import org.appverse.web.framework.frontend.gwt.callback.AppverseCallback;
+import org.appverse.web.framework.frontend.gwt.helpers.dispatcher.AppverseDispatcher;
 import org.appverse.web.framework.frontend.gwt.helpers.security.PrincipalInformation;
 import org.appverse.web.showcases.gwtshowcase.backend.constants.AuthoritiesConstants;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
+import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.UserServiceFacade;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminEventBus;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.injection.AdminInjector;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.UserRestRpcCommand;
@@ -37,6 +40,7 @@ import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.views.impl
 
 import com.mvp4g.client.annotation.Presenter;
 import com.mvp4g.client.presenter.LazyPresenter;
+import org.fusesource.restygwt.client.Defaults;
 
 @Presenter(view = UserSearchViewImpl.class)
 public class UserSearchPresenter extends
@@ -45,6 +49,18 @@ public class UserSearchPresenter extends
 
 	private AdminInjector injector;
 	private UserRestRpcCommand userRestRpcCommand;
+
+    private UserServiceFacade.UserRestServiceFacade newUserRestRpcCommand;
+
+    public UserSearchPresenter() {
+        // TODO: move this to the entry point
+        // The rest sufix has to match what is defined in the web.xml for the CXFServlet.
+        Defaults.setServiceRoot(com.google.gwt.core.client.GWT.getHostPageBaseURL() + "admin/rest/");
+        Defaults.setDispatcher(AppverseDispatcher.INSTANCE);
+
+        // TODO: use GIN to inject this command
+        newUserRestRpcCommand  =  GWT.create(UserServiceFacade.UserRestServiceFacade.class);
+    }
 
 	@Override
 	public void addUser() {
@@ -111,7 +127,11 @@ public class UserSearchPresenter extends
 	public void loadUsers(
 			GWTPresentationPaginatedDataFilter dataFilter,
 			AppverseCallback<GWTPresentationPaginatedResult<UserVO>> callbackRestListUsers) {
-		userRestRpcCommand.loadUsers(dataFilter, callbackRestListUsers);
+        if (false) {
+            userRestRpcCommand.loadUsers(dataFilter, callbackRestListUsers);
+        } else {
+            newUserRestRpcCommand.loadUsers(dataFilter, callbackRestListUsers);
+        }
 	}
 
 }

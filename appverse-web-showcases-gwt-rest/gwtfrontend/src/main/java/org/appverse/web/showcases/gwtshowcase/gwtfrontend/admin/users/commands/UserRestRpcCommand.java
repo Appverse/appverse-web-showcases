@@ -31,6 +31,10 @@ import org.appverse.web.framework.frontend.gwt.callback.AppverseCallback;
 import org.appverse.web.framework.frontend.gwt.json.ApplicationJsonAsyncCallback;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 
+/**
+ * @see org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.impl.live.UserRestRpcCommandImpl
+ */
+@Deprecated
 public interface UserRestRpcCommand {
 
 	void deleteUser(UserVO user, ApplicationJsonAsyncCallback<Void> asyncCallback);
