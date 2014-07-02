@@ -37,9 +37,15 @@ import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.User
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import java.util.List;
 
 @Service("userRestServiceFacade")
+// The only JAX-RS annotation that must be in the implementation class is the @Path, all other annotations, including
+// @Path in methods, can be specified in the interface.
+@Path("userRestServiceFacade-json")
 public class UserRestServiceFacadeImpl extends AbstractPresentationService implements UserServiceFacade {
 
 	@Autowired
@@ -54,23 +60,7 @@ public class UserRestServiceFacadeImpl extends AbstractPresentationService imple
 
 	public UserRestServiceFacadeImpl() {
 	}
-	
 
-//	@Override
-//	public UserVO loadUser(final long userId) throws Exception {
-//		final User user = userService.loadUser(userId);
-//		return userP2BBeanConverter.convert(user);
-//	}
-//
-//	@Override
-//	public List<UserVO> loadUsers() throws Exception {
-//		final List<User> users = userService.loadUsers();
-//
-//		final List<UserVO> usersVO = userP2BBeanConverter
-//				.convertBusinessList(users);
-//		return usersVO;
-//	}
-//
 	public GWTPresentationPaginatedResult<UserVO> loadUsers(
 			final GWTPresentationPaginatedDataFilter config) throws Exception {
 
@@ -89,7 +79,6 @@ public class UserRestServiceFacadeImpl extends AbstractPresentationService imple
 		return new GWTPresentationPaginatedResult<UserVO>(usersVO, total,
 				config.getOffset());
 	}
-//
 
 	public long saveUser(final UserVO userVO) throws Exception {
 		final User user = userP2BBeanConverter.convert(userVO);
@@ -101,22 +90,16 @@ public class UserRestServiceFacadeImpl extends AbstractPresentationService imple
 		userService.deleteUser(user);
 	}
 
-//	public List<UserVO> loadUsers() throws Exception {
-//		
-//		final List<User> users = userService.loadUsers();
-//
-//		final List<UserVO> usersVO = userP2BBeanConverter
-//				.convertBusinessList(users);
-////		callback.onSuccess(method, response)
-//		return usersVO;
-//
-//	}
-	
 	public UserVO loadUser(long userId) throws Exception {
 		final User user = userService.loadUser(userId);
 		UserVO uservo = userP2BBeanConverter
 				.convert(user);
 		return uservo;
-		
 	}
+
+    @Path("test")
+    @GET
+    public String test() {
+        return "hello world";
+    }
 }
