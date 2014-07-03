@@ -35,17 +35,23 @@ import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.business.UserService;
 import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.UserServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
+import javax.inject.Singleton;
 import javax.ws.rs.Path;
 import java.util.List;
 
-@Service("userRestServiceFacade")
-// The only JAX-RS annotation that must be in the implementation class is the @Path, all other annotations, including
-// @Path in methods, can be specified in the interface.
-@Path("userRestServiceFacade-json")
+/**
+ * UserServiceFacade already has JAX-RS annotations, so we don't need to have them here (when registering Services through Spring).
+ * @Path annotation is required here only if Jersey is scanning this component (and this does not work because of a bug
+ * that does not let Spring intercept calls for this class - see JerseyInitJsonApplication).
+ */
+@Service("userRestServiceFacade")  // Since Spring is creating this bean we can keep this annotation (see following comments)
+// The following annotations are necessary if we want to let Jersey create this bean
+//@Component("userRestServiceFacade") // this is used to let SpringComponentProvider bind this class after it is detected by JAX-RS
+//@Path("userRestServiceFacade-json") // the Jersey scanner only search for classes that are directly annotated, it does not work if only the interface is annotated
+//@Singleton  // Only in Spring the default scope is singleton
 public class UserRestServiceFacadeImpl extends AbstractPresentationService implements UserServiceFacade {
 
 	@Autowired
@@ -97,8 +103,6 @@ public class UserRestServiceFacadeImpl extends AbstractPresentationService imple
 		return uservo;
 	}
 
-    @Path("test")
-    @GET
     public String test() {
         return "hello world";
     }

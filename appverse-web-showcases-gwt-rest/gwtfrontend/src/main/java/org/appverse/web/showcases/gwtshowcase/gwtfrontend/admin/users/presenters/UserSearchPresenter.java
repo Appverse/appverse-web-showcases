@@ -24,6 +24,7 @@
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.user.client.Window;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedDataFilter;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedResult;
 import org.appverse.web.framework.frontend.gwt.callback.AppverseCallback;
@@ -48,15 +49,24 @@ public class UserSearchPresenter extends
 		UserSearchView.IUserSearchPresenter {
 
 	private AdminInjector injector;
+
+    @Deprecated
 	private UserRestRpcCommand userRestRpcCommand;
 
     private UserServiceFacade.UserRestServiceFacade newUserRestRpcCommand;
+
+    private boolean useDeprecatedCommand = false;
 
     public UserSearchPresenter() {
         // TODO: move this to the entry point
         // The rest sufix has to match what is defined in the web.xml for the CXFServlet.
         Defaults.setServiceRoot(com.google.gwt.core.client.GWT.getHostPageBaseURL() + "admin/rest/");
         Defaults.setDispatcher(AppverseDispatcher.INSTANCE);
+
+        String deprecated = Window.Location.getParameter("deprecated");
+        if (deprecated != null && deprecated.equals("true")) {
+            useDeprecatedCommand = true;
+        }
 
         // TODO: use GIN to inject this command
         newUserRestRpcCommand  =  GWT.create(UserServiceFacade.UserRestServiceFacade.class);
@@ -127,7 +137,7 @@ public class UserSearchPresenter extends
 	public void loadUsers(
 			GWTPresentationPaginatedDataFilter dataFilter,
 			AppverseCallback<GWTPresentationPaginatedResult<UserVO>> callbackRestListUsers) {
-        if (false) {
+        if (useDeprecatedCommand) {
             userRestRpcCommand.loadUsers(dataFilter, callbackRestListUsers);
         } else {
             newUserRestRpcCommand.loadUsers(dataFilter, callbackRestListUsers);

@@ -24,6 +24,7 @@
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.user.client.Window;
 import org.appverse.web.framework.frontend.gwt.helpers.dispatcher.AppverseDispatcher;
 import org.appverse.web.framework.frontend.gwt.helpers.security.PrincipalInformation;
 import org.appverse.web.framework.frontend.gwt.json.ApplicationJsonAsyncCallback;
@@ -53,15 +54,24 @@ public class UserEditPresenter extends
 
 	private AdminInjector injector;
 	private AdminMessages adminMessages;
+
+    @Deprecated
 	private UserRestRpcCommand userRestRpcCommand;
 
     private UserServiceFacade.UserRestServiceFacade newUserRestRpcCommand;
+
+    private boolean useDeprecatedCommand = false;
 
     public UserEditPresenter() {
         // TODO: move this to the entry point
         // The rest sufix has to match what is defined in the web.xml for the CXFServlet.
         Defaults.setServiceRoot(com.google.gwt.core.client.GWT.getHostPageBaseURL() + "admin/rest/");
         Defaults.setDispatcher(AppverseDispatcher.INSTANCE);
+
+        String deprecated = Window.Location.getParameter("deprecated");
+        if (deprecated != null && deprecated.equals("true")) {
+            useDeprecatedCommand = true;
+        }
 
         // TODO: use GIN to inject this command
         newUserRestRpcCommand  =  GWT.create(UserServiceFacade.UserRestServiceFacade.class);
@@ -81,7 +91,7 @@ public class UserEditPresenter extends
 	public void createPresenter() {
 		injector = AdminInjector.INSTANCE;
 		adminMessages = injector.getAdminMessages();
-//		userRpcCommand = injector.getUserRpcCommand();
+
         // TODO: Why can't this be automatically injected? Is it because of MVP4G?
 		userRestRpcCommand = injector.getUserRestRpcCommand();
 	}
@@ -99,7 +109,7 @@ public class UserEditPresenter extends
 				Dialog btn = (Dialog) event.getSource();
 				String answer = btn.getHideButton().getText();
 				if (btn.getDialogMessages().yes().equals(answer)) {
-                    if (false) {
+                    if (useDeprecatedCommand) {
                         userRestRpcCommand.deleteUser(user,
                                 new ApplicationJsonAsyncCallback<Void>() {
                                     @Override
@@ -149,7 +159,7 @@ public class UserEditPresenter extends
 	public void save(final UserVO user) {
 		boolean valid = view.validate(user);
 		if (valid) {
-            if (false) {
+            if (useDeprecatedCommand) {
                 userRestRpcCommand.saveUser(user, new ApplicationJsonAsyncCallback<Long>() {
                     @Override
                     public void onSuccess(Method method, Long o) {
