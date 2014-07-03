@@ -30,10 +30,7 @@ import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -45,6 +42,7 @@ import javax.ws.rs.core.MediaType;
 //@RemoteServiceRelativePath("services/userServiceFacade.rpc")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Path("userRestServiceFacade-json")  // this annotation is used when our bean is created by Spring and registered in JAX-RS
 public interface UserServiceFacade extends IPresentationService {
 
     @Path("loadUsers")
@@ -63,6 +61,14 @@ public interface UserServiceFacade extends IPresentationService {
     @Path("loadUser")
     @POST
     UserVO loadUser(long userId) throws Exception;
+
+    /**
+     * Test method to be manually called from a browser (that is why it is GET method)
+     * @return
+     */
+    @Path("test")
+    @GET
+    public String test();
 
     /**
      * This is the RestyGWT interface for our Presentation Service.
