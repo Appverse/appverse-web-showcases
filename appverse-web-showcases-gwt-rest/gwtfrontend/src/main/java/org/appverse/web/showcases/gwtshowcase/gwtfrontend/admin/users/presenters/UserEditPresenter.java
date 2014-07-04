@@ -23,58 +23,48 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters;
 
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.Window;
-import org.appverse.web.framework.frontend.gwt.helpers.dispatcher.AppverseDispatcher;
-import org.appverse.web.framework.frontend.gwt.helpers.security.PrincipalInformation;
-import org.appverse.web.framework.frontend.gwt.json.ApplicationJsonAsyncCallback;
-import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
-import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.UserServiceFacade;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminEventBus;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminMessages;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.injection.AdminInjector;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.UserRestRpcCommand;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters.interfaces.UserEditView;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.views.impl.gxt.UserEditViewImpl;
-import org.appverse.web.showcases.gwtshowcase.backend.constants.AuthoritiesConstants;
-import org.fusesource.restygwt.client.Defaults;
-import org.fusesource.restygwt.client.Method;
-
 import com.mvp4g.client.annotation.Presenter;
 import com.mvp4g.client.presenter.LazyPresenter;
 import com.sencha.gxt.widget.core.client.Dialog;
 import com.sencha.gxt.widget.core.client.box.ConfirmMessageBox;
 import com.sencha.gxt.widget.core.client.event.HideEvent;
 import com.sencha.gxt.widget.core.client.event.HideEvent.HideHandler;
+import org.appverse.web.framework.frontend.gwt.helpers.security.PrincipalInformation;
+import org.appverse.web.framework.frontend.gwt.json.ApplicationJsonAsyncCallback;
+import org.appverse.web.showcases.gwtshowcase.backend.constants.AuthoritiesConstants;
+import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
+import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.UserServiceFacade;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminEventBus;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminMessages;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.UserRestRpcCommand;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters.interfaces.UserEditView;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.views.impl.gxt.UserEditViewImpl;
+import org.fusesource.restygwt.client.Method;
+import javax.inject.Inject;
 
 @Presenter(view = UserEditViewImpl.class)
 public class UserEditPresenter extends
 		LazyPresenter<UserEditView, AdminEventBus> implements
 		UserEditView.IUserEditPresenter {
 
-	private AdminInjector injector;
+    @Inject
 	private AdminMessages adminMessages;
 
     @Deprecated
+    @Inject
 	private UserRestRpcCommand userRestRpcCommand;
 
+    @Inject
     private UserServiceFacade.UserRestServiceFacade newUserRestRpcCommand;
 
     private boolean useDeprecatedCommand = false;
 
     public UserEditPresenter() {
-        // TODO: move this to the entry point
-        // The rest sufix has to match what is defined in the web.xml for the CXFServlet.
-        Defaults.setServiceRoot(com.google.gwt.core.client.GWT.getHostPageBaseURL() + "admin/rest/");
-        Defaults.setDispatcher(AppverseDispatcher.INSTANCE);
-
         String deprecated = Window.Location.getParameter("deprecated");
         if (deprecated != null && deprecated.equals("true")) {
             useDeprecatedCommand = true;
         }
-
-        // TODO: use GIN to inject this command
-        newUserRestRpcCommand  =  GWT.create(UserServiceFacade.UserRestServiceFacade.class);
     }
 
 	@Override
@@ -89,11 +79,6 @@ public class UserEditPresenter extends
 
 	@Override
 	public void createPresenter() {
-		injector = AdminInjector.INSTANCE;
-		adminMessages = injector.getAdminMessages();
-
-        // TODO: Why can't this be automatically injected? Is it because of MVP4G?
-		userRestRpcCommand = injector.getUserRestRpcCommand();
 	}
 
 	// Button delete pressed

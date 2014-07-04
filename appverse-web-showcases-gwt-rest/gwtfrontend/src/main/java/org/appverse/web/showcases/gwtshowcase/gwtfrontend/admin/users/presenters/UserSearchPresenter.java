@@ -23,8 +23,9 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters;
 
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.Window;
+import com.mvp4g.client.annotation.Presenter;
+import com.mvp4g.client.presenter.LazyPresenter;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedDataFilter;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedResult;
 import org.appverse.web.framework.frontend.gwt.callback.AppverseCallback;
@@ -34,25 +35,22 @@ import org.appverse.web.showcases.gwtshowcase.backend.constants.AuthoritiesConst
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.UserServiceFacade;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminEventBus;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.injection.AdminInjector;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.UserRestRpcCommand;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.presenters.interfaces.UserSearchView;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.views.impl.gxt.UserSearchViewImpl;
-
-import com.mvp4g.client.annotation.Presenter;
-import com.mvp4g.client.presenter.LazyPresenter;
 import org.fusesource.restygwt.client.Defaults;
+import javax.inject.Inject;
 
 @Presenter(view = UserSearchViewImpl.class)
 public class UserSearchPresenter extends
 		LazyPresenter<UserSearchView, AdminEventBus> implements
 		UserSearchView.IUserSearchPresenter {
 
-	private AdminInjector injector;
-
     @Deprecated
+    @Inject
 	private UserRestRpcCommand userRestRpcCommand;
 
+    @Inject // no need to declare this in any other place because GIN will use GWT.create if it can't find it
     private UserServiceFacade.UserRestServiceFacade newUserRestRpcCommand;
 
     private boolean useDeprecatedCommand = false;
@@ -67,9 +65,6 @@ public class UserSearchPresenter extends
         if (deprecated != null && deprecated.equals("true")) {
             useDeprecatedCommand = true;
         }
-
-        // TODO: use GIN to inject this command
-        newUserRestRpcCommand  =  GWT.create(UserServiceFacade.UserRestServiceFacade.class);
     }
 
 	@Override
@@ -101,9 +96,9 @@ public class UserSearchPresenter extends
 
 	@Override
 	public void createPresenter() {
-		injector = AdminInjector.INSTANCE;
+		//injector = AdminInjector.INSTANCE;
 //		userRpcCommand = injector.getUserRpcCommand();
-		userRestRpcCommand = injector.getUserRestRpcCommand();
+		//userRestRpcCommand = injector.getUserRestRpcCommand();
 	}
 
 	@Override

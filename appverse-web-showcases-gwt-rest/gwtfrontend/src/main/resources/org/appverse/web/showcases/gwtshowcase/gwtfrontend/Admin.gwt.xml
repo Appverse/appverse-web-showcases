@@ -39,7 +39,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 
 
 	<!-- Entry point class. -->
-	<entry-point class='com.mvp4g.client.Mvp4gEntryPoint' />
+	<entry-point class='org.appverse.web.showcases.gwtshowcase.gwtfrontend.AdminEntryPoint' />
 
 	<!-- Translatable code paths -->
 	<source path="common" />
