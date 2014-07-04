@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.appverse.web.showcases.gwt</groupId>
+		<artifactId>appverse-web-showcases-gwt-rest</artifactId>
+		<version>1.4-MILESTONE_1</version>
+	</parent>
+
+	<groupId>org.appverse.web.showcases.gwt</groupId>
+	<artifactId>backend</artifactId>
+	<packaging>war</packaging>
+	<name>GWT Showcase GWT Backend Module Rest</name>
+
+	<licenses>
+        <license>
+            <name>Mozilla Public License Version 2.0</name>
+            <url>http://appverse.org/legal/appverse-license/</url>
+            <distribution>repo</distribution>
+            <comments>
+                Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
+
+                This Source Code Form is subject to the terms of the Mozilla Public
+                License, v. 2.0. If a copy of the MPL was not distributed with this
+                file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+                Redistribution and use in source and binary forms, with or without modification,
+                are permitted provided that the conditions of the Mozilla Public License v2.0
+                are met.
+
+                THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+                ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+                WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+                DISCLAIMED. EXCEPT IN CASE OF WILLFUL MISCONDUCT OR GROSS NEGLIGENCE, IN NO EVENT
+                SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+                INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+                LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+                PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+                WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE)
+                ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+                POSSIBILITY OF SUCH DAMAGE.
+            </comments>
+        </license>
+	</licenses>
+
+	<build>
+        <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+
+		<filters>
+			<filter>src/main/filters/${env}.properties</filter>
+		</filters>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.appverse.web.tools.jpaddlgenerator</groupId>
+				<artifactId>appverse-web-tools-jpa-ddl-generator</artifactId>
+			</plugin>
+
+            <!-- In the parent pom there is a declaration to unpack the gwtfrontend, so we need to declare it
+                 here to active it. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+        <!-- Replacement for CustomMappingJacksonHttpMessageConverter.
+             The only things really missing is the XSRF checking, but I think we can do this by extending the Jersey servlet. -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>org.appverse.web.framework.modules.backend.core.persistence.eclipselink</groupId>
+			<artifactId>appverse-web-modules-backend-core-persistence-eclipselink</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.appverse.web.framework.modules.backend.frontfacade.gwt</groupId>
+			<artifactId>appverse-web-modules-backend-frontfacade-gwt</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.appverse.web.framework.modules.backend.frontfacade.json</groupId>
+			<artifactId>appverse-web-modules-backend-frontfacade-json</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.appverse.web.showcases.gwt</groupId>
+			<artifactId>gwtshared</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+        <!-- this dependency is used by the dependency plugin to unpack the contents of this zip file into the
+             war directory -->
+		<dependency>
+			<groupId>org.appverse.web.showcases.gwt</groupId>
+			<artifactId>gwtfrontend</artifactId>
+			<version>${project.version}</version>
+			<classifier>GWT-Frontend-Resources</classifier>
+			<scope>provided</scope>
+			<type>zip</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+    <!-- TODO: make gwtfrontend just a jar, so this jar can be included as "provided" so all "compile" dependencies of
+         that jar will show up here as provided. Copy all files in webapp from that project to this one, this is
+         better than using unpack-dependencies because in order to unpack things the jar needs to be built and this
+         takes a long time when we are doing the GWT compilation there. -->
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>development</env>
+                <maven.skip.tests>true</maven.skip.tests>
+            </properties>
+            <dependencies>
+                <!-- These dependencies are declared in the gwtfrontend module, but they are not inherited because
+                     they have scope provided, so we need to include them again here to let devmode work.-->
+                <dependency>
+                    <groupId>org.appverse.web.showcases.gwt</groupId>
+                    <artifactId>gwtfrontend</artifactId>
+                    <version>${project.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.google.gwt.inject</groupId>
+                    <artifactId>gin</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.sencha.gxt</groupId>
+                    <artifactId>gxt</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.googlecode.mvp4g</groupId>
+                    <artifactId>mvp4g</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
+                    <artifactId>appverse-web-modules-frontend-gwt-api</artifactId>
+                    <scope>provided</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.slf4j</groupId>
+                            <artifactId>slf4j-simple</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+                <dependency>
+                    <groupId>org.appverse.web.framework.modules.frontend.gwt.theme</groupId>
+                    <artifactId>appverse-web-modules-frontend-gwt-theme</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>4.3.1</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>../gwtfrontend/src/main/resources</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                    </resource>
+                    <resource>
+                        <directory>../gwtshared/src/main/resources</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                    </resource>
+                </resources>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <!-- let GWT see source files in other modules, so we don't need to rebuild them to execute
+                                 in devmode -->
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>build-helper-maven-plugin</artifactId>
+                            <version>1.8</version>
+                            <executions>
+                                <execution>
+                                    <id>add-source</id>
+                                    <phase>generate-sources</phase>
+                                    <goals>
+                                        <goal>add-source</goal>
+                                    </goals>
+                                    <configuration>
+                                        <sources>
+                                            <source>../gwtfrontend/src/main/java</source>
+                                            <source>../gwtshared/src/main/java</source>
+                                        </sources>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>gwt-maven-plugin</artifactId>
+                            <configuration>
+                                <modules>
+                                    <module>org.appverse.web.framework.frontend.GwtshowcaseAPI</module>
+                                    <module>org.appverse.web.showcases.gwtshowcase.gwtfrontend.Admin</module>
+                                    <module>org.appverse.web.framework.frontend.theme.gwtshowcase.Gwtshowcase</module>
+                                </modules>
+                                <runTarget>index.html</runTarget>
+                                <copyWebapp>true</copyWebapp>
+                                <debugSuspend>false</debugSuspend>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
+</project>
