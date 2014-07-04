@@ -28,6 +28,9 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
        						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd"
        default-autowire="byName">
 
+  <!-- TODO: RPCTimeoutRedirectFilter could be extended to be used with any Ajax requests and not only with GWT RPC.
+             It is easy to identify an Ajax request: it comes with a special HTTP header. This does not work with WebSSO
+             because when user is not logged in the request will not even reach this web application. -->
   <beans:bean id="rpcTimeoutRedirectFilter" class="org.appverse.web.framework.backend.api.helpers.security.RPCTimeoutRedirectFilter">
 	    <beans:property name="customSessionExpiredErrorCode" value="901"/>
   </beans:bean>
