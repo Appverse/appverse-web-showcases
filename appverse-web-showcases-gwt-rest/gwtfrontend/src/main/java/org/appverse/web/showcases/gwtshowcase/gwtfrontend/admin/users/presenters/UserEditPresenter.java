@@ -55,6 +55,9 @@ public class UserEditPresenter extends
     @Inject
 	private UserRestRpcCommand userRestRpcCommand;
 
+    /**
+     * Using @Inject causes gin to call the GWT.create
+     */
     @Inject
     private UserServiceFacade.UserRestServiceFacade newUserRestRpcCommand;
 
@@ -62,6 +65,7 @@ public class UserEditPresenter extends
 
     public UserEditPresenter() {
         String deprecated = Window.Location.getParameter("deprecated");
+        deprecated = "true";
         if (deprecated != null && deprecated.equals("true")) {
             useDeprecatedCommand = true;
         }
@@ -142,7 +146,9 @@ public class UserEditPresenter extends
 	// Button save pressed
 	@Override
 	public void save(final UserVO user) {
-		boolean valid = view.validate(user);
+		boolean valid = true;
+		//TODO this validate is causing OutOfMemoryError -> check if it is repdroducible with other showcases, and depending on this, compare.
+		//view.validate(user);
 		if (valid) {
             if (useDeprecatedCommand) {
                 userRestRpcCommand.saveUser(user, new ApplicationJsonAsyncCallback<Long>() {

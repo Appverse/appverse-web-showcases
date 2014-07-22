@@ -23,7 +23,10 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.impl.live;
 
+import javax.inject.Inject;
+
 import com.google.gwt.core.client.GWT;
+
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedDataFilter;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedResult;
 import org.appverse.web.framework.frontend.gwt.callback.AppverseCallback;
@@ -39,36 +42,45 @@ import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.U
  * be already specified in the UserRestServiceFacade via the @Path annotations. JSONController will also be
  * deprecated because it only dispatches the calls to the corresponding Spring beans which is also already done
  * by the JAX-RS servlet (which in this case is delegating all calls to JSONController).
+ * 
+ * Appverse Web GWT-API proposes and recommends the use of the Command pattern.
+ * In the CommandImpl we can implement a sort of quick cache, or initialize some specific things for the service being accessed.
+ * In that case, it is true that most of the responsabilities of the typical command impl in Appverse are now carried on in the RestyGWT, however
+ * we still think it makes sense to have this extra layer of separation between the service and the Presenter.
  */
-@Deprecated
-public class UserRestRpcCommandImpl extends AbstractRestCommand<AdminEventBus,UserServiceFacade.UserRestServiceFacadeOld> implements UserRestRpcCommand {
 
-	
+public class UserRestRpcCommandImpl extends AbstractRestCommand<AdminEventBus,UserServiceFacade.UserRestServiceFacade> implements UserRestRpcCommand {
+
+
+    @Inject
+    private UserServiceFacade.UserRestServiceFacade userRestService;
+
 	@Override
 	public void deleteUser(UserVO user,
                            ApplicationJsonAsyncCallback<Void> asyncCallback) {
-        getRestService("userRestServiceFacade","deleteUser").deleteUser(user, asyncCallback);
+		userRestService.deleteUser(user, asyncCallback);
 	}
 
 	@Override
 	public void loadUser(long userId, ApplicationJsonAsyncCallback<UserVO> callback) {
-        getRestService("userRestServiceFacade","loadUser").loadUser(Long.valueOf(userId), callback);
+		userRestService.loadUser(Long.valueOf(userId), callback);
 	}
 
 	@Override
 	public void loadUsers(
 			GWTPresentationPaginatedDataFilter config,
 			AppverseCallback<GWTPresentationPaginatedResult<UserVO>> callback) {
-        getRestService("userRestServiceFacade","loadUsers").loadUsers(config, callback);
+		userRestService.loadUsers(config, callback);
 	}
 
     @Override
     public void saveUser(UserVO user, ApplicationJsonAsyncCallback<Long> applicationRestAsyncCallback) {
-        getRestService("userRestServiceFacade","saveUser").saveUser(user, applicationRestAsyncCallback);
+    	userRestService.saveUser(user, applicationRestAsyncCallback);
     }
 
     @Override
-    public UserServiceFacade.UserRestServiceFacadeOld createService() {
-        return GWT.create(UserServiceFacade.UserRestServiceFacadeOld.class);
+    public UserServiceFacade.UserRestServiceFacade createService() {
+        //return GWT.create(UserServiceFacade.UserRestServiceFacadeOld.class);
+    	return null;
     }
 }

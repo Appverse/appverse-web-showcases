@@ -122,7 +122,28 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
         <url-pattern>*.js</url-pattern>
     </filter-mapping>
 
-    <!-- Appverse-Web Jersey Controllers -->
+    <filter>
+        <filter-name>XSRFFilter</filter-name>
+        <filter-class>org.appverse.web.framework.backend.api.helpers.security.XSRFCheckFilter</filter-class>
+             <init-param>
+                <param-name>match</param-name>
+                <param-value>*</param-value>
+            </init-param>
+            <init-param>
+            	<param-name>wildcards</param-name>
+            	<param-value>false</param-value>
+            </init-param>
+            <init-param>
+                <param-name>exclude</param-name>
+                <param-value>getXSRFSessionToken</param-value>
+            </init-param>
+    </filter>
+    <filter-mapping>
+    	<filter-name>XSRFFilter</filter-name>
+    	<url-pattern>/admin/rest/*</url-pattern>
+    </filter-mapping>
+ 
+    	<!-- Appverse-Web Jersey Controllers -->
 	<servlet>
         <servlet-name>Jersey Web Application</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>

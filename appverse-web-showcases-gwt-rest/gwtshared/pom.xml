@@ -154,14 +154,14 @@
 			<groupId>org.fusesource.restygwt</groupId>
 			<artifactId>restygwt</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>
-				org.appverse.web.framework.modules.backend.frontfacade.json
-			</groupId>
-			<artifactId>
-				appverse-web-modules-backend-frontfacade-json
-			</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId> -->
+<!-- 				org.appverse.web.framework.modules.backend.frontfacade.json -->
+<!-- 			</groupId> -->
+<!-- 			<artifactId> -->
+<!-- 				appverse-web-modules-backend-frontfacade-json -->
+<!-- 			</artifactId> -->
+<!-- 		</dependency> -->
 
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
