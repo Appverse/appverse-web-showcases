@@ -31,6 +31,7 @@ import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWT
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedResult;
 import org.appverse.web.framework.frontend.gwt.callback.AppverseCallback;
 import org.appverse.web.framework.frontend.gwt.commands.AbstractRestCommand;
+import org.appverse.web.framework.frontend.gwt.commands.AbstractRestJSONCommand;
 import org.appverse.web.framework.frontend.gwt.json.ApplicationJsonAsyncCallback;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.UserServiceFacade;
@@ -49,7 +50,7 @@ import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands.U
  * we still think it makes sense to have this extra layer of separation between the service and the Presenter.
  */
 
-public class UserRestRpcCommandImpl extends AbstractRestCommand<AdminEventBus,UserServiceFacade.UserRestServiceFacade> implements UserRestRpcCommand {
+public class UserRestRpcCommandImpl extends AbstractRestJSONCommand<AdminEventBus> implements UserRestRpcCommand {
 
 
     @Inject
@@ -78,9 +79,4 @@ public class UserRestRpcCommandImpl extends AbstractRestCommand<AdminEventBus,Us
     	userRestService.saveUser(user, applicationRestAsyncCallback);
     }
 
-    @Override
-    public UserServiceFacade.UserRestServiceFacade createService() {
-        //return GWT.create(UserServiceFacade.UserRestServiceFacadeOld.class);
-    	return null;
-    }
 }

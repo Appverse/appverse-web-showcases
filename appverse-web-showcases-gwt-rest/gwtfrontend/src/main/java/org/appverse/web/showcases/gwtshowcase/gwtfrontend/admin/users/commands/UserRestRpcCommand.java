@@ -23,8 +23,6 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.users.commands;
 
-import java.util.List;
-
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedDataFilter;
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTPresentationPaginatedResult;
 import org.appverse.web.framework.frontend.gwt.callback.AppverseCallback;
