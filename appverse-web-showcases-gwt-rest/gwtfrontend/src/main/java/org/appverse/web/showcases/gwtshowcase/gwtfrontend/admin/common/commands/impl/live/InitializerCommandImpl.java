@@ -23,15 +23,15 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.commands.impl.live;
 
-import org.appverse.web.framework.frontend.gwt.commands.AbstractRpcCommand;
+import org.appverse.web.framework.frontend.gwt.commands.AbstractCommand;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminEventBus;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.commands.InitializerRpcCommand;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.commands.InitializerCommand;
 
 import com.mvp4g.client.annotation.EventHandler;
 
 @EventHandler
-public class InitializerRpcCommandImpl extends
-		AbstractRpcCommand<AdminEventBus> implements InitializerRpcCommand {
+public class InitializerCommandImpl extends
+		AbstractCommand<AdminEventBus> implements InitializerCommand {
 	
 
 	@Override

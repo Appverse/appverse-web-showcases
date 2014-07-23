@@ -26,7 +26,7 @@ package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin;
 import org.appverse.web.framework.frontend.gwt.commands.impl.live.LogoutManagementRpcCommandImpl;
 import org.appverse.web.framework.frontend.gwt.common.FrameworkEventBus;
 import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
-import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.commands.impl.live.InitializerRpcCommandImpl;
+import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.commands.impl.live.InitializerCommandImpl;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.injection.AdminGinModule;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.layout.presenters.AdminHeaderPresenter;
 import org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.layout.presenters.AdminLayoutPresenter;
@@ -64,7 +64,7 @@ public interface AdminEventBus extends FrameworkEventBus {
 	public void logout();
 
 	@Override
-	@Event(handlers = { InitializerRpcCommandImpl.class })
+	@Event(handlers = { InitializerCommandImpl.class })
 	public void start();
 
 	@Event(handlers = { UserEditPresenter.class })

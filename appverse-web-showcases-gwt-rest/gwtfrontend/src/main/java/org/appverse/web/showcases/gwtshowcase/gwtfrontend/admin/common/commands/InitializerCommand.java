@@ -23,7 +23,7 @@
  */
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.commands;
 
-public interface InitializerRpcCommand {
+public interface InitializerCommand {
 
 	public void onStart();
 
