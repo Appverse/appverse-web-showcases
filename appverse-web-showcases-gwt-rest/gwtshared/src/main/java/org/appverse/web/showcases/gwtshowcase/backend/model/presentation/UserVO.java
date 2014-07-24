@@ -30,10 +30,10 @@ import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
 
 import org.appverse.web.framework.backend.frontfacade.gxt.model.presentation.GWTAbstractPresentationAuditedBean;
-import org.appverse.web.framework.backend.frontfacade.json.controllers.JSONDateDeserializer;
-import org.appverse.web.framework.backend.frontfacade.json.controllers.JSONDateSerializer;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+//import org.appverse.web.framework.backend.frontfacade.json.controllers.JSONDateDeserializer;
+//import org.appverse.web.framework.backend.frontfacade.json.controllers.JSONDateSerializer;
+//import org.codehaus.jackson.map.annotate.JsonDeserialize;
+//import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 public class UserVO extends GWTAbstractPresentationAuditedBean {
 
@@ -62,13 +62,13 @@ public class UserVO extends GWTAbstractPresentationAuditedBean {
 	private boolean active = true;
 
 	@Override
-	@JsonSerialize(using=JSONDateSerializer.class, as = Date.class)
+//	@JsonSerialize(using=JSONDateSerializer.class, as = Date.class)
 	public Date getCreated() {
 		return super.getCreated();
 	}
 
 	@Override
-	@JsonSerialize(using=JSONDateSerializer.class, as = Date.class)
+//	@JsonSerialize(using=JSONDateSerializer.class, as = Date.class)
 	public Date getUpdated() {
 		return super.getUpdated();
 	}
@@ -76,13 +76,13 @@ public class UserVO extends GWTAbstractPresentationAuditedBean {
 	
 
 	@Override
-	@JsonDeserialize(using=JSONDateDeserializer.class, as = Date.class)
+//	@JsonDeserialize(using=JSONDateDeserializer.class, as = Date.class)
 	public void setCreated(Date created) {
 		super.setCreated(created);
 	}
 
 	@Override
-	@JsonDeserialize(using=JSONDateDeserializer.class, as = Date.class)
+//	@JsonDeserialize(using=JSONDateDeserializer.class, as = Date.class)
 	public void setUpdated(Date updated) {
 		super.setUpdated(updated);
 	}
