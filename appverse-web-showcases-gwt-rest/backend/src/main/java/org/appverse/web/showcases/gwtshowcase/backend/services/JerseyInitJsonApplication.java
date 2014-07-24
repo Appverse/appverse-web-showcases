@@ -1,17 +1,15 @@
 package org.appverse.web.showcases.gwtshowcase.backend.services;
 
+import javax.inject.Inject;
+import javax.servlet.ServletContext;
+
 import org.appverse.web.framework.backend.api.helpers.security.XSSSecurityFilter;
-import org.appverse.web.framework.backend.api.services.presentation.AuthenticationRestServiceFacade;
-import org.appverse.web.framework.backend.frontfacade.json.controllers.JSONController;
 import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.UserServiceFacade;
 import org.appverse.web.showcases.gwtshowcase.backend.services.presentation.impl.live.UserRestServiceFacadeImpl;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import javax.inject.Inject;
-import javax.servlet.ServletContext;
 
 /**
  * TODO: move this to the correct package
