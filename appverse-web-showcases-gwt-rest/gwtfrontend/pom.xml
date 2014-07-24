@@ -3,18 +3,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-	    <groupId>org.appverse.web.showcases.gwt</groupId>
+	    <groupId>org.appverse.web.showcases.gwt.rest</groupId>
 	    <artifactId>appverse-web-showcases-gwt-rest</artifactId>
 	    <version>1.4-MILESTONE_1</version>
 	</parent>
 
-	<groupId>org.appverse.web.showcases.gwt</groupId>
+	<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 	<artifactId>gwtfrontend</artifactId>
 	
 	<name>GWT Showcase GWT Frontend Module Rest</name>
 	<description>GWT Showcase GWT Frontend Module Rest</description>	
 	<url>http://appverse.org/projects/appverse-web/</url>
-    <packaging>jar</packaging>
+	<!-- cc change
+    <packaging>jar</packaging>-->
 	<inceptionYear>2013</inceptionYear>
 
 	<licenses>
@@ -170,7 +171,7 @@
             <version>1.13</version>
         </dependency>-->
 		<dependency>
-			<groupId>org.appverse.web.showcases.gwt</groupId>
+			<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 			<artifactId>gwtshared</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>

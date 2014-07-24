@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.appverse.web.showcases.gwt</groupId>
+		<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 		<artifactId>appverse-web-showcases-gwt-rest</artifactId>
 		<version>1.4-MILESTONE_1</version>
 	</parent>
 
-	<groupId>org.appverse.web.showcases.gwt</groupId>
+	<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 	<artifactId>gwtshared</artifactId>
 
 	<name>GWT Showcase GWT Shared Module Rest</name>

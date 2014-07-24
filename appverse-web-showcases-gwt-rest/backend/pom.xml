@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.appverse.web.showcases.gwt</groupId>
+		<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 		<artifactId>appverse-web-showcases-gwt-rest</artifactId>
 		<version>1.4-MILESTONE_1</version>
 	</parent>
 
-	<groupId>org.appverse.web.showcases.gwt</groupId>
+	<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 	<artifactId>backend</artifactId>
 	<packaging>war</packaging>
 	<name>GWT Showcase GWT Backend Module Rest</name>
@@ -45,7 +45,7 @@
 	</licenses>
 
 	<build>
-        <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+        <!-- cc change <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>-->
 
 		<filters>
 			<filter>src/main/filters/${env}.properties</filter>
@@ -74,8 +74,6 @@
 	</build>
 
 	<dependencies>
-        <!-- Replacement for CustomMappingJacksonHttpMessageConverter.
-             The only things really missing is the XSRF checking, but I think we can do this by extending the Jersey servlet. -->
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
@@ -90,13 +88,14 @@
 			<artifactId>appverse-web-modules-backend-frontfacade-gwt</artifactId>
 		</dependency>
 
+<!--         JSON Facade is no longer used in Appverse Web Rest showcase. Now it makes use of a REST interface. -->
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.appverse.web.framework.modules.backend.frontfacade.json</groupId> -->
 <!-- 			<artifactId>appverse-web-modules-backend-frontfacade-json</artifactId> -->
 <!-- 		</dependency> -->
 
 		<dependency>
-			<groupId>org.appverse.web.showcases.gwt</groupId>
+			<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 			<artifactId>gwtshared</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -104,7 +103,7 @@
         <!-- this dependency is used by the dependency plugin to unpack the contents of this zip file into the
              war directory -->
 		<dependency>
-			<groupId>org.appverse.web.showcases.gwt</groupId>
+			<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 			<artifactId>gwtfrontend</artifactId>
 			<version>${project.version}</version>
 			<classifier>GWT-Frontend-Resources</classifier>
@@ -118,12 +117,12 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-
+<!-- cc changes till the end -->
     <!-- TODO: make gwtfrontend just a jar, so this jar can be included as "provided" so all "compile" dependencies of
          that jar will show up here as provided. Copy all files in webapp from that project to this one, this is
          better than using unpack-dependencies because in order to unpack things the jar needs to be built and this
          takes a long time when we are doing the GWT compilation there. -->
-    <profiles>
+<!--    <profiles>
         <profile>
             <id>development</id>
             <activation>
@@ -133,11 +132,11 @@
                 <env>development</env>
                 <maven.skip.tests>true</maven.skip.tests>
             </properties>
-            <dependencies>
+            <dependencies>-->
                 <!-- These dependencies are declared in the gwtfrontend module, but they are not inherited because
                      they have scope provided, so we need to include them again here to let devmode work.-->
-                <dependency>
-                    <groupId>org.appverse.web.showcases.gwt</groupId>
+<!--                <dependency>
+                    <groupId>org.appverse.web.showcases.gwt.rest</groupId>
                     <artifactId>gwtfrontend</artifactId>
                     <version>${project.version}</version>
                     <scope>provided</scope>
@@ -196,10 +195,10 @@
                 </resources>
                 <pluginManagement>
                     <plugins>
-                        <plugin>
+                        <plugin>-->
                             <!-- let GWT see source files in other modules, so we don't need to rebuild them to execute
                                  in devmode -->
-                            <groupId>org.codehaus.mojo</groupId>
+                  <!--          <groupId>org.codehaus.mojo</groupId>
                             <artifactId>build-helper-maven-plugin</artifactId>
                             <version>1.8</version>
                             <executions>
@@ -236,5 +235,5 @@
                 </pluginManagement>
             </build>
         </profile>
-    </profiles>
+    </profiles>-->
 </project>
