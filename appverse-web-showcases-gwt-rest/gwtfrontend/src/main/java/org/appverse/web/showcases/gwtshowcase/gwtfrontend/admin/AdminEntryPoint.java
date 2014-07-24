@@ -1,20 +1,18 @@
 package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin;
 
-import com.mvp4g.client.Mvp4gEntryPoint;
-import org.appverse.web.framework.frontend.gwt.helpers.dispatcher.AppverseDispatcher;
-import org.fusesource.restygwt.client.Defaults;
+
+import org.appverse.web.framework.frontend.gwt.entrypoint.AppverseRestAbstractEntryPoint;
 
 /**
- * Initialize RestyGWT to match the servlet path configured in web.xml.
+ * In case of GWT with REST we need to extend the Appverse Abstract rest entry point and provide the App path to it.
+ * App path is just the same path the app have configured in the Jersey servlet url-pattern parameter.
  */
-public class AdminEntryPoint extends Mvp4gEntryPoint{
-    @Override
-    public void onModuleLoad() {
-        // The path after getHostPageBaseURL() has to match what is defined in the web.xml for the JAX-RS Servlet
-        Defaults.setServiceRoot(com.google.gwt.core.client.GWT.getHostPageBaseURL() + "admin/rest/");
-        // This is responsible for sending the XSRF header in all requests
-        Defaults.setDispatcher(AppverseDispatcher.INSTANCE);
-
-        super.onModuleLoad();
+public class AdminEntryPoint extends AppverseRestAbstractEntryPoint {
+	
+	private String path="admin/rest";
+	
+    public String provideAppPath() {
+    	return path;
     }
+    
 }
