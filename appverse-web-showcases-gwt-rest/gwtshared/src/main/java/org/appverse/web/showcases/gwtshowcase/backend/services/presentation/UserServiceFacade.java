@@ -70,30 +70,6 @@ public interface UserServiceFacade extends IPresentationService {
     @GET
     public String test();
 
-    /**
-     * This is the RestyGWT interface for our Presentation Service.
-     * The fact that it must be with a MethodCallback parameter, makes it a bit difficult to cleanly integrate.
-     * It must extend RestService.
-     * The Client class is a candidate to become part of AbstractRestCommandImpl, so part of Appverse Framework.
-     *
-     * Notice: this interface can not have @Path annotations because it is supposed to be processed by the JSONController
-     * which is also deprecated and then only that component can have those annotations.
-     * See comments on UserRestRpcCommandImpl for more information.
-     */
-    @Deprecated
-    interface UserRestServiceFacadeOld extends RestService {
-        @POST
-        void loadUser(Long userId, MethodCallback<UserVO> callback );
-
-        @POST
-        void deleteUser(UserVO userVo, MethodCallback<Void> callback );
-
-        @POST
-        void loadUsers(GWTPresentationPaginatedDataFilter config, MethodCallback<GWTPresentationPaginatedResult<UserVO>> callback);
-
-        @POST
-        void saveUser(UserVO userVo, MethodCallback<Long> callback);
-    }
 
     /**
      * Notice: this interface has to be compatible with its enclosing interface
