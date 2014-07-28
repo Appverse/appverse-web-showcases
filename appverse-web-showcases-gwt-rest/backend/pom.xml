@@ -45,7 +45,7 @@
 	</licenses>
 
 	<build>
-        <!-- cc change <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>-->
+        <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
 
 		<filters>
 			<filter>src/main/filters/${env}.properties</filter>
