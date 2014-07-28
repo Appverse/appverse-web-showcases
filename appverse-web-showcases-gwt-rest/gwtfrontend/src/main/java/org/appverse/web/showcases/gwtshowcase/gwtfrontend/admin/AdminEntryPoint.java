@@ -9,6 +9,7 @@ import org.appverse.web.framework.frontend.gwt.entrypoint.AppverseRestAbstractEn
  */
 public class AdminEntryPoint extends AppverseRestAbstractEntryPoint {
 	
+	//App path is just the same path the app have configured in the Jersey servlet url-pattern parameter.
 	private String path="admin/rest";
 	
     public String provideAppPath() {
