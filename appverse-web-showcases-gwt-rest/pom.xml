@@ -125,10 +125,10 @@
 		<main.group>org.appverse.web.showcases.gwt</main.group>
 		<main.name>appverse-web-showcases-gwt-rest</main.name>
 		<app.context.root>showcase</app.context.root>
-        <appverse.framework.version>1.4.1-SNAPSHOT</appverse.framework.version>
+        <appverse.framework.version>1.4.1-MILESTONE_1</appverse.framework.version>
         <appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
-        <gwt-version>2.5.1</gwt-version>
-        <jersey.version>2.5</jersey.version> <!-- TODO: find why it does not work with Jersey 2.9 -->
+<!--         <gwt-version>2.5.1</gwt-version> -->
+<!--         <jersey.version>2.5</jersey.version>  -->
     </properties>
 	
  	<build>
@@ -214,7 +214,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>gwt-maven-plugin</artifactId>
-					<version>${gwt-version}</version>
+<!-- 					<version>${gwt-version}</version> -->
 					<configuration>
 						<servicePattern>**/*ServiceFacade.java</servicePattern>
 					</configuration>
