@@ -271,6 +271,7 @@
 					<version>2.5.0</version>
 					<configuration>
 						<servicePattern>**/*ServiceFacade.java</servicePattern>
+						<additionalPageParameters>log_level=DEBUG</additionalPageParameters>
 					</configuration>
 				</plugin>
 
