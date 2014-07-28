@@ -151,7 +151,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
             <param-name>javax.ws.rs.Application</param-name>
             <!-- TODO: fix comment in the class org.appverse.web.framework.backend.frontfacade.json.application.JerseyInitJsonApplication which says it uses MultiPartFeature but in fact it does not -->
             <!-- Using this custom application to do package scan. -->
-            <param-value>org.appverse.web.showcases.gwtshowcase.backend.services.JerseyInitJsonApplication</param-value>
+            <param-value>org.appverse.web.showcases.gwtshowcase.backend.services.ShowcaseRestInitApplication</param-value>
         </init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

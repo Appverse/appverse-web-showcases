@@ -84,6 +84,10 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.appverse.web.framework.modules.backend.frontfacade.rest</groupId>
+			<artifactId>appverse-web-modules-backend-frontfacade-rest</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.appverse.web.framework.modules.backend.frontfacade.gwt</groupId>
 			<artifactId>appverse-web-modules-backend-frontfacade-gwt</artifactId>
 		</dependency>
