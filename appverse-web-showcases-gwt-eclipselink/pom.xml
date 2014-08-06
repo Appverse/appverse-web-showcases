@@ -182,7 +182,7 @@
 		<main.group>org.appverse.web.showcases.gwt</main.group>
 		<main.name>appverse-web-showcases-gwt-eclipselink</main.name>
 		<app.context.root>showcase</app.context.root>
-		<appverse.framework.version>1.4.1-MILESTONE_1</appverse.framework.version>
+		<appverse.framework.version>1.4.1-MILESTONE_2</appverse.framework.version>
 		<appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
 		<gwt.version>2.5.1</gwt.version>
 	</properties>
