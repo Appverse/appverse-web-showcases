@@ -96,7 +96,7 @@ public class UserEditPresenter extends
 			@Override
 			public void onHide(final HideEvent event) {
 				Dialog btn = (Dialog) event.getSource();
-				String answer = btn.getHideButton().getText();
+				String answer = btn.getButton(Dialog.PredefinedButton.CLOSE).getText();
 				if (btn.getDialogMessages().yes().equals(answer)) {
                     if (useDeprecatedCommand) {
                         userRestRpcCommand.deleteUser(user,

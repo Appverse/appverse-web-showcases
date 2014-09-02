@@ -126,7 +126,7 @@
          that jar will show up here as provided. Copy all files in webapp from that project to this one, this is
          better than using unpack-dependencies because in order to unpack things the jar needs to be built and this
          takes a long time when we are doing the GWT compilation there. -->
-<!--    <profiles>
+    <profiles>
         <profile>
             <id>development</id>
             <activation>
@@ -136,10 +136,10 @@
                 <env>development</env>
                 <maven.skip.tests>true</maven.skip.tests>
             </properties>
-            <dependencies>-->
+            <dependencies>
                 <!-- These dependencies are declared in the gwtfrontend module, but they are not inherited because
                      they have scope provided, so we need to include them again here to let devmode work.-->
-<!--                <dependency>
+                <dependency>
                     <groupId>org.appverse.web.showcases.gwt.rest</groupId>
                     <artifactId>gwtfrontend</artifactId>
                     <version>${project.version}</version>
@@ -159,6 +159,16 @@
                     <groupId>com.googlecode.mvp4g</groupId>
                     <artifactId>mvp4g</artifactId>
                     <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>javax.el</groupId>
+                    <artifactId>javax.el-api</artifactId>
+                    <version>3.0.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.web</groupId>
+                    <artifactId>el-impl</artifactId>
+                    <version>2.2</version>
                 </dependency>
                 <dependency>
                     <groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
@@ -199,10 +209,10 @@
                 </resources>
                 <pluginManagement>
                     <plugins>
-                        <plugin>-->
+                        <plugin>
                             <!-- let GWT see source files in other modules, so we don't need to rebuild them to execute
                                  in devmode -->
-                  <!--          <groupId>org.codehaus.mojo</groupId>
+                            <groupId>org.codehaus.mojo</groupId>
                             <artifactId>build-helper-maven-plugin</artifactId>
                             <version>1.8</version>
                             <executions>
@@ -239,5 +249,5 @@
                 </pluginManagement>
             </build>
         </profile>
-    </profiles>-->
+    </profiles>
 </project>

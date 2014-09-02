@@ -125,10 +125,10 @@
 		<main.group>org.appverse.web.showcases.gwt</main.group>
 		<main.name>appverse-web-showcases-gwt-rest</main.name>
 		<app.context.root>showcase</app.context.root>
-        <appverse.framework.version>1.4.1-SNAPSHOT</appverse.framework.version>
+        <appverse.framework.version>1.4.1-MILESTONE_2</appverse.framework.version>
         <appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
-<!--         <gwt-version>2.5.1</gwt-version> -->
-<!--         <jersey.version>2.5</jersey.version>  -->
+        <gwt-version>2.6.1</gwt-version>
+        <jersey.version>2.12</jersey.version>
     </properties>
 	
  	<build>
@@ -379,46 +379,47 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-<!--             <dependency> -->
-<!--                 <groupId>org.glassfish.jersey.media</groupId> -->
-<!--                 <artifactId>jersey-media-json-jackson</artifactId> -->
-<!--                 <version>${jersey.version}</version> -->
-<!--             </dependency> -->
-            <!-- Appverse uses version 1.3 but we want to use 1.4 -->
-<!--             <dependency> -->
-<!--                 <groupId>org.fusesource.restygwt</groupId> -->
-<!--                 <artifactId>restygwt</artifactId> -->
-<!--                 <version>1.4</version> -->
-<!--             </dependency> -->
-            <!-- Appverse uses GWT 2.5.0 but we want to use 2.5.1 -->
-<!--             <dependency> -->
-<!--                 <groupId>com.google.gwt</groupId> -->
-<!--                 <artifactId>gwt-servlet</artifactId> -->
-<!--                 <version>${gwt-version}</version> -->
-<!--             </dependency> -->
-<!--             <dependency> -->
-<!--                 <groupId>com.google.gwt</groupId> -->
-<!--                 <artifactId>gwt-user</artifactId> -->
-<!--                 <version>${gwt-version}</version> -->
-<!--             </dependency> -->
-<!--             <dependency> -->
-<!--                 <groupId>com.google.gwt.inject</groupId> -->
-<!--                 <artifactId>gin</artifactId> -->
-<!--                 <version>1.5.0</version> -->
-<!--             </dependency> -->
-            <!-- gwt-validation brings version r09 which is very old and does not have a method that is used
-                 by Jersey: InetAddresses.isMappedIPv4Address -->
+             <dependency>
+                 <groupId>com.sencha.gxt</groupId>
+                 <artifactId>gxt</artifactId>
+                 <version>3.1.1</version>
+             </dependency>
+            <!-- Appverse uses GWT 2.5.1 but we want to use 2.6.1 -->
             <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <!-- reflections depends on guava 12 -->
-                <version>12.0</version>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-servlet</artifactId>
+                <version>${gwt-version}</version>
             </dependency>
-<!--             <dependency> -->
-<!--                 <groupId>org.reflections</groupId> -->
-<!--                 <artifactId>reflections</artifactId> -->
-<!--                 <version>0.9.8</version> -->
-<!--             </dependency> -->
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-user</artifactId>
+                <version>${gwt-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.media</groupId>
+                <artifactId>jersey-media-json-jackson</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.ext</groupId>
+                <artifactId>jersey-spring3</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.core</groupId>
+                <artifactId>jersey-client</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.containers</groupId>
+                <artifactId>jersey-container-servlet</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.media</groupId>
+                <artifactId>jersey-media-multipart</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
         </dependencies>
 	</dependencyManagement>
   
