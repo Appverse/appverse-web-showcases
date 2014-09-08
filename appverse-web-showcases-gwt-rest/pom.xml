@@ -380,6 +380,19 @@
                 <artifactId>jersey-media-multipart</artifactId>
                 <version>${jersey.version}</version>
             </dependency>
+            <!-- This is required to run with "mvn gwt:run" or gwt:debug because provided dependencies are in the
+                 classpath anyway.-->
+            <dependency>
+                <groupId>com.googlecode.gwt-validation</groupId>
+                <artifactId>gwt-validation</artifactId>
+                <version>2.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
         </dependencies>
 	</dependencyManagement>
   
