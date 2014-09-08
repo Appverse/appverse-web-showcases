@@ -32,7 +32,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	</listener>
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/log4j/log4j.properties</param-value>
+		<param-value>classpath:log4j/log4j.properties</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

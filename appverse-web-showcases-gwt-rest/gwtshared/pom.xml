@@ -55,7 +55,7 @@
 	<developers>
 		<developer>
 			<id>sergi</id>
-			<name>Sergi Lanau Rodr�guez</name>
+			<name>Sergi Lanau Rodriguez</name>
 			<email>sergi@lanau.net</email>
 			<url>http://www.lanau.net</url>
 			<organization>Appverse</organization>
@@ -134,11 +134,6 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
 			</plugin>
@@ -154,15 +149,6 @@
 			<groupId>org.fusesource.restygwt</groupId>
 			<artifactId>restygwt</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId> -->
-<!-- 				org.appverse.web.framework.modules.backend.frontfacade.json -->
-<!-- 			</groupId> -->
-<!-- 			<artifactId> -->
-<!-- 				appverse-web-modules-backend-frontfacade-json -->
-<!-- 			</artifactId> -->
-<!-- 		</dependency> -->
-
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>

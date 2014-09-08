@@ -41,7 +41,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	<inherits name='com.mvp4g.Mvp4gModule'/>
 
 
-	<!-- RIAFramework -->
+	<!-- Appverse -->
 	<inherits name="org.appverse.web.framework.frontend.gwt.API" />
 
     <source path="theme"/>   

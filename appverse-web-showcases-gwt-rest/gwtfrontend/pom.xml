@@ -14,8 +14,6 @@
 	<name>GWT Showcase GWT Frontend Module Rest</name>
 	<description>GWT Showcase GWT Frontend Module Rest</description>	
 	<url>http://appverse.org/projects/appverse-web/</url>
-	<!-- cc change
-    <packaging>jar</packaging>-->
 	<inceptionYear>2013</inceptionYear>
 
 	<licenses>
@@ -129,29 +127,34 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>compile</goal> <!-- disable compilation during tests -->
+							<!-- GWT compilation happens only in the module where the war is built -->
 							<goal>resources</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-			</plugin>
+            <!-- maven-assembly-plugin and maven-dependency-plugin were removed because now GWT compilation happens
+                 in the backend module where the war is built, so there is no need to create a zip in another
+                 module to be unpacked in the war. -->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
 			</plugin>
 		</plugins>		
-	</build>		
+	</build>
 
+    <!-- There is no need to set any dependencies of this module as provided because this module itself will
+         be added as provided in the war module.-->
 	<dependencies>
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
 			<artifactId>appverse-web-modules-frontend-gwt-api</artifactId>
+            <!-- In appverse-web-masterpom this module is declared with scope provided, but we need to set it as compile
+                 in here otherwise it would not be visible during GWT compilation in the war module.
+                 At the end it will not be in the war because this module is added as provided in the war. -->
+            <scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.frontend.gwt.theme</groupId>
@@ -165,26 +168,24 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
-<!--        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-bundle</artifactId>
-            <version>1.13</version>
-        </dependency>-->
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt.rest</groupId>
 			<artifactId>gwtshared</artifactId>
 			<version>${project.version}</version>
-			<scope>provided</scope>
+            <!-- There is no need to set any dependencies of this module as provided because this module itself will
+                 be added as provided in the war module.-->
 		</dependency>
         <dependency>
             <groupId>com.googlecode.mvp4g</groupId>
             <artifactId>mvp4g</artifactId>
-            <scope>provided</scope>
+            <!-- There is no need to set any dependencies of this module as provided because this module itself will
+                 be added as provided in the war module.-->
         </dependency>
         <dependency>
             <groupId>com.google.gwt.inject</groupId>
             <artifactId>gin</artifactId>
-            <scope>provided</scope>
+            <!-- There is no need to set any dependencies of this module as provided because this module itself will
+                 be added as provided in the war module.-->
         </dependency>
 	</dependencies>
 </project>

@@ -67,5 +67,10 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	<!-- Default language (English) -->
 	<set-property-fallback name="locale" value="en" />
 
+    <!-- SuperDevMode requires this linker -->
+    <add-linker name="xsiframe"/>
+
+    <!-- compile to FireFox only: so it can run faster when testing -->
+    <!--set-property  name="user.agent" value="gecko1_8"/-->
 
 </module>
