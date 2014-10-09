@@ -32,7 +32,20 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	<inherits name="org.appverse.web.framework.frontend.theme.gwtshowcase.Gwtshowcase" />
 
 	<!-- JSR-303 validator -->
+<!--  https://agema.gft.com/jira/browse/APPWEB-250	
 	<inherits name='com.em.validation.Validation' />
+-->
+
+	<!--  https://groups.google.com/forum/#!topic/google-web-toolkit/lSPzzdXQsCU  -->
+	<generate-with class="com.google.gwt.validation.rebind.ValidatorGenerator">
+    	<when-type-assignable class="javax.validation.Validator" />
+  	</generate-with>	
+
+	<!-- JSR-303 validator -->
+	<inherits name="org.hibernate.validator.HibernateValidator" />
+	<replace-with class="org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.validation.AdminValidationFactory">
+  		<when-type-is class="javax.validation.ValidatorFactory" />
+	</replace-with>
 
 	<!-- Entry point class. -->
 	<entry-point class='com.mvp4g.client.Mvp4gEntryPoint' />
