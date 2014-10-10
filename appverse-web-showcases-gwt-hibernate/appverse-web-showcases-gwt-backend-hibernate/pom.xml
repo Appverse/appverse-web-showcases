@@ -218,6 +218,7 @@
                     <artifactId>guava</artifactId>
                 </exclusion>
             </exclusions>-->
+            <!--  See if we can move this exclusion to the framework level -->
             <exclusions>
             	<exclusion>
             		<artifactId>bean-validator</artifactId>

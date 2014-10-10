@@ -207,7 +207,7 @@
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
 			<artifactId>appverse-web-modules-frontend-gwt-api</artifactId>
-			<!-- bean validator clashes with validation api -->			
+			<!-- See if we can move this to framework level. bean validator clashes with validation api -->			
 			<exclusions>
 				<exclusion>
 					<artifactId>bean-validator</artifactId>

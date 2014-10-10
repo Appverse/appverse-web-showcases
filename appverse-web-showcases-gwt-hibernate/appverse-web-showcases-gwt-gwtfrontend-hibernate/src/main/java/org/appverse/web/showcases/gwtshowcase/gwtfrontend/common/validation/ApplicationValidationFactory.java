@@ -1,4 +1,4 @@
-package org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.common.validation;
+package org.appverse.web.showcases.gwtshowcase.gwtfrontend.common.validation;
 
 import javax.validation.Validator;
 
@@ -10,7 +10,7 @@ import com.google.gwt.validation.client.AbstractGwtValidatorFactory;
 import com.google.gwt.validation.client.GwtValidation;
 import com.google.gwt.validation.client.impl.AbstractGwtValidator;
 
-public class AdminValidationFactory extends AbstractGwtValidatorFactory {
+public class ApplicationValidationFactory extends AbstractGwtValidatorFactory {
 	/**
 	 * Validator marker for the Validation Sample project. Only the classes and groups listed
 	 * in the {@link GwtValidation} annotation can be validated.
