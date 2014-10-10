@@ -207,7 +207,7 @@
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
 			<artifactId>appverse-web-modules-frontend-gwt-api</artifactId>
-			<!-- TEST: It looks like bean validator clashes with validation api -->			
+			<!-- bean validator clashes with validation api -->			
 			<exclusions>
 				<exclusion>
 					<artifactId>bean-validator</artifactId>
@@ -222,61 +222,27 @@
 			<artifactId>appverse-web-modules-frontend-gwt-theme</artifactId>
 		</dependency>
 
-	
-		<!--  See how to guarantee compatibility with log4j, is required for validation -->
-		<dependency>
-    		<groupId>org.slf4j</groupId>
-    		<artifactId>slf4j-api</artifactId>
-<!--       		<version>1.6.1</version> -->
-		</dependency>		
-		<dependency>
-    		<groupId>org.slf4j</groupId>
-    		<artifactId>slf4j-log4j12</artifactId>
-<!--      		<version>1.6.1</version> -->
-		</dependency>
-		<dependency>
-    		<groupId>log4j</groupId>
-    		<artifactId>log4j</artifactId>
-<!--     		<version>1.2.16</version> -->
-		</dependency>
-		
-
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
 			<artifactId>appverse-web-showcases-gwt-gwtshared-hibernate</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-        	<groupId>org.hibernate</groupId>
-        	<artifactId>hibernate-validator</artifactId>
-          	<version>4.1.0.Final</version>
-         	<scope>provided</scope>
-      	</dependency>
-      	
-		<!-- Does not work either local dependency -->
-		<dependency>
-    		<groupId>org.hibernate</groupId>
-    		<artifactId>hibernate-validator-sources</artifactId>
-     		<version>4.1.0.Final</version>
-    		<scope>system</scope>
-     		<systemPath>C:\git\appverse-web-showcases\appverse-web-showcases-gwt-hibernate\appverse-web-showcases-gwt-backend-hibernate\src\main\webapp\WEB-INF\lib\hibernate-validator-4.1.0.Final-sources.jar</systemPath>
-		</dependency>
 		
-		<!--  Workaround, but not the correct solution
-	    <dependency>
-        	<groupId>org.reflections</groupId>
-        	<artifactId>reflections</artifactId>
-        	<version>0.9.8</version>
-        	<exclusions>
-        		<exclusion>
-        			<artifactId>javassist</artifactId>
-        			<groupId>javassist</groupId>
-        		</exclusion>
-        	</exclusions>
-      	</dependency>
-      	 -->
+		<!--  Required for GWT Validation, if we don't add them here the result scope is only runtime 
+		<dependency>
+    		<groupId>org.slf4j</groupId>
+    		<artifactId>slf4j-api</artifactId>
+		</dependency>		
+		<dependency>
+    		<groupId>org.slf4j</groupId>
+    		<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+    		<groupId>log4j</groupId>
+    		<artifactId>log4j</artifactId>
+		</dependency>
+		 -->
 		
 	</dependencies>
 
