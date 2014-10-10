@@ -429,6 +429,15 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<!-- GWT Native validation requires this dependency. 
+				We override default gwt-api module dependency management so that this
+				library is included in the project -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.1</version>
+				<scope>compile</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
