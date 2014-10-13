@@ -34,9 +34,18 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 
 	<inherits name="org.fusesource.restygwt.RestyGWT" />
 
-	<!-- JSR-303 validator -->
-	<inherits name='com.em.validation.Validation' />
+	<!--  https://groups.google.com/forum/#!topic/google-web-toolkit/lSPzzdXQsCU
+	This is not necessary  
+	<generate-with class="com.google.gwt.validation.rebind.ValidatorGenerator">
+    	<when-type-assignable class="javax.validation.Validator" />
+  	</generate-with>	
+  	-->
 
+	<!-- JSR-303 validator -->
+	<inherits name="org.hibernate.validator.HibernateValidator" />
+	<replace-with class="org.appverse.web.showcases.gwtshowcase.gwtfrontend.common.validation.ApplicationValidationFactory">
+  		<when-type-is class="javax.validation.ValidatorFactory" />
+	</replace-with>
 
 	<!-- Entry point class. -->
 	<entry-point class='org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminEntryPoint' />

@@ -147,8 +147,7 @@ public class UserEditPresenter extends
 	@Override
 	public void save(final UserVO user) {
 		boolean valid = true;
-		//TODO this validate is causing OutOfMemoryError -> check if it is repdroducible with other showcases, and depending on this, compare.
-		//view.validate(user);
+		valid = view.validate(user);
 		if (valid) {
             if (useDeprecatedCommand) {
                 userRestRpcCommand.saveUser(user, new ApplicationJsonAsyncCallback<Long>() {
