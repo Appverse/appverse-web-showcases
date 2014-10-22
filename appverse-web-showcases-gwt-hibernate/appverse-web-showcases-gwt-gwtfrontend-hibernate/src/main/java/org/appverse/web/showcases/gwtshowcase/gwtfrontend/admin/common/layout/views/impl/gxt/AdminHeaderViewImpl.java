@@ -65,6 +65,7 @@ public class AdminHeaderViewImpl extends
 		if (leftMargin < 0)
 			leftMargin = 0;
 		headerBorderContainer.setPosition(leftMargin, 0);
+		GWT.log("******* headerBorderContainer.setPosition(leftMargin, 0); -> leftmargin: " + leftMargin);
 	}	
 
 	@Override

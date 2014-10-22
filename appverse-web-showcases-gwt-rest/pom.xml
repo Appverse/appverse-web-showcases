@@ -127,7 +127,7 @@
 		<app.context.root>showcase</app.context.root>
         <appverse.framework.version>1.4.1-SNAPSHOT</appverse.framework.version>
         <appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
-        <gwt-version>2.5.1</gwt-version>
+        <gwt-version>2.6.1</gwt-version>
 <!--         <jersey.version>2.5</jersey.version>  -->
     </properties>
 	

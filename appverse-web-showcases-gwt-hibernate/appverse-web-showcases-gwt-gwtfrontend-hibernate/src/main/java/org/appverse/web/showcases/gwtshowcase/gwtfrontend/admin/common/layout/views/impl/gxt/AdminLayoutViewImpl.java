@@ -81,6 +81,7 @@ public class AdminLayoutViewImpl extends
 		if (leftMargin < 0)
 			leftMargin = 0;
 		borderCon.setPosition(leftMargin, 0);
+		GWT.log("******* borderCon.setPosition(leftMargin, 0); -> leftmargin: " + leftMargin);
 	}
 
 	@Override
@@ -95,6 +96,7 @@ public class AdminLayoutViewImpl extends
 				centerBorderLayout();
 			}
 		});
+		Window.resizeTo(Window.getClientWidth()-1, Window.getClientHeight()-1);
 	}
 
 	@Override

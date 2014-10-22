@@ -222,6 +222,13 @@
 			<artifactId>appverse-web-modules-frontend-gwt-theme</artifactId>
 		</dependency>
 
+		<!-- Neptune Theme -->		
+		<dependency>
+    		<groupId>com.sencha.gxt</groupId>
+    		<artifactId>gxt-theme-neptune</artifactId>
+    		<version>3.1.1</version>
+		</dependency>		
+
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
 			<artifactId>appverse-web-showcases-gwt-gwtshared-hibernate</artifactId>
