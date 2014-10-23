@@ -24,14 +24,17 @@
 package org.appverse.web.showcases.gwtshowcase.backend.model.integration;
 
 import org.appverse.web.framework.backend.persistence.model.integration.AbstractIntegrationAuditedJPABean;
+import org.appverse.web.framework.backend.persistence.services.integration.helpers.EntityListener;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 
 /**
  * The persistent class for the USER database table.
  */
 @Entity
+@EntityListeners(EntityListener.class)
 @Table(name = "ROLE")
 public class RoleDTO extends AbstractIntegrationAuditedJPABean implements
         Serializable {

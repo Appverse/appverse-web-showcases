@@ -24,13 +24,16 @@
 package org.appverse.web.showcases.gwtshowcase.backend.model.integration;
 
 import org.appverse.web.framework.backend.persistence.model.integration.AbstractIntegrationAuditedJPABean;
+import org.appverse.web.framework.backend.persistence.services.integration.helpers.EntityListener;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@EntityListeners(EntityListener.class)
 @Table(name = "USER")
 public class UserDTO extends AbstractIntegrationAuditedJPABean implements
         Serializable {
