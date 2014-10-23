@@ -86,6 +86,7 @@ public class UserEditPresenter extends
 		ConfirmMessageBox box = new ConfirmMessageBox(adminMessages.confirmation(),
 				adminMessages.confirmDeletion());
 		
+		// TODO: Restore this
 		final DialogHideHandler hideHandler = new DialogHideHandler() {
 	        @Override
 	        public void onDialogHide(DialogHideEvent event) {
@@ -93,8 +94,10 @@ public class UserEditPresenter extends
 	          Info.display("MessageBox", msg);
 	        }
 		};
+		
 
-		/* not compatible with GXT 3.1+
+		// TODO: Restore this
+		/* not compatible with GXT 3.1+		
 		box.addHideHandler(new HideHandler() {
 			@Override
 			public void onHide(final HideEvent event) {

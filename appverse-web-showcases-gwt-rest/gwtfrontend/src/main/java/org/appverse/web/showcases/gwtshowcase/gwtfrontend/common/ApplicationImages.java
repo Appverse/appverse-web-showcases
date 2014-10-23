@@ -26,6 +26,7 @@ package org.appverse.web.showcases.gwtshowcase.gwtfrontend.common;
 import org.appverse.web.framework.frontend.gwt.common.FrameworkImages;
 
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.resources.client.ClientBundle.Source;
 
 public interface ApplicationImages extends FrameworkImages {
 
@@ -42,6 +43,12 @@ public interface ApplicationImages extends FrameworkImages {
 	ImageResource logoIcon();
 
 	@Source("images/search.png")
-	ImageResource searchIcon();	
+	ImageResource searchIcon();
+	
+	@Source("images/iconHome.png")
+	ImageResource iconHome();	
+	
+	@Source("images/iconLogout.png")
+	ImageResource iconLogout();	
 	
 }

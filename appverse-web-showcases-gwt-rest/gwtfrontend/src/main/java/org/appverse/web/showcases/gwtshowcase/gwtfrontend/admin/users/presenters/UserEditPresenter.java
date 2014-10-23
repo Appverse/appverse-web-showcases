@@ -92,6 +92,7 @@ public class UserEditPresenter extends
 		ConfirmMessageBox box = new ConfirmMessageBox(adminMessages.confirmation(),
 				adminMessages.confirmDeletion());
 
+/* TODO: Restore this		
 		box.addHideHandler(new HideHandler() {
 			@Override
 			public void onHide(final HideEvent event) {
@@ -118,6 +119,7 @@ public class UserEditPresenter extends
 				}
 			}
 		});
+*/		
 		box.show();
 
 	}
