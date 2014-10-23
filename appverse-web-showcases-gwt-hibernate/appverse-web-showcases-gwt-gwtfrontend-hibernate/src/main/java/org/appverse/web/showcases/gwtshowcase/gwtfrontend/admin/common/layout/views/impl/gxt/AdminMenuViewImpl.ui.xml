@@ -30,6 +30,8 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 
 	<ui:with type="org.appverse.web.showcases.gwtshowcase.gwtfrontend.admin.AdminMessages" field="res" />
 
+	<!-- Example, how to customize the left menu (this might not be a good idea if you want to change themes.
+		 In this case make your own theme making sure is compatible with the ones Sencha provides -->
 	<ui:style>
 		.linkLabel {
 			cursor: pointer;
@@ -44,13 +46,8 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 			color: #2f68af;	
 			font-weight:bold;
 		}
-		.borderTopBottom {
-			border-top:solid 1px #efebe8;
-			border-bottom:solid 1px #efebe8;
-		}
 		.leftMenu
 		{
-			margin-left: 8px;
 			height: 579px;
 			background: #f2f2f2;
 			box-shadow: 1px 1px 6px #999999;		
@@ -60,8 +57,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 			border-bottom:1px solid #aaa;
 		}
 		.leftMenuItem >div:first-child, .leftMenuItem >div:first-child >div, .leftMenuItem >div:first-child >div >div 
-		{
-			background-image:none;
+		{			
 			background-color:#fff;
 			
 		}

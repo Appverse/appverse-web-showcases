@@ -96,7 +96,6 @@ public class AdminLayoutViewImpl extends
 				centerBorderLayout();
 			}
 		});
-		Window.resizeTo(Window.getClientWidth()-1, Window.getClientHeight()-1);
 	}
 
 	@Override
