@@ -57,7 +57,7 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	<ui:with
 		type="com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData"
 		field="centerLayoutData">
-		<ui:attributes width="1024" height="-1"/>
+		<ui:attributes width="1024" height="650"/>
 	</ui:with>
 
 	<container:VerticalLayoutContainer ui:field="flow">	

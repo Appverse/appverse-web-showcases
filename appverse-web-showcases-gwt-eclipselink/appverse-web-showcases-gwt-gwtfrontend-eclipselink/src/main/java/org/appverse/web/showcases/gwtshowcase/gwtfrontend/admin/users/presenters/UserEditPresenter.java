@@ -38,12 +38,16 @@ import org.appverse.web.showcases.gwtshowcase.backend.constants.AuthoritiesConst
 
 import com.mvp4g.client.annotation.Presenter;
 import com.mvp4g.client.presenter.LazyPresenter;
+import com.sencha.gxt.core.client.util.Format;
 import com.sencha.gxt.widget.core.client.Dialog;
 import com.sencha.gxt.widget.core.client.Dialog.PredefinedButton;
 import com.sencha.gxt.widget.core.client.Dialog.DialogMessages;
 import com.sencha.gxt.widget.core.client.box.ConfirmMessageBox;
+import com.sencha.gxt.widget.core.client.event.DialogHideEvent;
+import com.sencha.gxt.widget.core.client.event.DialogHideEvent.DialogHideHandler;
 import com.sencha.gxt.widget.core.client.event.HideEvent;
 import com.sencha.gxt.widget.core.client.event.HideEvent.HideHandler;
+import com.sencha.gxt.widget.core.client.info.Info;
 
 import java.util.List;
 
@@ -81,7 +85,19 @@ public class UserEditPresenter extends
 
 		ConfirmMessageBox box = new ConfirmMessageBox(adminMessages.confirmation(),
 				adminMessages.confirmDeletion());
+		
+		// TODO: Restore this
+		final DialogHideHandler hideHandler = new DialogHideHandler() {
+	        @Override
+	        public void onDialogHide(DialogHideEvent event) {
+	          String msg = Format.substitute("The '{0}' button was pressed", event.getHideButton());
+	          Info.display("MessageBox", msg);
+	        }
+		};
+		
 
+		// TODO: Restore this
+		/* not compatible with GXT 3.1+		
 		box.addHideHandler(new HideHandler() {
 			@Override
 			public void onHide(final HideEvent event) {
@@ -100,6 +116,8 @@ public class UserEditPresenter extends
 				}
 			}
 		});
+		*/
+		box.addDialogHideHandler(hideHandler);
 		box.show();
 
 	}
