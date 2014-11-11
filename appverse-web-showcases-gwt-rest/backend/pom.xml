@@ -120,6 +120,15 @@
 			<artifactId>hsqldb</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!--  TODO: Review this, should not need to be added explicitly -->
+	    <dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>javax.servlet-api</artifactId>
+        	<version>3.0.1</version>
+        	<scope>provided</scope>
+      	</dependency>		
+		
 	</dependencies>
 <!-- cc changes till the end -->
     <!-- TODO: make gwtfrontend just a jar, so this jar can be included as "provided" so all "compile" dependencies of

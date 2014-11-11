@@ -216,11 +216,12 @@
 			</exclusions>
 		</dependency>
 
-		<!-- This dependency is optional. Use it if you use or extend Appverse Theme -->
+		<!-- This dependency is optional. Use it if you use or extend Appverse Theme. Now disabled
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.frontend.gwt.theme</groupId>
 			<artifactId>appverse-web-modules-frontend-gwt-theme</artifactId>
 		</dependency>
+		-->
 
 		<!-- Neptune Theme -->		
 		<dependency>

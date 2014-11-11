@@ -183,6 +183,7 @@
 		<main.name>appverse-web-showcases-gwt-eclipselink</main.name>
 		<app.context.root>showcase</app.context.root>
 		<appverse.framework.version>1.4.1-SNAPSHOT</appverse.framework.version>
+		<appverse.gwtframework.version>0.1-SNAPSHOT</appverse.gwtframework.version>
 		<appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
 		<gwt.version>2.6.1</gwt.version>
 	</properties>
@@ -429,6 +430,13 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.appverse.web.framework.poms.frontend.gwt</groupId>
+				<artifactId>appverse-web-frontend-gwt-masterpom</artifactId>
+				<version>${appverse.gwtframework.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>			
 			<!-- GWT Native validation requires this dependency. 
 				We override default gwt-api module dependency management so that this
 				library is included in the project -->
