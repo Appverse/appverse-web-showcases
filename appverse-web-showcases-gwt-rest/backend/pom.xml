@@ -87,16 +87,12 @@
 			<groupId>org.appverse.web.framework.modules.backend.frontfacade.rest</groupId>
 			<artifactId>appverse-web-modules-backend-frontfacade-rest</artifactId>
 		</dependency>
+		
+		<!--  Try, is this necessary here???? -->		
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.backend.frontfacade.gwt</groupId>
 			<artifactId>appverse-web-modules-backend-frontfacade-gwt</artifactId>
 		</dependency>
-
-<!--         JSON Facade is no longer used in Appverse Web Rest showcase. Now it makes use of a REST interface. -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.appverse.web.framework.modules.backend.frontfacade.json</groupId> -->
-<!-- 			<artifactId>appverse-web-modules-backend-frontfacade-json</artifactId> -->
-<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt.rest</groupId>
@@ -121,13 +117,25 @@
 			<scope>runtime</scope>
 		</dependency>
 		
-		<!--  TODO: Review this, should not need to be added explicitly -->
+        <!-- TODO: Review this so this dependencies are handled by Appverse Web and it is not required
+        to add them here -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+		
 	    <dependency>
         	<groupId>javax.servlet</groupId>
         	<artifactId>javax.servlet-api</artifactId>
         	<version>3.0.1</version>
         	<scope>provided</scope>
-      	</dependency>		
+      	</dependency>
 		
 	</dependencies>
 <!-- cc changes till the end -->

@@ -185,7 +185,7 @@
 		<appverse.framework.version>1.4.1-SNAPSHOT</appverse.framework.version>
 		<appverse.gwtframework.version>0.1-SNAPSHOT</appverse.gwtframework.version>
 		<appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
-		<gwt.version>2.6.1</gwt.version>
+		<gwt.version>2.6.1</gwt.version>		
 	</properties>
 
 	<build>
@@ -270,7 +270,6 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>gwt-maven-plugin</artifactId>
-					<version>${gwt.version}</version>
 					<configuration>
 						<servicePattern>**/*ServiceFacade.java</servicePattern>
 					</configuration>
@@ -528,6 +527,9 @@
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>gwt-maven-plugin</artifactId>
+							<!-- As we are overriding gwt-maven-plugin for development profile to add extra arguments,
+							we need to specify the version explicitly -->
+							<version>${gwt.version}</version>
 							<configuration>
 								<extraJvmArgs>-Xms128m -Xmx768m -XX:MaxPermSize=256m</extraJvmArgs>
 								<draftCompile>true</draftCompile>

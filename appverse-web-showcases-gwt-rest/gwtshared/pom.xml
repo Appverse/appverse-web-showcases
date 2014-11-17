@@ -150,23 +150,16 @@
 			<groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
 			<artifactId>appverse-web-modules-frontend-gwt-api</artifactId>
 		</dependency>
+
+<!-- Should not be necessary here		
 		<dependency>
 			<groupId>org.fusesource.restygwt</groupId>
 			<artifactId>restygwt</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId> -->
-<!-- 				org.appverse.web.framework.modules.backend.frontfacade.json -->
-<!-- 			</groupId> -->
-<!-- 			<artifactId> -->
-<!-- 				appverse-web-modules-backend-frontfacade-json -->
-<!-- 			</artifactId> -->
-<!-- 		</dependency> -->
-
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
         </dependency>
-
+ -->
     </dependencies>
 </project>

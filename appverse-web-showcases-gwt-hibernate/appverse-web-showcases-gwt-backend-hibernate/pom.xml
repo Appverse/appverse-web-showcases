@@ -204,20 +204,9 @@
             <artifactId>appverse-web-modules-backend-core-persistence-hibernate</artifactId>
         </dependency>
 
-        <!--<dependency>
-            <groupId>org.appverse.web.framework.modules.backend.core.api</groupId>
-            <artifactId>appverse-web-modules-backend-core-api</artifactId>
-        </dependency>-->
-
         <dependency>
 			<groupId>org.appverse.web.framework.modules.backend.frontfacade.gwt</groupId>
 			<artifactId>appverse-web-modules-backend-frontfacade-gwt</artifactId>
-            <!--<exclusions>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>-->
             <!--  See if we can move this exclusion to the framework level -->
             <exclusions>
             	<exclusion>
@@ -226,12 +215,6 @@
             	</exclusion>
             </exclusions>
         </dependency>
-<!--        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>15.0</version>
-            <classifier>cdi1.0</classifier>
-        </dependency>-->
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
 			<artifactId>appverse-web-showcases-gwt-gwtshared-hibernate</artifactId>

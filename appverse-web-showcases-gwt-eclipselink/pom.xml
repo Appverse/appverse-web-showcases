@@ -269,11 +269,9 @@
 
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>gwt-maven-plugin</artifactId>
-					<version>${gwt.version}</version>
+					<artifactId>gwt-maven-plugin</artifactId>					
 					<configuration>
 						<servicePattern>**/*ServiceFacade.java</servicePattern>
-						<additionalPageParameters>log_level=DEBUG</additionalPageParameters>
 					</configuration>
 				</plugin>
 
@@ -525,6 +523,9 @@
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>gwt-maven-plugin</artifactId>
+							<!-- As we are overriding gwt-maven-plugin for development profile to add extra arguments,
+							we need to specify the version explicitly -->
+							<version>${gwt.version}</version>
 							<configuration>
 								<extraJvmArgs>-Xms128m -Xmx768m -XX:MaxPermSize=256m</extraJvmArgs>
 								<draftCompile>true</draftCompile>

@@ -128,8 +128,7 @@
         <appverse.framework.version>1.4.1-SNAPSHOT</appverse.framework.version>
         <appverse.gwtframework.version>0.1-SNAPSHOT</appverse.gwtframework.version>        
         <appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
-        <gwt-version>2.6.1</gwt-version>
-<!--         <jersey.version>2.5</jersey.version>  -->
+		<gwt.version>2.6.1</gwt.version>        
     </properties>
 	
  	<build>
@@ -215,7 +214,6 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>gwt-maven-plugin</artifactId>
-					<version>${gwt-version}</version>
 					<configuration>
 						<servicePattern>**/*ServiceFacade.java</servicePattern>
 					</configuration>
@@ -386,47 +384,23 @@
 				<version>${appverse.gwtframework.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>			
-<!--             <dependency> -->
-<!--                 <groupId>org.glassfish.jersey.media</groupId> -->
-<!--                 <artifactId>jersey-media-json-jackson</artifactId> -->
-<!--                 <version>${jersey.version}</version> -->
-<!--             </dependency> -->
-            <!-- Appverse uses version 1.3 but we want to use 1.4 -->
-<!--             <dependency> -->
-<!--                 <groupId>org.fusesource.restygwt</groupId> -->
-<!--                 <artifactId>restygwt</artifactId> -->
-<!--                 <version>1.4</version> -->
-<!--             </dependency> -->
-            <!-- Appverse uses GWT 2.5.0 but we want to use 2.5.1 -->
-<!--             <dependency> -->
-<!--                 <groupId>com.google.gwt</groupId> -->
-<!--                 <artifactId>gwt-servlet</artifactId> -->
-<!--                 <version>${gwt-version}</version> -->
-<!--             </dependency> -->
-<!--             <dependency> -->
-<!--                 <groupId>com.google.gwt</groupId> -->
-<!--                 <artifactId>gwt-user</artifactId> -->
-<!--                 <version>${gwt-version}</version> -->
-<!--             </dependency> -->
-<!--             <dependency> -->
-<!--                 <groupId>com.google.gwt.inject</groupId> -->
-<!--                 <artifactId>gin</artifactId> -->
-<!--                 <version>1.5.0</version> -->
-<!--             </dependency> -->
-            <!-- gwt-validation brings version r09 which is very old and does not have a method that is used
-                 by Jersey: InetAddresses.isMappedIPv4Address -->
+			</dependency>
+			<!-- GWT Native validation requires this dependency. 
+				We override default gwt-api module dependency management so that this
+				library is included in the project -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.1</version>
+				<scope>compile</scope>
+			</dependency>
+			<!-- Remove this, not necessary
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <!-- reflections depends on guava 12 -->
                 <version>12.0</version>
             </dependency>
-<!--             <dependency> -->
-<!--                 <groupId>org.reflections</groupId> -->
-<!--                 <artifactId>reflections</artifactId> -->
-<!--                 <version>0.9.8</version> -->
-<!--             </dependency> -->
+            -->
         </dependencies>
 	</dependencyManagement>
   
@@ -503,7 +477,10 @@
 				  <plugins>
 						<plugin> 
 							<groupId>org.codehaus.mojo</groupId> 
-							<artifactId>gwt-maven-plugin</artifactId> 				
+							<artifactId>gwt-maven-plugin</artifactId>
+							<!-- As we are overriding gwt-maven-plugin for development profile to add extra arguments,
+							we need to specify the version explicitly -->
+							<version>${gwt.version}</version>							 				
 							<configuration> 
 								<extraJvmArgs>-Xms128m -Xmx768m -XX:MaxPermSize=256m</extraJvmArgs>
 								<draftCompile>true</draftCompile> 

@@ -223,35 +223,13 @@
 		</dependency>
 		-->
 
-		<!-- Neptune Theme -->		
-		<dependency>
-    		<groupId>com.sencha.gxt</groupId>
-    		<artifactId>gxt-theme-neptune</artifactId>
-    		<version>3.1.1</version>
-		</dependency>		
-
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
 			<artifactId>appverse-web-showcases-gwt-gwtshared-hibernate</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!--  Required for GWT Validation, if we don't add them here the result scope is only runtime 
-		<dependency>
-    		<groupId>org.slf4j</groupId>
-    		<artifactId>slf4j-api</artifactId>
-		</dependency>		
-		<dependency>
-    		<groupId>org.slf4j</groupId>
-    		<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
-		<dependency>
-    		<groupId>log4j</groupId>
-    		<artifactId>log4j</artifactId>
-		</dependency>
-		 -->
-		
+				
 	</dependencies>
 
 	<profiles>
