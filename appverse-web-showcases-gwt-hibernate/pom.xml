@@ -183,7 +183,7 @@
 		<main.name>appverse-web-showcases-gwt-hibernate</main.name>
 		<app.context.root>showcase</app.context.root>
 		<appverse.framework.version>1.5-SNAPSHOT</appverse.framework.version>
-		<appverse.gwtframework.version>1.0-SNAPSHOT</appverse.gwtframework.version>
+		<appverse.gwtfrontend.version>1.0-SNAPSHOT</appverse.gwtfrontend.version>
 		<appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
 		<gwt.version>2.6.1</gwt.version>		
 	</properties>
@@ -435,7 +435,7 @@
 			<dependency>
 				<groupId>org.appverse.web.framework.poms.frontend.gwt</groupId>
 				<artifactId>appverse-web-frontend-gwt-masterpom</artifactId>
-				<version>${appverse.gwtframework.version}</version>
+				<version>${appverse.gwtfrontend.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>			
