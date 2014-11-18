@@ -74,12 +74,7 @@
     	<system>GitHub</system>
     	<url>https://github.com/Appverse/appverse-web/issues</url>
  	 </issueManagement>
- 	 
-	<ciManagement>
-		<system>Jenkins</system>
-	    <url>https://appverseweb-ci.ci.cloudbees.com</url>
-	</ciManagement> 	 
-   
+ 	    
   	<mailingLists>
     	<mailingList>
       		<name>User and Developers</name>
