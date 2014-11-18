@@ -202,13 +202,6 @@
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.frontend.gwt.api</groupId>
 			<artifactId>appverse-web-modules-frontend-gwt-api</artifactId>
-			<!-- See if we can move this to framework level. bean validator clashes with validation api -->			
-			<exclusions>
-				<exclusion>
-					<artifactId>bean-validator</artifactId>
-					<groupId>org.glassfish.hk2.external</groupId>
-				</exclusion>
-			</exclusions>			
 		</dependency>
 
 		<!-- This dependency is optional. Use it if you use or extend Appverse Theme. Now disabled 
