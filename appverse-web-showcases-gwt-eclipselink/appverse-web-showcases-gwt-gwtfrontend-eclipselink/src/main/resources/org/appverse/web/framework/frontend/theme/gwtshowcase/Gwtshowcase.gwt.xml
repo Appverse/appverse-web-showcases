@@ -4,14 +4,6 @@
   
   <inherits name="com.sencha.gxt.theme.gray.Gray" />
   
-<!--   
-  <inherits name="com.sencha.gxt.theme.neptune.Theme"/>
--->
-  
-<!-- Former Appverse web theme for Sencha GXT 3.1- 
-  <inherits name="org.appverse.web.framework.frontend.gwt.theme.bluetouch.BlueTouch" />
--->  
-
   <!-- Add 'replace-with' here to override extended theme appearances --> 
 
 </module>
