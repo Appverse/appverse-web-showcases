@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.appverse.web.showcases.gwt</groupId>
 		<artifactId>appverse-web-showcases-gwt-eclipselink</artifactId>
-		<version>1.4-MILESTONE_1</version>
+		<version>1.5.0-SNAPSHOT</version>
 	</parent>
 
 	<groupId>org.appverse.web.showcases.gwt.gwtfrontend</groupId>
