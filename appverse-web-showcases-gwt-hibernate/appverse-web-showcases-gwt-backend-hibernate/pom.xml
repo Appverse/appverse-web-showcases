@@ -202,14 +202,8 @@
         <dependency>
 			<groupId>org.appverse.web.framework.modules.backend.frontfacade.gwt</groupId>
 			<artifactId>appverse-web-modules-backend-frontfacade-gwt</artifactId>
-            <!--  See if we can move this exclusion to the framework level -->
-            <exclusions>
-            	<exclusion>
-            		<artifactId>bean-validator</artifactId>
-            		<groupId>org.glassfish.hk2.external</groupId>
-            	</exclusion>
-            </exclusions>
         </dependency>
+        
 		<dependency>
 			<groupId>org.appverse.web.showcases.gwt.gwtshared</groupId>
 			<artifactId>appverse-web-showcases-gwt-gwtshared-hibernate</artifactId>
