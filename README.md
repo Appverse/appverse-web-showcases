@@ -6,29 +6,13 @@ This project covers all our template and demonstration applications for healthy 
 ## More Information
 
 * **About this project**: <http://appverse.github.com/appverse-web>
-* **About licenses **: <http://www.mozilla.org/MPL/>
+* **About licenses **: <http://mozilla.org/MPL/2.0>
+                       <https://www.gnu.org/licenses/lgpl-2.1.html>
 * **About The Appverse Project**: <http://appverse.org>
 
-## License
+## Licenses
 
-    Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
+    The project is a Maven multi module project. Every maven project is an example of a particular scenario.
+    All Maven modules (projects) have either MPL 2.0 or LGPL 2.1 license (see "About Licences").
+    In order to see which license applies to each Maven module (project) please check the header included in the source code.
 
-     This Source Code Form is subject to the terms of the Mozilla Public
-     License, v. 2.0. If a copy of the MPL was not distributed with this
-     file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
-     Redistribution and use in  source and binary forms, with or without modification, 
-     are permitted provided that the  conditions  of the  Mozilla Public License v2.0 
-     are met.
-
-     THIS SOFTWARE IS PROVIDED BY THE  COPYRIGHT HOLDERS  AND CONTRIBUTORS "AS IS" AND
-     ANY EXPRESS  OR IMPLIED WARRANTIES, INCLUDING, BUT  NOT LIMITED TO,   THE IMPLIED
-     WARRANTIES   OF  MERCHANTABILITY   AND   FITNESS   FOR A PARTICULAR  PURPOSE  ARE
-     DISCLAIMED. EXCEPT IN CASE OF WILLFUL MISCONDUCT OR GROSS NEGLIGENCE, IN NO EVENT
-     SHALL THE  COPYRIGHT OWNER  OR  CONTRIBUTORS  BE LIABLE FOR ANY DIRECT, INDIRECT,
-     INCIDENTAL,  SPECIAL,   EXEMPLARY,  OR CONSEQUENTIAL DAMAGES  (INCLUDING, BUT NOT
-     LIMITED TO,  PROCUREMENT OF SUBSTITUTE  GOODS OR SERVICES;  LOSS OF USE, DATA, OR
-     PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-     WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE) 
-     ARISING  IN  ANY WAY OUT  OF THE USE  OF THIS  SOFTWARE,  EVEN  IF ADVISED OF THE 
-     POSSIBILITY OF SUCH DAMAGE.
