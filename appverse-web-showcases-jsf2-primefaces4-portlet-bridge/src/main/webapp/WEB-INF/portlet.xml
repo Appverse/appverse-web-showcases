@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
+
+ This Source Code Form is subject to the terms of the GNU Lesser General Public License (LGPL), 
+ version 2.1. If a copy of the MPL was not distributed with this 
+ file, You can obtain one at https://www.gnu.org/licenses/lgpl-2.1.html. 
+
+ Redistribution and use in source and binary forms, with or without modification, 
+ are permitted provided that the conditions of the GNU Lesser General Public License (LGPL) 
+ version 2.1 are met.
+ 
+ This project includes the original Liferay Portlet Bridge with PrimeFaces4 example that can
+ be found here: https://github.com/liferay/liferay-faces/tree/master/demos/bridge/primefaces4-portlet
+ and it is released under GNU Lesser General Public License (LGPL) version 2.1. and 
+ extends it with it own source code. For this reason in the original Liferay code the original packages
+ have been kept and the original Liferay header as well. Appverse header have been added so both 
+ the orginal one (Liferay) and Appverse can be found in some source files.
+  
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. EXCEPT IN CASE OF WILLFUL MISCONDUCT OR GROSS NEGLIGENCE, IN NO EVENT
+ SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE) 
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+ POSSIBILITY OF SUCH DAMAGE.
+ -->
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<display-name>PrimeFaces4</display-name>
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/views/portletViewMode.xhtml</value>
+		</init-param>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.edit</name>
+			<value>/views/portletEditMode.xhtml</value>
+		</init-param>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.help</name>
+			<value>/views/portletHelpMode.xhtml</value>
+		</init-param>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+			<portlet-mode>help</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Appverse Web PrimeFaces JSF2 Bridge Example</title>
+			<short-title>Appverse Web PrimeFaces JSF2 Bridge Example</short-title>
+			<keywords>Appverse Web PrimeFraces JSF2 Bridge</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>datePattern</name>
+				<value>MM/dd/yyyy</value>
+			</preference>
+			<preference>
+				<name>recipientEmailAddress</name>
+				<value>humanresources@some-company-domain.com</value>
+			</preference>
+		</portlet-preferences>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+</portlet-app>

@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
+
+ This Source Code Form is subject to the terms of the GNU Lesser General Public License (LGPL), 
+ version 2.1. If a copy of the MPL was not distributed with this 
+ file, You can obtain one at https://www.gnu.org/licenses/lgpl-2.1.html. 
+
+ Redistribution and use in source and binary forms, with or without modification, 
+ are permitted provided that the conditions of the GNU Lesser General Public License (LGPL) 
+ version 2.1 are met.
+ 
+ This project includes the original Liferay Portlet Bridge with PrimeFaces4 example that can
+ be found here: https://github.com/liferay/liferay-faces/tree/master/demos/bridge/primefaces4-portlet
+ and it is released under GNU Lesser General Public License (LGPL) version 2.1. and 
+ extends it with it own source code. For this reason in the original Liferay code the original packages
+ have been kept and the original Liferay header as well. Appverse header have been added so both 
+ the orginal one (Liferay) and Appverse can be found in some source files.
+  
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. EXCEPT IN CASE OF WILLFUL MISCONDUCT OR GROSS NEGLIGENCE, IN NO EVENT
+ SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE) 
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+ POSSIBILITY OF SUCH DAMAGE.
+ -->
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.appverse.web.showcases.primefaces.jsf2.portlet.bridge</groupId>
+	<artifactId>appverse-web-showcases-primefaces-jsf2-portlet-bridge</artifactId>
+	<version>1.4-MILESTONE_1</version>
+	<packaging>war</packaging>
+
+	<name>JSF2 PrimeFaces Portlet Bridge Showcase</name>
+	<description>JSF2 PrimeFaces Portlet Bridge Showcase</description>
+	<url>http://appverse.org/projects/appverse-web/</url>
+	<inceptionYear>2013</inceptionYear>
+
+
+	<licenses>
+		<license>
+			<comments>
+ 				Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
+
+ 				This Source Code Form is subject to the terms of the GNU Lesser General Public License (LGPL), 
+ 				version 2.1. If a copy of the MPL was not distributed with this 
+ 				file, You can obtain one at https://www.gnu.org/licenses/lgpl-2.1.html. 
+
+ 				Redistribution and use in source and binary forms, with or without modification, 
+ 				are permitted provided that the conditions of the GNU Lesser General Public License (LGPL) 
+ 				version 2.1 are met.
+ 
+ 				This project includes the original Liferay Portlet Bridge with PrimeFaces4 example that can
+ 				be found here: https://github.com/liferay/liferay-faces/tree/master/demos/bridge/primefaces4-portlet
+ 				and it is released under GNU Lesser General Public License (LGPL) version 2.1. and 
+ 				extends it with it own source code. For this reason in the original Liferay code the original packages
+ 				have been kept and the original Liferay header as well. Appverse header have been added so both 
+ 				the orginal one (Liferay) and Appverse can be found in some source files.
+  
+
+ 				THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ 				ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ 				WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ 				DISCLAIMED. EXCEPT IN CASE OF WILLFUL MISCONDUCT OR GROSS NEGLIGENCE, IN NO EVENT
+ 				SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ 				INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ 				LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ 				PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ 				WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE) 
+ 				ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+ 				POSSIBILITY OF SUCH DAMAGE.
+			</comments>
+		</license>
+	</licenses>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<appverse.framework.version>1.5.0-RELEASE</appverse.framework.version>
+		<appverse.ddl-generator.version>1.4-RELEASE</appverse.ddl-generator.version>		
+		<primefaces.version>4.0</primefaces.version>
+		<liferay.bridge.version>3.2.4-ga5</liferay.bridge.version>
+		<mojarra.version>2.1.21</mojarra.version>
+		
+		<!-- You have to be careful with the WAR file name to be deployed. "portlet", "web", "theme" 
+		sections o words in the file name have special cognotations at deployment time -->
+		<war.file.name>appverse-portal-showcase.war</war.file.name>
+	</properties>
+
+
+	<build>
+		<filters>
+			<filter>src/main/filters/${env}.properties</filter>
+		</filters>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+						<showWarnings>true</showWarnings>
+						<showDeprecated>true</showDeprecated>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.7.2</version>
+					<configuration>
+						<maven.test.skip>${skip.tests}</maven.test.skip>
+						<includes>
+							<include>**/*.java</include>
+						</includes>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.4.3</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<includeEmptyDirs>true</includeEmptyDirs>
+						<nonFilteredFileExtensions>
+							<nonFilteredFileExtension>jasper</nonFilteredFileExtension>
+						</nonFilteredFileExtensions>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.1.1</version>
+					<configuration>
+						<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.2</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.7</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.appverse.web.tools.jpaddlgenerator</groupId>
+					<artifactId>appverse-web-tools-jpa-ddl-generator</artifactId>
+					<version>${appverse.ddl-generator.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>generate-schema</goal>
+							</goals>
+							<phase>prepare-package</phase>
+							<configuration>
+								<ddlOutputDir>${project.build.outputDirectory}/sql</ddlOutputDir>
+							</configuration>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>org.appverse.web.framework.modules.backend.core.persistence.eclipselink</groupId>
+							<artifactId>appverse-web-modules-backend-core-persistence-eclipselink</artifactId>
+							<version>${appverse.framework.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>native2ascii-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<goals>
+								<goal>native2ascii</goal>
+							</goals>
+							<configuration>
+								<src>${basedir}/src/main/resources</src>
+								<dest>target/appverse-web-showcases-jsf2-${project.version}/WEB-INF/classes</dest>
+								<encoding>UTF8</encoding>
+								<includes>
+									<include>**/*.properties</include>
+								</includes>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.appverse.web.tools.jpaddlgenerator</groupId>
+				<artifactId>appverse-web-tools-jpa-ddl-generator</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>native2ascii-maven-plugin</artifactId>
+			</plugin>
+			
+			<!-- https://www.liferay.com/es/community/forums/-/message_boards/message/31964648 -->
+			<plugin>
+				<groupId>com.liferay.maven.plugins</groupId>
+				<artifactId>liferay-maven-plugin</artifactId>
+				<version>${liferay.maven.plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>build-css</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
+					<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
+					<appServerLibGlobalDir>${liferay.app.server.lib.global.dir}</appServerLibGlobalDir>
+					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
+					<liferayVersion>${liferay.version}</liferayVersion>
+					<pluginType>portlet</pluginType>
+					<warFileName>${war.file.name}</warFileName>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Appverse dependencies (BOM) -->
+			<dependency>
+				<groupId>org.appverse.web.framework.poms</groupId>
+				<artifactId>appverse-web-masterpom</artifactId>
+				<version>${appverse.framework.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Other dependencies -->
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>1.3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>el-api</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.portlet</groupId>
+				<artifactId>portlet-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>${primefaces.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.seam</groupId>
+				<artifactId>jboss-el</artifactId>
+				<version>2.0.0.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liferay.faces</groupId>
+				<artifactId>liferay-faces-bridge-impl</artifactId>
+				<version>${liferay.bridge.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liferay.faces</groupId>
+				<artifactId>liferay-faces-alloy</artifactId>
+				<version>${liferay.bridge.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-api</artifactId>
+				<version>${mojarra.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-impl</artifactId>
+				<version>${mojarra.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.appverse.web.framework.modules.backend.core.api</groupId>
+			<artifactId>appverse-web-modules-backend-core-api</artifactId>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.appverse.web.framework.modules.backend.core.persistence.eclipselink</groupId>
+			<artifactId>appverse-web-modules-backend-core-persistence-eclipselink</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- JSF, PrimeFaces dependencies. All this needs to go in dependencies 
+			management -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-el</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.faces</groupId>
+			<artifactId>liferay-faces-bridge-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.faces</groupId>
+			<artifactId>liferay-faces-alloy</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<scope>compile</scope>
+		</dependency>		
+	</dependencies>
+
+	<profiles>
+		<!-- local development profile example -->
+		<profile>
+			<id>development</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<!-- Overriding Appverse Web scope as we use it as well for local development -->
+			<dependencies>
+				<dependency>
+					<groupId>org.hsqldb</groupId>
+					<artifactId>hsqldb</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+			<properties>
+				<env>development</env>
+			</properties>
+		</profile>
+		<!-- integration (production-like) profile example -->
+		<profile>
+			<id>integration</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.appverse.web.tools.jpaddlgenerator</groupId>
+						<artifactId>appverse-web-tools-jpa-ddl-generator</artifactId>
+						<configuration>
+							<targetDbPlatform>MySQLPlatform</targetDbPlatform>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<properties>
+				<env>integration</env>
+			</properties>
+		</profile>
+		
+		<!-- Define here your required profiles, for instance for production envirom -->	
+	</profiles>
+
+	<distributionManagement>
+		<repository>
+			<id>appverse-releases</id>
+			<name>Internal Releases</name>
+			<url>http://appverse.gftlabs.com/artifacts/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>appverse-snapshots</id>
+			<name>Internal Snapshots</name>
+			<url>http://appverse.gftlabs.com/artifacts/content/repositories/snapshots/</url>
+		</snapshotRepository>		
+	</distributionManagement>
+	
+	<repositories>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.jboss.org</id>
+			<name>JBoss Maven Repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.primefaces.org</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
+	</repositories>
+	
+</project>

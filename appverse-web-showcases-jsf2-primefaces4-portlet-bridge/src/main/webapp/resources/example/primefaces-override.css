@@ -1,0 +1,9 @@
+.ui-message-info, .ui-message-error, .ui-message-warn, .ui-message-fatal {
+	border: 1px solid;
+	margin: 0px 0px;
+	padding: 2px 5px;
+}
+.dateTimeField button {
+   vertical-align: top;
+   border-radius: 0 3px 3px 0;
+}
