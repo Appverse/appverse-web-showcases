@@ -242,6 +242,8 @@
 			</plugin>
 			
 			<!-- https://www.liferay.com/es/community/forums/-/message_boards/message/31964648 -->
+                        <!-- Example showing how to configure Liferay Maven Plugin to integrate deploy to liferay into
+                             your build lifecyle
 			<plugin>
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
@@ -264,7 +266,7 @@
 					<warFileName>${war.file.name}</warFileName>
 				</configuration>
 			</plugin>
-			
+			-->
 		</plugins>
 	</build>
 
