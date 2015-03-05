@@ -176,6 +176,7 @@
 	<modules>
 		<module>appverse-web-showcases-gwt-eclipselink</module>
                 <module>appverse-web-showcases-gwt-rest</module>
+                <module>appverse-web-showcases-gwt-json</module>
                 <module>appverse-web-showcases-gwt-hibernate</module>
 		<module>appverse-web-showcases-jsf2</module>
                 <module>appverse-web-showcases-jsf2-primefaces4-portlet-bridge</module>
