@@ -37,10 +37,14 @@ import org.fusesource.restygwt.client.Method;
 
 import com.mvp4g.client.annotation.Presenter;
 import com.mvp4g.client.presenter.LazyPresenter;
+import com.sencha.gxt.core.client.util.Format;
 import com.sencha.gxt.widget.core.client.Dialog;
 import com.sencha.gxt.widget.core.client.box.ConfirmMessageBox;
+import com.sencha.gxt.widget.core.client.event.DialogHideEvent;
 import com.sencha.gxt.widget.core.client.event.HideEvent;
+import com.sencha.gxt.widget.core.client.event.DialogHideEvent.DialogHideHandler;
 import com.sencha.gxt.widget.core.client.event.HideEvent.HideHandler;
+import com.sencha.gxt.widget.core.client.info.Info;
 
 @Presenter(view = UserEditViewImpl.class)
 public class UserEditPresenter extends
@@ -75,23 +79,39 @@ public class UserEditPresenter extends
 
 		ConfirmMessageBox box = new ConfirmMessageBox(adminMessages.confirmation(),
 				adminMessages.confirmDeletion());
+		
+		// TODO: Restore this
+		final DialogHideHandler hideHandler = new DialogHideHandler() {
+	        @Override
+	        public void onDialogHide(DialogHideEvent event) {
+	          String msg = Format.substitute("The '{0}' button was pressed", event.getHideButton());
+	          Info.display("MessageBox", msg);
+	        }
+		};
+		
 
+		// TODO: Restore this
+		/* not compatible with GXT 3.1+		
 		box.addHideHandler(new HideHandler() {
 			@Override
 			public void onHide(final HideEvent event) {
 				Dialog btn = (Dialog) event.getSource();
 				String answer = btn.getHideButton().getText();
 				if (btn.getDialogMessages().yes().equals(answer)) {
-					userRestRpcCommand.deleteUser(user,
-							new ApplicationJsonAsyncCallback<Void>() {
-                                @Override
-                                public void onSuccess(Method method, Void o) {
-                                    eventBus.usersSearch(true);
-                                }
+					userRpcCommand.deleteUser(user,
+							new ApplicationAsyncCallback<Void>() {
+								@Override
+								public void onSuccess(final Void v) {
+									// TODO: Show here an alert confirming that
+									// the object was succesfully deleted
+									eventBus.usersSearch(true);
+								}
 							});
 				}
 			}
 		});
+		*/
+		box.addDialogHideHandler(hideHandler);
 		box.show();
 
 	}

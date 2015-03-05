@@ -4,7 +4,7 @@
 
     <groupId>org.appverse.web.showcases.gwt</groupId>
     <artifactId>appverse-web-showcases-gwt-json</artifactId>
-    <version>1.4-MILESTONE_1</version>
+    <version>1.5.0-RELEASE</version>
     <packaging>pom</packaging>
     
     <name>GWT Showcase JSON</name>
@@ -125,8 +125,10 @@
 		<main.group>org.appverse.web.showcases.gwt</main.group>
 		<main.name>appverse-web-showcases-gwt-json</main.name>
 		<app.context.root>showcase</app.context.root>
-        <appverse.framework.version>1.4.1-MILESTONE_2</appverse.framework.version>
-        <appverse.ddl-generator.version>1.0.5.1</appverse.ddl-generator.version>
+		<appverse.framework.version>1.5.0-RELEASE</appverse.framework.version>
+		<appverse.gwtfrontend.version>1.5.0-RELEASE</appverse.gwtfrontend.version>
+		<appverse.ddl-generator.version>1.4-RELEASE</appverse.ddl-generator.version>
+		<gwt.version>2.6.1</gwt.version>
     </properties>
 	
  	<build>
@@ -212,7 +214,6 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>gwt-maven-plugin</artifactId>
-					<version>2.5.1</version>
 					<configuration>
 						<servicePattern>**/*ServiceFacade.java</servicePattern>
 					</configuration>
@@ -371,6 +372,22 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.appverse.web.framework.poms.frontend.gwt</groupId>
+				<artifactId>appverse-web-frontend-gwt-masterpom</artifactId>
+				<version>${appverse.gwtfrontend.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>			
+			<!-- GWT Native validation requires this dependency. 
+				We override default gwt-api module dependency management so that this
+				library is included in the project -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.1</version>
+				<scope>compile</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
   
@@ -447,11 +464,14 @@
 				  <plugins>
 						<plugin> 
 							<groupId>org.codehaus.mojo</groupId> 
-							<artifactId>gwt-maven-plugin</artifactId> 				
-							<configuration> 
-								<extraJvmArgs>-Xms128m -Xmx768m -XX:MaxPermSize=256m</extraJvmArgs> 
-								<draftCompile>true</draftCompile> 
-							</configuration> 
+							<artifactId>gwt-maven-plugin</artifactId>
+							<!-- As we are overriding gwt-maven-plugin for development profile to add extra arguments,
+							we need to specify the version explicitly -->
+							<version>${gwt.version}</version>
+							<configuration>
+								<extraJvmArgs>-Xms128m -Xmx768m -XX:MaxPermSize=256m</extraJvmArgs>
+								<draftCompile>true</draftCompile>
+							</configuration>
 						</plugin> 
 					</plugins>
 				</pluginManagement> 

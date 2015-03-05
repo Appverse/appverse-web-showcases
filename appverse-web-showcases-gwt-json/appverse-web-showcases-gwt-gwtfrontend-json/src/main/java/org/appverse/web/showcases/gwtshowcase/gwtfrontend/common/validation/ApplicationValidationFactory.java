@@ -21,33 +21,30 @@
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
  POSSIBILITY OF SUCH DAMAGE.
  */
-package org.appverse.web.showcases.gwtshowcase.gwtfrontend.common;
+package org.appverse.web.showcases.gwtshowcase.gwtfrontend.common.validation;
 
-import org.appverse.web.framework.frontend.gwt.common.FrameworkImages;
+import javax.validation.Validator;
 
-import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.resources.client.ClientBundle.Source;
+import org.appverse.web.showcases.gwtshowcase.backend.model.presentation.UserVO;
 
-public interface ApplicationImages extends FrameworkImages {
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.validation.client.AbstractGwtValidatorFactory;
+import com.google.gwt.validation.client.GwtValidation;
+import com.google.gwt.validation.client.impl.AbstractGwtValidator;
 
-	@Source("images/add.png")
-	ImageResource addIcon();
-
-	@Source("images/delete.png")
-	ImageResource deleteIcon();
-
-	@Source("images/edit.png")
-	ImageResource editIcon();
-
-	@Source("images/logo.png")
-	ImageResource logoIcon();
-
-	@Source("images/search.png")
-	ImageResource searchIcon();
+public class ApplicationValidationFactory extends AbstractGwtValidatorFactory {
+	/**
+	 * Validator marker for the Validation Sample project. Only the classes and groups listed
+	 * in the {@link GwtValidation} annotation can be validated.
+	 */
+	@GwtValidation({UserVO.class})
+	public interface GwtValidator extends Validator {
+		
+	}
 	
-	@Source("images/iconHome.png")
-	ImageResource iconHome();	
-	
-	@Source("images/iconLogout.png")
-	ImageResource iconLogout();	
+	@Override
+	public AbstractGwtValidator createValidator() {
+		return GWT.create(GwtValidator.class);
+	}
+
 }
