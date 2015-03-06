@@ -1,0 +1,9 @@
+<module>
+  <!-- AppverseFramework includes theme for own framework widgets -->
+  <inherits name="org.appverse.web.framework.frontend.gwt.theme.AppverseFramework" />
+  
+  <inherits name="com.sencha.gxt.theme.gray.Gray" />
+  
+  <!-- Add 'replace-with' here to override extended theme appearances --> 
+
+</module>

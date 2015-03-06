@@ -84,7 +84,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<appverse.framework.version>1.5.0-RELEASE</appverse.framework.version>
+		<appverse.framework.version>1.5.1-SNAPSHOT</appverse.framework.version>
 		<appverse.ddl-generator.version>1.4-RELEASE</appverse.ddl-generator.version>		
 		<primefaces.version>4.0</primefaces.version>
 		<liferay.bridge.version>3.2.4-ga5</liferay.bridge.version>
