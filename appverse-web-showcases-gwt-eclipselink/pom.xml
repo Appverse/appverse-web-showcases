@@ -4,7 +4,7 @@
 
 	<groupId>org.appverse.web.showcases.gwt</groupId>
 	<artifactId>appverse-web-showcases-gwt-eclipselink</artifactId>
-	<version>1.5.0-RELEASE</version>
+	<version>1.5.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>GWT Showcase EclipseLink</name>
@@ -177,8 +177,8 @@
 		<main.group>org.appverse.web.showcases.gwt</main.group>
 		<main.name>appverse-web-showcases-gwt-eclipselink</main.name>
 		<app.context.root>showcase</app.context.root>
-		<appverse.framework.version>1.5.0-RELEASE</appverse.framework.version>
-		<appverse.gwtfrontend.version>1.5.0-RELEASE</appverse.gwtfrontend.version>
+		<appverse.framework.version>1.5.1-JAVA-46</appverse.framework.version>
+		<appverse.gwtfrontend.version>1.5.1-JAVA-46</appverse.gwtfrontend.version>
 		<appverse.ddl-generator.version>1.4-RELEASE</appverse.ddl-generator.version>
 		<gwt.version>2.6.1</gwt.version>
 	</properties>
