@@ -10,7 +10,7 @@
 
 	<groupId>org.appverse.web.showcases.poms</groupId>
 	<artifactId>appverse-web-showcases-pom</artifactId>
-	<version>1.5.0-RELEASE</version>
+	<version>1.5.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Appverse Web Showcases POM</name>
