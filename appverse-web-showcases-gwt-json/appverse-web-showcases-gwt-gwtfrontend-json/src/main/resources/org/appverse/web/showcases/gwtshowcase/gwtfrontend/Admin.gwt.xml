@@ -74,9 +74,4 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
 	<!-- Default language (English) -->
 	<set-property-fallback name="locale" value="en" />
 
-<!-- 	<replace-with class="org.appverse.web.framework.frontend.gwt.commands.impl.live.AuthenticationCommandRpcImpl"> -->
-	<replace-with class="org.appverse.web.framework.frontend.gwt.commands.impl.live.AuthenticationRpcCommandImpl">
-		<when-type-is class="org.appverse.web.framework.frontend.gwt.commands.AuthenticationCommand" />
-	</replace-with>
-
 </module>
