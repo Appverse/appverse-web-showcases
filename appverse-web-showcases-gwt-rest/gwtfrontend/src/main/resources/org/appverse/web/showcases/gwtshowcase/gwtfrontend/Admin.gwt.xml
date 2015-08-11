@@ -32,8 +32,6 @@ Copyright (c) 2012 GFT Appverse, S.L., Sociedad Unipersonal.
     <inherits name="org.appverse.web.showcases.gwtshowcase.Shared"/>
     <inherits name="org.appverse.web.framework.frontend.theme.gwtshowcase.Gwtshowcase" />
 
-	<inherits name="org.fusesource.restygwt.RestyGWT" />
-
 	<!--  https://groups.google.com/forum/#!topic/google-web-toolkit/lSPzzdXQsCU
 	This is not necessary  
 	<generate-with class="com.google.gwt.validation.rebind.ValidatorGenerator">
