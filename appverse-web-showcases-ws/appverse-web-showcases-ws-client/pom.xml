@@ -25,6 +25,7 @@
 				<plugin>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
+					<version>9.3.0.M2</version>
 					<configuration>
 						<webAppConfig>
 							<contextPath>/${project.artifactId}</contextPath>
@@ -84,7 +85,7 @@
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.backend.core.api</groupId>
 			<artifactId>appverse-web-modules-backend-core-api</artifactId>
-			<version>1.4-SNAPSHOT</version>
+			<version>1.5.1</version>
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
@@ -96,7 +97,7 @@
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.backend.core.ws</groupId>
 			<artifactId>appverse-web-modules-backend-core-ws</artifactId>
-			<version>1.4-SNAPSHOT</version>
+			<version>1.5.1</version>
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
