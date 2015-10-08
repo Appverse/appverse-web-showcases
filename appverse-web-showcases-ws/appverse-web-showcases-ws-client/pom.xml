@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.appverse</groupId>
 	<artifactId>appverse-web-showcases-ws-client</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<build>
@@ -25,6 +25,7 @@
 				<plugin>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
+					<version>9.3.0.M2</version>
 					<configuration>
 						<webAppConfig>
 							<contextPath>/${project.artifactId}</contextPath>
@@ -63,7 +64,10 @@
 					<xnocompile>true</xnocompile>
 					<verbose>true</verbose>
 					<extension>true</extension>
-					<target>2.1</target>
+					<!-- Important: next config property 'target' makes reference to JAX-WS spec.
+					Supported values are: 2.0, 2.1 and 2.2. It is very important to tune this parameter according to the
+					version of the spec you need to support -->					
+					<target>2.2</target>
 					<wsdlUrls>
 						<wsdlUrl>http://localhost:8090/appverse-web-showcases-ws-service/AccountService?wsdl</wsdlUrl>
 					</wsdlUrls>
@@ -72,6 +76,7 @@
 			<plugin>
 				<groupId>org.appverse.web.tools.jaxws.client</groupId>
 				<artifactId>jax-ws-client-stub-generator</artifactId>
+				<version>1.5.3-RELEASE</version>
 				<configuration>	 
 					<remoteWsdl>http://localhost:8090/appverse-web-showcases-ws-service/AccountService?wsdl</remoteWsdl> 
 					<springService>true</springService>
@@ -84,7 +89,7 @@
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.backend.core.api</groupId>
 			<artifactId>appverse-web-modules-backend-core-api</artifactId>
-			<version>1.4-SNAPSHOT</version>
+			<version>1.5.3-RELEASE</version>
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
@@ -96,7 +101,7 @@
 		<dependency>
 			<groupId>org.appverse.web.framework.modules.backend.core.ws</groupId>
 			<artifactId>appverse-web-modules-backend-core-ws</artifactId>
-			<version>1.4-SNAPSHOT</version>
+			<version>1.5.3-RELEASE</version>
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
@@ -105,6 +110,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>2.2.10</version>
+        </dependency>				
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -37,7 +37,7 @@
 
 	<groupId>org.appverse.web.showcases.primefaces.jsf2.portlet.bridge</groupId>
 	<artifactId>appverse-web-showcases-primefaces-jsf2-portlet-bridge</artifactId>
-	<version>1.4-MILESTONE_1</version>
+	<version>1.5.3-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>JSF2 PrimeFaces Portlet Bridge Showcase</name>
@@ -84,8 +84,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<appverse.framework.version>1.5.1-SNAPSHOT</appverse.framework.version>
-		<appverse.ddl-generator.version>1.4-RELEASE</appverse.ddl-generator.version>		
+		<appverse.framework.version>1.5.3-RELEASE</appverse.framework.version>
 		<primefaces.version>4.0</primefaces.version>
 		<liferay.bridge.version>3.2.4-ga5</liferay.bridge.version>
 		<mojarra.version>2.1.21</mojarra.version>
@@ -187,7 +186,6 @@
 				<plugin>
 					<groupId>org.appverse.web.tools.jpaddlgenerator</groupId>
 					<artifactId>appverse-web-tools-jpa-ddl-generator</artifactId>
-					<version>${appverse.ddl-generator.version}</version>
 					<executions>
 						<execution>
 							<goals>

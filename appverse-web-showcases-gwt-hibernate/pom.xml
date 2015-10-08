@@ -4,7 +4,7 @@
 
 	<groupId>org.appverse.web.showcases.gwt</groupId>
 	<artifactId>appverse-web-showcases-gwt-hibernate</artifactId>
-	<version>1.5.2-SNAPSHOT</version>
+	<version>1.5.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>GWT Showcase Hibernate</name>
@@ -177,9 +177,8 @@
 		<main.group>org.appverse.web.showcases.gwt</main.group>
 		<main.name>appverse-web-showcases-gwt-hibernate</main.name>
 		<app.context.root>showcase</app.context.root>
-		<appverse.framework.version>1.5.2-RELEASE</appverse.framework.version>
+		<appverse.framework.version>1.5.3-RELEASE</appverse.framework.version>
 		<appverse.gwtfrontend.version>1.5.2-RELEASE</appverse.gwtfrontend.version>
-		<appverse.ddl-generator.version>1.4-RELEASE</appverse.ddl-generator.version>
 		<gwt.version>2.6.1</gwt.version>		
 	</properties>
 
@@ -346,7 +345,6 @@
 				<plugin>
 					<groupId>org.appverse.web.tools.jpaddlgenerator</groupId>
 					<artifactId>appverse-web-tools-jpa-ddl-generator</artifactId>
-					<version>${appverse.ddl-generator.version}</version>
 					<executions>
 						<execution>
 							<goals>
