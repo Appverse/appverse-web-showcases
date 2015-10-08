@@ -70,7 +70,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.richfaces.bom.version>4.3.7.Final</org.richfaces.bom.version>
-		<appverse.framework.version>1.5.3-SNAPSHOT</appverse.framework.version>
+		<appverse.framework.version>1.5.3-RELEASE</appverse.framework.version>
 
 		<!-- TODO: refactor this according to last changes in 1.1-SNAPSHOT poms -->
 		<app.context.root>jsf2showcase</app.context.root>

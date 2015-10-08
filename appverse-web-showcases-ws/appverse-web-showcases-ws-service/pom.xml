@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	
 	<properties>
-		<appverse.framework.version>1.5.3-SNAPSHOT</appverse.framework.version>
+		<appverse.framework.version>1.5.3-RELEASE</appverse.framework.version>
 	</properties>
 
 	<build>
@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>jaxws-rt</artifactId>
-		</dependency>		
+		</dependency>
 	</dependencies>
 	
     <dependencyManagement>

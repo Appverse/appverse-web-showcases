@@ -177,7 +177,7 @@
 		<main.group>org.appverse.web.showcases.gwt</main.group>
 		<main.name>appverse-web-showcases-gwt-eclipselink</main.name>
 		<app.context.root>showcase</app.context.root>
-		<appverse.framework.version>1.5.3-SNAPSHOT</appverse.framework.version>
+		<appverse.framework.version>1.5.3-RELEASE</appverse.framework.version>
 		<appverse.gwtfrontend.version>1.5.2-RELEASE</appverse.gwtfrontend.version>
 		<gwt.version>2.6.1</gwt.version>
 	</properties>
